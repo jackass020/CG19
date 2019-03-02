@@ -15,6 +15,10 @@ public class Generator {
                 Sphere sp = new Sphere(cmd[1],Float.parseFloat(cmd[2]),Float.parseFloat(cmd[3]),Float.parseFloat(cmd[4]));
                 sp.generateFile();
                 break;
+            case "cone":
+                Cone co = new Cone(cmd[1],Float.parseFloat(cmd[2]),Float.parseFloat(cmd[3]),Float.parseFloat(cmd[4]),Float.parseFloat(cmd[5]));
+                co.generateFile();
+                break;
         }
 
     }
