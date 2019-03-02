@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Sphere {
     private float radius;
@@ -26,13 +28,13 @@ public class Sphere {
     private String dest_file;
 
     public Sphere() {
-        this.radius=0;
-        this.slices=0;
-        this.stacks=0;
-        this.dest_file=null;
+        this.radius = 0;
+        this.slices = 0;
+        this.stacks = 0;
+        this.dest_file = null;
     }
 
-    public Sphere(String dest_file,float radius, float slices, float stacks) {
+    public Sphere(String dest_file, float radius, float slices, float stacks) {
         this.radius = radius;
         this.slices = slices;
         this.stacks = stacks;
@@ -71,15 +73,15 @@ public class Sphere {
         this.dest_file = dest_file;
     }
 
-    private float calculate_zAxis(float radius, double a1 , double a2) {
+    private float calculate_zAxis(float radius, double a1, double a2) {
         return (radius * ((float) Math.cos(a1)) * ((float) Math.cos(a2)));
     }
 
-    private float calculate_xAxis(float radius, double a1 , double a2) {
+    private float calculate_xAxis(float radius, double a1, double a2) {
         return (radius * ((float) Math.sin(a1)) * ((float) Math.cos(a2)));
     }
 
-    private float calculate_yAxis(float radius,double a1) {
+    private float calculate_yAxis(float radius, double a1) {
         return (radius * ((float) Math.sin(a1)));
     }
 
@@ -95,33 +97,34 @@ public class Sphere {
                 for (j = 0; j < slices; j++) {
                     double alfa1 = j * alfa;
                     double alfa2 = (j + 1) * alfa;
-                    float z1,z2;
-                    float y1,y2;
-                    y1 = calculate_yAxis(radius , beta1);
-                    y2 = calculate_yAxis(radius , beta2);
-                    z1 = calculate_zAxis(radius , alfa1, beta2);
-                    z2 = calculate_zAxis(radius , alfa2, beta1);
-                    writer.write(Float.toString( z1 ) + "\n");
-                    writer.write(Float.toString( y2 ) + "\n");
-                    writer.write(Float.toString( calculate_xAxis(radius , alfa1, beta2)) + "\n");
-                    writer.write(Float.toString( z2) + "\n");
-                    writer.write(Float.toString( y1 ) + "\n");
-                    writer.write(Float.toString( calculate_xAxis(radius,  alfa2, beta1))+ "\n");
-                    writer.write(Float.toString( calculate_zAxis(radius , alfa1, beta1)) + "\n");
-                    writer.write(Float.toString( y1 ) + "\n");
-                    writer.write(Float.toString( calculate_xAxis(radius,  alfa1, beta1)) + "\n");
-                    writer.write(Float.toString( z1 ) + "\n");
-                    writer.write(Float.toString( y2 ) + "\n");
-                    writer.write(Float.toString( calculate_xAxis(radius,  alfa1, beta2)) + "\n");
-                    writer.write(Float.toString( calculate_zAxis(radius , alfa2, beta2))  + "\n");
-                    writer.write(Float.toString( y2 ) + "\n");
-                    writer.write(Float.toString( calculate_xAxis(radius,  alfa2, beta2)) + "\n");
-                    writer.write(Float.toString( z2 )   + "\n");
-                    writer.write(Float.toString( y1 ) + "\n");
-                    writer.write(Float.toString( calculate_xAxis(radius,  alfa2, beta1)) + "\n");
+                    float z1, z2;
+                    float y1, y2;
+                    y1 = calculate_yAxis(radius, beta1);
+                    y2 = calculate_yAxis(radius, beta2);
+                    z1 = calculate_zAxis(radius, alfa1, beta2);
+                    z2 = calculate_zAxis(radius, alfa2, beta1);
+                    writer.write(Float.toString(z1) + "\n");
+                    writer.write(Float.toString(y2) + "\n");
+                    writer.write(Float.toString(calculate_xAxis(radius, alfa1, beta2)) + "\n");
+                    writer.write(Float.toString(z2) + "\n");
+                    writer.write(Float.toString(y1) + "\n");
+                    writer.write(Float.toString(calculate_xAxis(radius, alfa2, beta1)) + "\n");
+                    writer.write(Float.toString(calculate_zAxis(radius, alfa1, beta1)) + "\n");
+                    writer.write(Float.toString(y1) + "\n");
+                    writer.write(Float.toString(calculate_xAxis(radius, alfa1, beta1)) + "\n");
+                    writer.write(Float.toString(z1) + "\n");
+                    writer.write(Float.toString(y2) + "\n");
+                    writer.write(Float.toString(calculate_xAxis(radius, alfa1, beta2)) + "\n");
+                    writer.write(Float.toString(calculate_zAxis(radius, alfa2, beta2)) + "\n");
+                    writer.write(Float.toString(y2) + "\n");
+                    writer.write(Float.toString(calculate_xAxis(radius, alfa2, beta2)) + "\n");
+                    writer.write(Float.toString(z2) + "\n");
+                    writer.write(Float.toString(y1) + "\n");
+                    writer.write(Float.toString(calculate_xAxis(radius, alfa2, beta1)) + "\n");
                 }
             }
-        } catch (IOException ex) {}
+        } catch (IOException ex) {
+        }
     }
 
     public void writeToXML() {
@@ -129,7 +132,7 @@ public class Sphere {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse("../../cmake-build-debug/Config.xml");
+            Document doc = builder.parse("./Config.xml");
             Element root = (Element) doc.getDocumentElement();
             Element newModel = doc.createElement("model");
             root.appendChild(newModel);
@@ -140,13 +143,16 @@ public class Sphere {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
-            StreamResult streamResult = new StreamResult(new File("../../cmake-build-debug/Config.xml"));
+            StreamResult streamResult = new StreamResult(new File("./Config.xml"));
             transformer.transform(source, streamResult);
         } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SAXException ex) {
+            Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             try {
-                DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilderFactory dbFactory
+                        = DocumentBuilderFactory.newInstance();
                 DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
                 Document doc = dBuilder.newDocument();
 
@@ -161,14 +167,17 @@ public class Sphere {
                 TransformerFactory transformerFactory = TransformerFactory.newInstance();
                 Transformer transformer = transformerFactory.newTransformer();
                 DOMSource source = new DOMSource(doc);
-                StreamResult result = new StreamResult(new File("../../cmake-build-debug/Config.xml"));
+                StreamResult result = new StreamResult(new File("./Config.xml"));
                 transformer.transform(source, result);
             } catch (ParserConfigurationException ex1) {
+                Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex1);
             } catch (TransformerConfigurationException ex1) {
+                Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex1);
             } catch (TransformerException ex1) {
+                Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex1);
             }
 
         } catch (TransformerException ex) {
         }
-    }
+     }
 }
