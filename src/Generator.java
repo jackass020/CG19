@@ -8,9 +8,12 @@ public class Generator {
         switch(type){
 
             case "plane":
-
                 Plane plane = new Plane (cmd[1], Float.parseFloat(cmd[2]));
                 plane.generateFile();
+                break;
+            case "sphere":
+                Sphere sp = new Sphere(cmd[1],Float.parseFloat(cmd[2]),Float.parseFloat(cmd[3]),Float.parseFloat(cmd[4]));
+                sp.generateFile();
                 break;
         }
 
