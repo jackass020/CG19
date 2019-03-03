@@ -72,8 +72,12 @@ public class Box {
 
     public void generateFile() {
         try (PrintWriter pr = new PrintWriter(this.file_de)) {
-
-
+            faceBaixo(pr);
+            faceEsq(pr);
+            faceDir(pr);
+            faceCima(pr);
+            faceFrente(pr);
+            faceAtras(pr);
         } catch (IOException e) {
             e.getMessage();
         }
@@ -82,7 +86,6 @@ public class Box {
     public void faceDir(PrintWriter pr){
 
         try {
-
             pr.write(Float.toString(x/2)+ "\n");
             pr.write(Float.toString(0)+ "\n");
             pr.write(Float.toString(z/2)+ "\n");
@@ -169,7 +172,6 @@ public class Box {
     public void faceBaixo(PrintWriter pr){
 
         try {
-
             pr.write(Float.toString(-x/2)+ "\n");
             pr.write(Float.toString(0)+ "\n");
             pr.write(Float.toString(z/2)+ "\n");

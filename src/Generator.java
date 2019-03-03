@@ -22,6 +22,10 @@ public class Generator {
                 co.generateFile();
                 co.writeToXML();
                 break;
+            case "box":
+                Box bo = new Box(Float.parseFloat(cmd[1]),Float.parseFloat(cmd[2]),Float.parseFloat(cmd[3]),cmd[4]);
+                bo.generateFile();
+                break;
         }
 
     }
