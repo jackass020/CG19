@@ -33,7 +33,7 @@ public class Cone {
         this.height=this.slices=this.stacks=0;
     }
 
-    public Cone(String dest_file, float radius, float height, float slices, float stacks) {
+    public Cone(float radius, float height, float slices, float stacks,String dest_file) {
         this.dest_file = dest_file;
         this.radius = radius;
         this.height = height;

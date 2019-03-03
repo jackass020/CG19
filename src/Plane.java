@@ -33,7 +33,7 @@ public class Plane {
 
     }
 
-    public Plane(String file, float comp) {
+    public Plane(float comp,String file) {
         this.file_de = file;
         this.comp=comp;
     }
