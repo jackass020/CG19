@@ -110,7 +110,7 @@ public class Plane {
                 StreamResult result = new StreamResult(new File("./Config.xml"));
                 transformer.transform(source, result);
             } catch (ParserConfigurationException ex1) {
-                Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex1);
+                LogLogger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex);ger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex1);
             } catch (TransformerConfigurationException ex1) {
                 Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex1);
             } catch (TransformerException ex1) {
@@ -118,6 +118,7 @@ public class Plane {
             }
 
         } catch (TransformerException ex) {
+          Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

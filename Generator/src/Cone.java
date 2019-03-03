@@ -152,6 +152,7 @@ public class Cone {
             }
 
         } catch (TransformerException ex) {
+          Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

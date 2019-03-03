@@ -178,6 +178,7 @@ public class Sphere {
             }
 
         } catch (TransformerException ex) {
+          Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex);
         }
      }
 }

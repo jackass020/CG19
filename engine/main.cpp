@@ -1,3 +1,8 @@
+#ifndef XMLCheckResult
+#define XMLCheckResult(a_eResult) if (a_eResult != XML_SUCCESS) { printf("Error: %i\n", a_eResult); return a_eResult; }
+#endif
+
+
 #include <stdlib.h>
 
 
@@ -12,8 +17,11 @@
 #include <vector>
 #include <string>
 #include <set>
+#include <iostream>
+#include <cmath>
 #include "tinyxml2.h"
 
+using namespace tinyxml2;
 using namespace std;
 
 typedef std::string Path;
@@ -81,7 +89,7 @@ void loadXML() {
 			}
 			file.close();
 		}
-		models.insert(model);
+		Models.insert(model);
 		model.clear();
 	}
 }
@@ -143,7 +151,7 @@ void renderScene(void) {
 	// set the camera
 	glLoadIdentity();
 	gluLookAt(xaxis,yaxis,zaxis,
-		      0.0,0.0,-1.0,
+		      0.0,0.0,0.0,
 			  0.0f,1.0f,0.0f);
 
 // put drawing instructions here
