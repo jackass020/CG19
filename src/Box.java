@@ -3,38 +3,23 @@ import java.io.PrintWriter;
 
 public class Box {
 
-    private String file_de;
-    private float comp;
-
-
     //requires X, Y and Z dimensions, and optionally the number of divisions
     private float x;
     private float y;
     private float z;
-    private float div;
     private String file_dest;
 
     public Box() {
         this.x = 0;
         this.y = 0;
         this.z = 0;
-        this.div = 0;
         this.file_dest = "n/a";
     }
 
-    public Box(float x, float y, float z, float div, String file_dest) {
+    public Box(float x, float y, float z,  String file_dest) {
         this.x = x;
         this.y = y;
         this.z = z;
-        this.div = div;
-        this.file_dest = file_dest;
-    }
-
-    public Box(float x, float y, float z, String file_dest) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.div = 1;
         this.file_dest = file_dest;
     }
 
@@ -62,16 +47,8 @@ public class Box {
         this.z = z;
     }
 
-    public float getDiv() {
-        return div;
-    }
-
-    public void setDiv(float div) {
-        this.div = div;
-    }
-
     public void generateFile() {
-        try (PrintWriter pr = new PrintWriter(this.file_de)) {
+        try (PrintWriter pr = new PrintWriter(this.file_dest)) {
             faceBaixo(pr);
             faceEsq(pr);
             faceDir(pr);

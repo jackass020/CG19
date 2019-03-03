@@ -34,7 +34,7 @@ public class Sphere {
         this.dest_file = null;
     }
 
-    public Sphere(String dest_file, float radius, float slices, float stacks) {
+    public Sphere(float radius, float slices, float stacks,String dest_file) {
         this.radius = radius;
         this.slices = slices;
         this.stacks = stacks;
