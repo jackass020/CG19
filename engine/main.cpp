@@ -49,9 +49,9 @@ int paths_size = 0;
 Models modelz;
 
 void readXML(){
-    XMLDocument doc;
+    XMLDocument doc ;
     int i = 0;
-    doc.LoadFile("C:/Users/ricar/OneDrive/Documentos/CG/engine/Config.xml");
+    doc.LoadFile("/home/nelson/Desktop/CG/engine/Files/Config.xml");
     XMLElement* root = doc.FirstChildElement();
     const char* type;
     for(XMLElement* elem = root->FirstChildElement();elem != NULL; elem = elem->NextSiblingElement()) {
@@ -111,7 +111,24 @@ void drawTheFiles(){
             i++;
 		}
 		glEnd();
+
 	}
+    glBegin(GL_LINES);
+    // Eixo X
+    glColor3f (1.0, 0.0, 1.0);
+    glVertex3f(0, 0, 0);
+    glVertex3f(15, 0, 0);
+
+    // Eixo Y
+    glColor3f (1.0, 1.0, 1.0);
+    glVertex3f(0, 0, 0);
+    glVertex3f(0, 15, 0);
+
+    // Eixo Z
+    glColor3f (0.5, 0.5, 0.5);
+    glVertex3f(0, 0, 0);
+    glVertex3f(0, 0, 15);
+    glEnd();
 }
 
 void changeSize(int w, int h) {
@@ -218,7 +235,8 @@ int main(int argc, char **argv) {
 
 // OpenGL settings
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
+
+	//glEnable(GL_CULL_FACE);
 
 
 // enter GLUT's main loop

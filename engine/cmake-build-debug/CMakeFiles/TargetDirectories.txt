@@ -1,0 +1,3 @@
+/home/nelson/Desktop/CG/engine/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/nelson/Desktop/CG/engine/cmake-build-debug/CMakeFiles/engine.dir
+/home/nelson/Desktop/CG/engine/cmake-build-debug/CMakeFiles/edit_cache.dir

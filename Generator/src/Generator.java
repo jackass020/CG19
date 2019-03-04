@@ -4,13 +4,14 @@ public class Generator {
     public static void generateCmd (String [] cmd){
 
         String type = cmd[0];
-
+        int argc =cmd.length;
         switch(type){
 
             case "plane":
-                Plane plane = new Plane (Float.parseFloat(cmd[1]),cmd[2]);
-                plane.generateFile();
-                plane.writeToXML();
+
+                    Plane plane = new Plane(Float.parseFloat(cmd[1]), cmd[2]);
+                    plane.generateFile();
+                    plane.writeToXML();
                 break;
             case "sphere":
                 Sphere sp = new Sphere(Float.parseFloat(cmd[1]),Float.parseFloat(cmd[2]),Float.parseFloat(cmd[3]), cmd[4]);
@@ -23,14 +24,16 @@ public class Generator {
                 co.writeToXML();
                 break;
             case "box":
+
                 Box bo = new Box(Float.parseFloat(cmd[1]),Float.parseFloat(cmd[2]),Float.parseFloat(cmd[3]),cmd[4]);
                 bo.generateFile();
+                bo.writeToXML();
                 break;
         }
 
     }
     public static void main(String[] args) {
-        if(args.length < 1){
+        if(args.length < 2){
             System.out.println("You need to provide more argumemts");
             return;
         }

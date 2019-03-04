@@ -15,7 +15,6 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -39,26 +38,27 @@ public class Plane {
     }
 
     public void generateFile() {
-        try (PrintWriter pr = new PrintWriter(this.file_de)) {
+        Path p = Paths.get("/home/nelson/Desktop/CG/engine/Files/" + this.file_de);
+            try (BufferedWriter writer = Files.newBufferedWriter(p)) {
 
-            pr.write(Float.toString(-comp/2)+ "\n");
-            pr.write(Float.toString(0)+ "\n");
-            pr.write(Float.toString(comp/2)+ "\n");
-            pr.write(Float.toString(comp/2)+ "\n");
-            pr.write(Float.toString(0)+ "\n");
-            pr.write(Float.toString(comp/2)+ "\n");
-            pr.write(Float.toString(comp/2)+ "\n");
-            pr.write(Float.toString(0)+ "\n");
-            pr.write(Float.toString(-comp/2)+ "\n");
-            pr.write(Float.toString(-comp/2)+ "\n");
-            pr.write(Float.toString(0)+ "\n");
-            pr.write(Float.toString(comp/2)+ "\n");
-            pr.write(Float.toString(comp/2)+ "\n");
-            pr.write(Float.toString(0)+ "\n");
-            pr.write(Float.toString(-comp/2)+ "\n");
-            pr.write(Float.toString(-comp/2)+ "\n");
-            pr.write(Float.toString(0)+ "\n");
-            pr.write(Float.toString(-comp/2)+ "\n");
+            writer.write(Float.toString(-comp/2)+ "\n");
+            writer.write(Float.toString(0)+ "\n");
+            writer.write(Float.toString(comp/2)+ "\n");
+            writer.write(Float.toString(comp/2)+ "\n");
+            writer.write(Float.toString(0)+ "\n");
+            writer.write(Float.toString(comp/2)+ "\n");
+            writer.write(Float.toString(comp/2)+ "\n");
+            writer.write(Float.toString(0)+ "\n");
+            writer.write(Float.toString(-comp/2)+ "\n");
+            writer.write(Float.toString(-comp/2)+ "\n");
+            writer.write(Float.toString(0)+ "\n");
+            writer.write(Float.toString(comp/2)+ "\n");
+            writer.write(Float.toString(comp/2)+ "\n");
+            writer.write(Float.toString(0)+ "\n");
+            writer.write(Float.toString(-comp/2)+ "\n");
+            writer.write(Float.toString(-comp/2)+ "\n");
+            writer.write(Float.toString(0)+ "\n");
+            writer.write(Float.toString(-comp/2)+ "\n");
 
 
         } catch (IOException e) {
@@ -72,18 +72,18 @@ public class Plane {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse("./Config.xml");
+            Document doc = builder.parse("/home/nelson/Desktop/CG/engine/Files/Config.xml");
             Element root = (Element) doc.getDocumentElement();
             Element newModel = doc.createElement("model");
             root.appendChild(newModel);
             Attr attr = doc.createAttribute("file");
-            attr.setValue(this.file_de);
+            attr.setValue("/home/nelson/Desktop/CG/engine/Files/" + this.file_de);
             newModel.setAttributeNode(attr);
             doc.getDocumentElement().normalize();
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
-            StreamResult streamResult = new StreamResult(new File("./Config.xml"));
+            StreamResult streamResult = new StreamResult(new File("/home/nelson/Desktop/CG/engine/Files/Config.xml"));
             transformer.transform(source, streamResult);
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex);
@@ -102,15 +102,15 @@ public class Plane {
                 Element model = doc.createElement("model");
                 rootElement.appendChild(model);
                 Attr attr = doc.createAttribute("file");
-                attr.setValue(this.file_de);
+                attr.setValue("/home/nelson/Desktop/CG/engine/Files/" + this.file_de);
                 model.setAttributeNode(attr);
                 TransformerFactory transformerFactory = TransformerFactory.newInstance();
                 Transformer transformer = transformerFactory.newTransformer();
                 DOMSource source = new DOMSource(doc);
-                StreamResult result = new StreamResult(new File("./Config.xml"));
+                StreamResult result = new StreamResult(new File("/home/nelson/Desktop/CG/engine/Files/Config.xml"));
                 transformer.transform(source, result);
             } catch (ParserConfigurationException ex1) {
-                LogLogger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex);ger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex1);
+                Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex1);
             } catch (TransformerConfigurationException ex1) {
                 Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex1);
             } catch (TransformerException ex1) {
@@ -118,7 +118,7 @@ public class Plane {
             }
 
         } catch (TransformerException ex) {
-          Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
