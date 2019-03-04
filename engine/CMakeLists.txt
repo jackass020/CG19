@@ -5,8 +5,6 @@ PROJECT(engine)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-add_executable(${PROJECT_NAME} main.cpp)
-
 find_package(OpenGL REQUIRED)
 include_directories(${OpenGL_INCLUDE_DIRS})
 link_directories(${OpenGL_LIBRARY_DIRS})
@@ -15,6 +13,10 @@ add_definitions(${OpenGL_DEFINITIONS})
 if(NOT OPENGL_FOUND)
     message(ERROR " OPENGL not found!")
 endif(NOT OPENGL_FOUND)
+
+add_executable(${PROJECT_NAME} ./main.cpp ./tinyxml2.cpp ./tinyxml2.h)
+
+target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
 
 if  (WIN32)
 

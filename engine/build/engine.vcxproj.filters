@@ -4,11 +4,22 @@
     <ClCompile Include="C:\Users\ricar\OneDrive\Documentos\CG\engine\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\ricar\OneDrive\Documentos\CG\engine\tinyxml2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\ricar\OneDrive\Documentos\CG\engine\tinyxml2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\ricar\OneDrive\Documentos\CG\engine\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{6947EC5B-C256-371A-A5F1-1A4299FC8268}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{2742D335-0863-3C2C-B9C5-752EDD8732CC}</UniqueIdentifier>
     </Filter>

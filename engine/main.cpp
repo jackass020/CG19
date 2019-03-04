@@ -24,8 +24,6 @@
 using namespace tinyxml2;
 using namespace std;
 
-typedef std::string Path;
-
 typedef struct coordinate {
 	float x;
 	float y;
@@ -34,31 +32,33 @@ typedef struct coordinate {
 
 typedef std::vector<Vertex> Triangle;
 
+static bool operator<(const coordinate &a1, const coordinate &a2) {
+    return true;
+}
+
 typedef std::vector<Triangle> Model;
 
 typedef std::set<Model> Models;
 
 float alpha;
 float beta;
-float radius = 5;
+float radius = 10;
 
 string paths [15];
 int paths_size = 0;
+Models modelz;
 
 void readXML(){
     XMLDocument doc;
     int i = 0;
-    doc.LoadFile("./Config.xml");
+    doc.LoadFile("C:/Users/ricar/OneDrive/Documentos/CG/engine/Config.xml");
     XMLElement* root = doc.FirstChildElement();
     const char* type;
     for(XMLElement* elem = root->FirstChildElement();elem != NULL; elem = elem->NextSiblingElement()) {
         string nome_elem = elem->Value();
         if(nome_elem == "model") {
             type = elem->Attribute("file");
-            if(type != NULL) {
-				paths[i] = type;
-                i++;
-            }
+            if(type != NULL) paths[i++] = type;
         }
     }
     paths_size = i;
@@ -71,7 +71,7 @@ void loadXML() {
 	string c1, c2, c3;
 	Model model;
 	for (i=0;i<paths_size;i++) {
-        Path p = paths[i];
+        string p = paths[i];
 		ifstream file(p);
 		if (file.is_open()) {
 			Triangle t;
@@ -79,6 +79,9 @@ void loadXML() {
 				x = strtof(c1.c_str(),0);
 				y = strtof(c2.c_str(),0);
 				z = strtof(c3.c_str(),0);
+				//printf("%f\n", x);
+				//printf("%f\n", y);
+				//printf("%f\n", z);
 				Vertex v = {x,y,z};
 				t.push_back(v);
 				j++;
@@ -89,19 +92,19 @@ void loadXML() {
 			}
 			file.close();
 		}
-		Models.insert(model);
+		modelz.insert(model);
 		model.clear();
 	}
 }
 
 void drawTheFiles(){
     int i=0;
-	for (Model m : models) {
+	for (Model m : modelz) {
 		glBegin(GL_TRIANGLES);
 		for (Triangle t : m) {
             if(i%2 == 0)
-                glColor3f(0,1,1);
-            else glColor3f(1,0,0);
+                glColor3f(0,0,255);
+            else glColor3f(51,0,0);
 			glVertex3f(t.at(0).x, t.at(0).y, t.at(0).z);
 			glVertex3f(t.at(1).x, t.at(1).y, t.at(1).z);
 			glVertex3f(t.at(2).x, t.at(2).y, t.at(2).z);
@@ -143,7 +146,7 @@ void renderScene(void) {
 	float yaxis = radius * sin(beta);
 	float zaxis = radius * cos(beta) * cos(alpha);
 
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	//glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
 	// clear buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -196,7 +199,7 @@ int main(int argc, char **argv) {
   loadXML();
 
 	alpha = 0;
-	beta = 3;
+	beta = 5;
 
 // put GLUT init here
 	glutInit(&argc, argv);
