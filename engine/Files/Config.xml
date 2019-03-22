@@ -1,0 +1,6 @@
+<scene>
+	<group>	
+		<scale X="10" Y="10" Z="10"/>	
+		<model file="/home/nelson/Desktop/CG/engine/Files/cone.3d"/>
+	</group>
+</scene>

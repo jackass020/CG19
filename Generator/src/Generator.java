@@ -21,7 +21,7 @@ public class Generator {
             case "cone":
                 Cone co = new Cone(Float.parseFloat(cmd[1]),Float.parseFloat(cmd[2]),Float.parseFloat(cmd[3]),Float.parseFloat(cmd[4]),cmd[5]);
                 co.generateFile();
-                co.writeToXML();
+
                 break;
             case "box":
 

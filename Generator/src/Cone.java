@@ -54,7 +54,7 @@ public class Cone {
     }
 
     public void generateFile() {
-        Path p = Paths.get("/home/nelson/Desktop/CG/engine/Files" + this.dest_file);
+        Path p = Paths.get("/home/nelson/Desktop/CG/engine/Files/" + this.dest_file);
             try (BufferedWriter writer = Files.newBufferedWriter(p)) {
             int j, i;
             double alfa = 2 * Math.PI / (double) slices;
@@ -99,59 +99,6 @@ public class Cone {
     }
 
 
-    public void writeToXML() {
-        StringBuilder sb = new StringBuilder();
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        try {
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse("/home/nelson/Desktop/CG/engine/Files/Config.xml");
-            Element root = (Element) doc.getDocumentElement();
-            Element newModel = doc.createElement("model");
-            root.appendChild(newModel);
-            Attr attr = doc.createAttribute("file");
-            attr.setValue("/home/nelson/Desktop/CG/engine/Files/" + this.dest_file);
-            newModel.setAttributeNode(attr);
-            doc.getDocumentElement().normalize();
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(doc);
-            StreamResult streamResult = new StreamResult(new File("/home/nelson/Desktop/CG/engine/Files/Config.xml"));
-            transformer.transform(source, streamResult);
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SAXException ex) {
-            Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            try {
-                DocumentBuilderFactory dbFactory
-                        = DocumentBuilderFactory.newInstance();
-                DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-                Document doc = dBuilder.newDocument();
 
-                Element rootElement = doc.createElement("scene");
-                doc.appendChild(rootElement);
-
-                Element model = doc.createElement("model");
-                rootElement.appendChild(model);
-                Attr attr = doc.createAttribute("file");
-                attr.setValue("/home/nelson/Desktop/CG/engine/Files/" + this.dest_file);
-                model.setAttributeNode(attr);
-                TransformerFactory transformerFactory = TransformerFactory.newInstance();
-                Transformer transformer = transformerFactory.newTransformer();
-                DOMSource source = new DOMSource(doc);
-                StreamResult result = new StreamResult(new File("/home/nelson/Desktop/CG/engine/Files/Config.xml"));
-                transformer.transform(source, result);
-            } catch (ParserConfigurationException ex1) {
-                Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex1);
-            } catch (TransformerConfigurationException ex1) {
-                Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex1);
-            } catch (TransformerException ex1) {
-                Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex1);
-            }
-
-        } catch (TransformerException ex) {
-          Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
 }

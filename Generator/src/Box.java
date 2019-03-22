@@ -174,13 +174,13 @@ public class Box {
             writer.write(Float.toString(x/2)+ "\n");
             writer.write(Float.toString(0)+ "\n");
             writer.write(Float.toString(z/2)+ "\n");
-            writer.write(Float.toString(x/2)+ "\n");
+            writer.write(Float.toString(-x/2)+ "\n");
             writer.write(Float.toString(0)+ "\n");
             writer.write(Float.toString(-z/2)+ "\n");
             writer.write(Float.toString(x/2)+ "\n");
             writer.write(Float.toString(0)+ "\n");
             writer.write(Float.toString(z/2)+ "\n");
-            writer.write(Float.toString(x/2)+ "\n");
+            writer.write(Float.toString(-x/2)+ "\n");
             writer.write(Float.toString(0)+ "\n");
             writer.write(Float.toString(-z/2)+ "\n");
             writer.write(Float.toString(x/2)+ "\n");

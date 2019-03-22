@@ -40,7 +40,6 @@ public class Plane {
     public void generateFile() {
         Path p = Paths.get("/home/nelson/Desktop/CG/engine/Files/" + this.file_de);
             try (BufferedWriter writer = Files.newBufferedWriter(p)) {
-
             writer.write(Float.toString(-comp/2)+ "\n");
             writer.write(Float.toString(0)+ "\n");
             writer.write(Float.toString(comp/2)+ "\n");

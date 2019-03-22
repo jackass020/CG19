@@ -12,30 +12,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="253d0532-138c-43e1-a9ac-336284388f15" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Config.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generator/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generator/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Generator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Generator/out/production/CG/Box.class" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/out/production/CG/Box.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Generator/out/production/CG/Cone.class" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/out/production/CG/Cone.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Generator/out/production/CG/Generator.class" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/out/production/CG/Generator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Generator/out/production/CG/Plane.class" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/out/production/CG/Plane.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generator/out/production/CG/Sphere.class" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/out/production/CG/Sphere.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Generator/src/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/src/Box.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Generator/src/Cone.java" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/src/Cone.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Generator/src/Generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/src/Generator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Generator/src/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/src/Plane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generator/src/Sphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/src/Sphere.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/box.3d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cone.3d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/Config.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/box.3d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/cone.3d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/Files/plane.3d" beforeDir="false" afterPath="$PROJECT_DIR$/engine/Files/plane.3d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/main.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/engine" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/engine" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/plane.3d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/sphere.3d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plane.3d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sphere.3d" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/engine/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -50,8 +40,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Generator/src/Sphere.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2175">
-              <caret line="145" column="114" selection-start-line="145" selection-start-column="114" selection-end-line="145" selection-end-column="114" />
+            <state relative-caret-position="1984">
+              <caret line="124" column="13" selection-start-line="124" selection-start-column="13" selection-end-line="124" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -59,26 +49,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Generator/src/Box.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4590">
+            <state relative-caret-position="4896">
               <caret line="306" column="4" selection-start-line="306" selection-start-column="4" selection-end-line="306" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Generator/src/Generator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+            <state relative-caret-position="448">
+              <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/engine/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="182" column="1" lean-forward="true" selection-start-line="182" selection-start-column="1" selection-end-line="182" selection-end-column="1" />
+            <state relative-caret-position="192">
+              <caret line="216" selection-start-line="216" selection-end-line="216" />
+              <folding>
+                <element signature="e#250#268#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -86,8 +79,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Generator/src/Cone.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2115">
-              <caret line="141" column="112" selection-start-line="141" selection-start-column="112" selection-end-line="141" selection-end-column="112" />
+            <state relative-caret-position="1632">
+              <caret line="102" selection-start-line="102" selection-end-line="102" />
             </state>
           </provider>
         </entry>
@@ -95,8 +88,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Generator/src/Plane.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1830">
-              <caret line="122" column="5" selection-start-line="120" selection-start-column="2" selection-end-line="122" selection-end-column="5" />
+            <state relative-caret-position="16">
+              <caret line="84" column="89" selection-start-line="84" selection-start-column="89" selection-end-line="84" selection-end-column="89" />
             </state>
           </provider>
         </entry>
@@ -107,6 +100,8 @@
     <findStrings>
       <find>pr</find>
       <find>writerintWriter</find>
+      <find>acrescentar ao array global paths o path do ficheiro</find>
+      <find>grupos</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -118,18 +113,17 @@
         <option value="$PROJECT_DIR$/engine/Config.xml" />
         <option value="$PROJECT_DIR$/Generator/src/Sphere.java" />
         <option value="$PROJECT_DIR$/Generator/src/Cone.java" />
-        <option value="$PROJECT_DIR$/Generator/src/Plane.java" />
         <option value="$PROJECT_DIR$/Generator/src/Box.java" />
         <option value="$PROJECT_DIR$/engine/Files/Config.xml" />
+        <option value="$PROJECT_DIR$/Generator/src/Plane.java" />
         <option value="$PROJECT_DIR$/engine/main.cpp" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="260" />
-    <option name="y" value="47" />
-    <option name="width" value="1400" />
-    <option name="height" value="962" />
+  <component name="ProjectFrameBounds" extendedState="4">
+    <option name="y" value="27" />
+    <option name="width" value="960" />
+    <option name="height" value="1002" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -139,32 +133,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CG" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CG" type="462c0819:PsiDirectoryNode" />
-              <item name="engine" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553184211193" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Generator" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -200,17 +180,32 @@
       <workItem from="1551715927849" duration="48000" />
       <workItem from="1551715991214" duration="80000" />
       <workItem from="1551716497160" duration="884000" />
+      <workItem from="1551718410155" duration="931000" />
+      <workItem from="1553183582759" duration="647000" />
+      <workItem from="1553185310059" duration="3331000" />
+      <workItem from="1553208476010" duration="2860000" />
+      <workItem from="1553254937225" duration="4275000" />
+      <workItem from="1553265669731" duration="7322000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4159000" />
+    <option name="totallyTimeSpent" value="23525000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1920" height="1002" extended-state="6" />
+    <frame x="0" y="27" width="960" height="1002" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18676628" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.19103523" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Designer" order="3" />
@@ -218,18 +213,18 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="UI Designer" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32914287" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32914287" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32914287" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="Messages" order="8" weight="0.32914287" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32914287" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="CMake" order="12" weight="0.32839224" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32914287" />
+      <window_info anchor="bottom" id="CMake" order="12" weight="0.3257143" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -254,13 +249,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/engine/tinyxml2.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="941" selection-start-line="941" selection-end-line="941" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/engine/Config.xml" />
     <entry file="file://$PROJECT_DIR$/engine/plane.3d" />
     <entry file="file://$PROJECT_DIR$/engine/Filesplane.3d" />
@@ -270,55 +258,68 @@
     <entry file="file://$PROJECT_DIR$/Generator/src/Generator.class">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Generator/src/Sphere.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2175">
-          <caret line="145" column="114" selection-start-line="145" selection-start-column="114" selection-end-line="145" selection-end-column="114" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Generator/src/Box.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4590">
-          <caret line="306" column="4" selection-start-line="306" selection-start-column="4" selection-end-line="306" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Generator/src/Cone.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2115">
-          <caret line="141" column="112" selection-start-line="141" selection-start-column="112" selection-end-line="141" selection-end-column="112" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Generator/src/Plane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1830">
-          <caret line="122" column="5" selection-start-line="120" selection-start-column="2" selection-end-line="122" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/engine/Files/plane.3d">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/engine/Files/Config.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret selection-end-column="36" />
+          <caret column="61" selection-start-column="61" selection-end-column="61" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/engine/main.cpp">
+    <entry file="file://$PROJECT_DIR$/engine/Files/sphere.3d">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/tinyxml2.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="182" column="1" lean-forward="true" selection-start-line="182" selection-start-column="1" selection-end-line="182" selection-end-column="1" />
+        <state relative-caret-position="1">
+          <caret line="930" column="38" lean-forward="true" selection-start-line="930" selection-start-column="38" selection-end-line="945" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Generator/src/Sphere.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1984">
+          <caret line="124" column="13" selection-start-line="124" selection-start-column="13" selection-end-line="124" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Generator/src/Box.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4896">
+          <caret line="306" column="4" selection-start-line="306" selection-start-column="4" selection-end-line="306" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Generator/src/Generator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+        <state relative-caret-position="448">
+          <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Generator/src/Cone.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1632">
+          <caret line="102" selection-start-line="102" selection-end-line="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Generator/src/Plane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="84" column="89" selection-start-line="84" selection-start-column="89" selection-end-line="84" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="216" selection-start-line="216" selection-end-line="216" />
+          <folding>
+            <element signature="e#250#268#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
