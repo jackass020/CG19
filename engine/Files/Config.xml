@@ -1,6 +1,16 @@
 <scene>
+<group>	
+	<translate Y="2" />
+	<models>		
+		<model file="C:\Users\ricar\OneDrive\Documentos\engine\Files\cone.3d" />
+	</models>
+	
 	<group>	
-		<scale X="10" Y="10" Z="10"/>	
-		<model file="/home/nelson/Desktop/CG/engine/Files/cone.3d"/>
+	<translate X="8" />
+	<scale X="0.5" />
+	<models>
+		<model file="C:\Users\ricar\OneDrive\Documentos\engine\Files\sphere.3d" />
+	</models>
 	</group>
+</group>
 </scene>

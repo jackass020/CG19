@@ -47,6 +47,7 @@ typedef struct groupData{
     float traX, traY,traZ;
     float angle,rotX, rotY, rotZ;
     float scaleX, scaleY, scaleZ;
+
 }Group;
 
 typedef std::vector<Triangle> Model;
@@ -67,15 +68,40 @@ typedef std::set<ModelData> Models;
 float alpha;
 float beta;
 float radius = 10;
-
+int index = 0;
 Paths paths [15];
 Group groups[15];
 int paths_size = 0;
 Models modelz;
 
+int readModels(XMLElement* elem, int nr, int i) {
+	const char* attr;
+	for (XMLElement* aux = elem; aux != nullptr; aux = aux->NextSiblingElement()) {
+		string nome_elem = aux->Value();
+		if (nome_elem == "model") {
+			attr = aux->Attribute("file");//retira o tipo
+			if (attr != nullptr) {
+				paths[i].path = attr;//adicionar o path do ficheiro
+				paths[i].traX = groups[nr].traX; //Adicionar no array paths os valores armazenados
+				paths[i].traY = groups[nr].traY; //Adicionar no array paths os valores armazenados
+				paths[i].traZ = groups[nr].traZ; //Adicionar no array paths os valores armazenados
+				paths[i].angle = groups[nr].angle; //Adicionar no array paths os valores armazenados
+				paths[i].rotX = groups[nr].rotX; //Adicionar no array paths os valores armazenados
+				paths[i].rotY = groups[nr].rotY; //Adicionar no array paths os valores armazenados
+				paths[i].rotZ = groups[nr].rotZ; //Adicionar no array paths os valores armazenados
+				paths[i].scaleX = groups[nr].scaleX; //Adicionar no array paths os valores armazenados
+				paths[i].scaleY = groups[nr].scaleY; //Adicionar no array paths os valores armazenados
+				paths[i].scaleZ = groups[nr].scaleZ; //Adicionar no array paths os valores armazenados
+				i++;
 
-int groupAux(XMLElement* elem, int nr){
-    int i=0;
+			}
+		}
+	}
+	return i;
+}
+
+
+int groupAux(XMLElement* elem, int nr,int i){
     const char* attr;//Vai guardar o atributo que queremos
     if (nr==0){//Caso seja o primeiro "group" a ser analisado, este tem de ser inicializado, não sendo possível por a scale=0;
         groups[nr].traX=groups[nr].traY=groups[nr].traZ=0;
@@ -96,75 +122,79 @@ int groupAux(XMLElement* elem, int nr){
 
     for(XMLElement* aux = elem;aux!= nullptr;aux = aux->NextSiblingElement()){//itera todos os model
         string nome_elem = aux->Value();
-        if(nome_elem =="group"){//Caso seja "group" este iŕa ser um sub-group
-            i+=groupAux(aux->FirstChildElement(),nr+1);
-        }
         if(nome_elem=="translate"){//Caso seja translate, vai se armazenar os valores
             attr= aux-> Attribute("X");//é retirado o atributo de X
-            if(strlen(attr)!=0) groups[nr].traX += strtof(attr,nullptr);//string to float
-            attr= aux-> Attribute("Y");//é retirado o atributo de Y
-            if(strlen(attr)!=0) groups[nr].traY += strtof(attr,nullptr);//string to float
-            attr= aux-> Attribute("Z");//é retirado o atributo de Z
-            if(strlen(attr)!=0) groups[nr].traZ += strtof(attr,nullptr);//string to float
+           	if(attr!=nullptr) if(strlen(attr)!=0) groups[nr].traX += strtof(attr,nullptr);//string to float
+			else groups[nr].traX+=0;
+			attr= aux-> Attribute("Y");//é retirado o atributo de Y
+            if(attr!=nullptr) if(strlen(attr)!=0) groups[nr].traY += strtof(attr,nullptr);//string to float
+			else groups[nr].traY += 0;
+			attr= aux-> Attribute("Z");//é retirado o atributo de Z
+            if(attr!=nullptr) if(strlen(attr)!=0) groups[nr].traZ += strtof(attr,nullptr);//string to float
+			else groups[nr].traZ += 0;
         }
         if(nome_elem=="rotate"){//Caso seja rotate, vai se armazenar os valores
             attr= aux-> Attribute("angle");//é retirado o atributo de X
-            if(strlen(attr)!=0) groups[nr].angle += strtof(attr,nullptr);//string to float
-            attr= aux-> Attribute("X");//é retirado o atributo de X
-            if(strlen(attr)!=0) groups[nr].rotX += strtof(attr,nullptr);//string to float
-            attr= aux-> Attribute("Y");//é retirado o atributo de Y
-            if(strlen(attr)!=0) groups[nr].rotY += strtof(attr,nullptr);//string to float
-            attr= aux-> Attribute("Z");//é retirado o atributo de Z
-            if(strlen(attr)!=0) groups[nr].rotZ += strtof(attr,nullptr);//string to float
-        }
+            if (attr!=nullptr) if(strlen(attr)!=0) groups[nr].angle += strtof(attr,nullptr);//string to float
+			else groups[nr].angle += 0;
+			attr= aux-> Attribute("X");//é retirado o atributo de X
+            if (attr!=nullptr) if(strlen(attr)!=0) groups[nr].rotX += strtof(attr,nullptr);//string to float
+			else groups[nr].rotX += 0;
+			attr= aux-> Attribute("Y");//é retirado o atributo de Y
+            if(attr!=nullptr) if(strlen(attr)!=0) groups[nr].rotY += strtof(attr,nullptr);//string to float
+			else groups[nr].rotY += 0;
+			attr= aux-> Attribute("Z");//é retirado o atributo de Z
+            if(attr!=nullptr) if(strlen(attr)!=0) groups[nr].rotZ += strtof(attr,nullptr);//string to float
+			else groups[nr].rotZ += 0;
+		}
         if(nome_elem=="scale"){//Caso seja scale, vai se armazenar os valores
+	            attr= aux-> Attribute("X");//é retirado o atributo de X
+				if (attr != nullptr) {
+					if (strlen(attr) != 0) groups[nr].scaleX *= strtof(attr, nullptr);//string to float
+				}
+				else groups[nr].scaleX *= 1;
+				attr= aux-> Attribute("Y");//é retirado o atributo de Y
+				if (attr != nullptr) {
+					if (strlen(attr) != 0) groups[nr].scaleY *= strtof(attr, nullptr);//string to float
+				}
+				else groups[nr].scaleY *= 1;
+				attr = aux->Attribute("Z");//é retirado o atributo de Z
+				if (attr != nullptr) {
+					if (strlen(attr) != 0) groups[nr].scaleZ *= strtof(attr, nullptr);//string to float 
+				}
+			else groups[nr].scaleZ *= 1;
 
-            attr= aux-> Attribute("X");//é retirado o atributo de X
-            if(strlen(attr)!=0) groups[nr].scaleX *= strtof(attr,nullptr);//string to float
-            attr= aux-> Attribute("Y");//é retirado o atributo de Y
-            if(strlen(attr)!=0) groups[nr].scaleY *= strtof(attr,nullptr);//string to float
-            attr= aux-> Attribute("Z");//é retirado o atributo de Z
-            if(strlen(attr)!=0) groups[nr].scaleZ *= strtof(attr,nullptr);//string to float
         }
 
-        if(nome_elem=="model"){
-            attr= aux->Attribute("file");//retira o tipo
-            if(attr!= nullptr){
-                paths[i].path = attr;//adicionar o path do ficheiro
-                paths[i].traX = groups[nr].traX; //Adicionar no array paths os valores armazenados
-                paths[i].traY = groups[nr].traY; //Adicionar no array paths os valores armazenados
-                paths[i].traZ = groups[nr].traZ; //Adicionar no array paths os valores armazenados
-                paths[i].angle = groups[nr].angle; //Adicionar no array paths os valores armazenados
-                paths[i].rotX = groups[nr].rotX; //Adicionar no array paths os valores armazenados
-                paths[i].rotY = groups[nr].rotY; //Adicionar no array paths os valores armazenados
-                paths[i].rotZ = groups[nr].rotZ; //Adicionar no array paths os valores armazenados
-                paths[i].scaleX = groups[nr].scaleX; //Adicionar no array paths os valores armazenados
-                paths[i].scaleY = groups[nr].scaleY; //Adicionar no array paths os valores armazenados
-                paths[i].scaleZ = groups[nr].scaleZ; //Adicionar no array paths os valores armazenados
-                i++;
-
-            }
-        }
-        return i;
+		if (nome_elem == "models") {
+			i = readModels(aux->FirstChildElement() ,nr, i);
+		}
+		if (nome_elem == "group") {//Caso seja "group" este iŕa ser um sub-group
+			i = groupAux(aux->FirstChildElement(), nr + 1,i);
+		}
 
     }
+	return i;
 }
+
 void readXML(){
     XMLDocument doc ;
     int i = 0;
-    doc.LoadFile("/home/nelson/Desktop/CG/engine/Files/Config.xml");// carrega o ficheiro XML
+	int j = 0;
+    doc.LoadFile("C:/Users/ricar/OneDrive/Documentos/engine/Files/Config.xml");// carrega o ficheiro XML
     XMLElement* root = doc.FirstChildElement();// Aponta para o elemento raiz= "scene"
     for(XMLElement* elem = root->FirstChildElement();elem != nullptr; elem = elem->NextSiblingElement()) {//precorre os model
         string nome_elem = elem->Value();
-
         if(nome_elem == "group") {
-            i= groupAux(elem->FirstChildElement(),0);//chama a função auxiliar para poder armazenar a informação de cada grupo
-        }
+            i= groupAux(elem->FirstChildElement(),0,0);//chama a função auxiliar para poder armazenar a informação de cada grupo
+
+		}
+
         else{
             paths_size=0;
             return;
         }//<scene><group><translate X="1" Y="1" Z="1"/><group><translate X="1" Y="1" Z="1"/><model file="sphere.3d"/></group><model file="sphere.3d"/></group></scene>
-    }
+	}
     paths_size = i;
 }
 
@@ -214,12 +244,11 @@ void drawTheFiles(){
     int i=0;
 	for (ModelData m : modelz) {
         Model model = m.model;
-
         glPushMatrix();//Coloca a Matriz atual na stack
-        glScalef(m.scaleX, m.scaleY,m.scaleZ);//Neste caso é necessário executar a rotate primeiro devido ao facto da rotação deve ser feita no ponto(0,0,0).
         glTranslatef(m.traX, m.traY,m.traZ);//Sendo que as funções são postas em "stack", vão ser executadas inversamente à ordem que são chamadas.
         glRotatef(m.angle, m.rotX, m.rotY, m.rotZ);//Logo Rotate->translate->scale. Rotate aplica o m.angle a um dos vértice, sendo o que está a 1.
-        glBegin(GL_TRIANGLES);
+		glScalef(m.scaleX, m.scaleY, m.scaleZ);//Neste caso é necessário executar a rotate primeiro devido ao facto da rotação deve ser feita no ponto(0,0,0).
+		glBegin(GL_TRIANGLES);
         for (Triangle t : model) {
             if (i % 2 == 0)
                 glColor3f(0, 0, 255);
@@ -329,12 +358,12 @@ void process_keys(unsigned char key, int x, int y) {
 }
 
 int main(int argc, char **argv) {
-    printf("qdqw");
     fflush(stdout);
     groups[0].scaleX=groups[0].scaleY=groups[0].scaleZ=1;
     groups[0].rotX=groups[0].rotY=groups[0].rotZ=groups[0].angle=0;
     groups[0].traX=groups[0].traY=groups[0].traZ=0;
-
+	
+	
   readXML();
   loadXML();
 
@@ -358,7 +387,7 @@ int main(int argc, char **argv) {
 
 // OpenGL settings
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
+	//glEnable(GL_CULL_FACE);
 
 
 // enter GLUT's main loop
