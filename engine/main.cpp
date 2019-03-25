@@ -2,6 +2,9 @@
 #define XMLCheckResult(a_eResult) if (a_eResult != XML_SUCCESS) { printf("Error: %i\n", a_eResult); return a_eResult; }
 #endif
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 #include <stdlib.h>
 
@@ -12,13 +15,14 @@
 #include <GL/glut.h>
 #endif
 
+#define USE_MATH_DEFINES
+#include <cmath>
 
 #include <fstream>
 #include <vector>
 #include <string>
 #include <set>
-#include <iostream>
-#include <cmath>
+#include <iostream>;
 #include "tinyxml2.h"
 
 using namespace tinyxml2;
@@ -64,13 +68,23 @@ static bool operator<(const modelData &a1, const modelData &a2) {
 }
 
 typedef std::set<ModelData> Models;
+bool axes = false;
+bool clicked = false;
+bool lines = false;
+float alpha = 0.0;
+float beta = 0.0;
+float dx = 0.0;
+float dy = 0.0;
+float dz = -1;
+float dxP = 1.0;
+float dzP = 0.0;
+float px = 0.0;
+float py = 0.0;
+float pz = 20.0;
+float k = 1;
 
-float alpha;
-float beta;
-float radius = 10;
-int index = 0;
-Paths paths [15];
-Group groups[15];
+Paths paths [1024];
+Group groups[1024];
 int paths_size = 0;
 Models modelz;
 
@@ -99,6 +113,7 @@ int readModels(XMLElement* elem, int nr, int i) {
 	}
 	return i;
 }
+
 
 
 int groupAux(XMLElement* elem, int nr,int i){
@@ -136,16 +151,16 @@ int groupAux(XMLElement* elem, int nr,int i){
         if(nome_elem=="rotate"){//Caso seja rotate, vai se armazenar os valores
             attr= aux-> Attribute("angle");//é retirado o atributo de X
             if (attr!=nullptr) if(strlen(attr)!=0) groups[nr].angle += strtof(attr,nullptr);//string to float
-			else groups[nr].angle += 0;
+			else groups[nr].angle = 0;
 			attr= aux-> Attribute("X");//é retirado o atributo de X
             if (attr!=nullptr) if(strlen(attr)!=0) groups[nr].rotX += strtof(attr,nullptr);//string to float
-			else groups[nr].rotX += 0;
+			else groups[nr].rotX = 0;
 			attr= aux-> Attribute("Y");//é retirado o atributo de Y
             if(attr!=nullptr) if(strlen(attr)!=0) groups[nr].rotY += strtof(attr,nullptr);//string to float
-			else groups[nr].rotY += 0;
+			else groups[nr].rotY = 0;
 			attr= aux-> Attribute("Z");//é retirado o atributo de Z
             if(attr!=nullptr) if(strlen(attr)!=0) groups[nr].rotZ += strtof(attr,nullptr);//string to float
-			else groups[nr].rotZ += 0;
+			else groups[nr].rotZ = 0;
 		}
         if(nome_elem=="scale"){//Caso seja scale, vai se armazenar os valores
 	            attr= aux-> Attribute("X");//é retirado o atributo de X
@@ -170,7 +185,8 @@ int groupAux(XMLElement* elem, int nr,int i){
 			i = readModels(aux->FirstChildElement() ,nr, i);
 		}
 		if (nome_elem == "group") {//Caso seja "group" este iŕa ser um sub-group
-			i = groupAux(aux->FirstChildElement(), nr + 1,i);
+			i += groupAux(aux->FirstChildElement(), nr + 1,i);
+		
 		}
 
     }
@@ -186,8 +202,8 @@ void readXML(){
     for(XMLElement* elem = root->FirstChildElement();elem != nullptr; elem = elem->NextSiblingElement()) {//precorre os model
         string nome_elem = elem->Value();
         if(nome_elem == "group") {
-            i= groupAux(elem->FirstChildElement(),0,0);//chama a função auxiliar para poder armazenar a informação de cada grupo
-
+			i= groupAux(elem->FirstChildElement(),0,i);//chama a função auxiliar para poder armazenar a informação de cada grupo
+			
 		}
 
         else{
@@ -261,23 +277,28 @@ void drawTheFiles(){
         glEnd();
         glPopMatrix();//Pop da matriz antiga sem transformações
     }
-    glBegin(GL_LINES);
-    // Eixo X
-    glColor3f (1.0, 0.0, 1.0);
-    glVertex3f(0, 0, 0);
-    glVertex3f(15, 0, 0);
-
-    // Eixo Y
-    glColor3f (1.0,2.0,0.5);//grey
-    glVertex3f(0, 0, 0);
-    glVertex3f(0, 15, 0);
-
-    // Eixo Z
-    glColor3f (0.5, 0.5, 0.5);//grey
-    glVertex3f(0, 0, 0);
-    glVertex3f(0, 0, 15);
-    glEnd();
 }
+
+void drawAxes() {
+	glBegin(GL_LINES);
+	// Eixo X
+	glColor3f(1.0, 0.0, 1.0);
+	glVertex3f(0, 0, 0);
+	glVertex3f(15, 0, 0);
+
+	// Eixo Y
+	glColor3f(1.0, 2.0, 0.5);//grey
+	glVertex3f(0, 0, 0);
+	glVertex3f(0, 15, 0);
+
+	// Eixo Z
+	glColor3f(0.5, 0.5, 0.5);//grey
+	glVertex3f(0, 0, 0);
+	glVertex3f(0, 0, 15);
+	glEnd();
+}
+
+
 
 void changeSize(int w, int h) {
 
@@ -303,13 +324,45 @@ void changeSize(int w, int h) {
 	glMatrixMode(GL_MODELVIEW);
 }
 
+void mouseMove(int x, int y) {
+	if (clicked) {
+		float w = glutGet(GLUT_WINDOW_WIDTH);
+		float h = glutGet(GLUT_WINDOW_HEIGHT);
+
+		float cx = x - (w / 2);
+		float cy = -(y - (h / 2));
+
+		float aStep = cx / w;
+		float bStep = cy / h;
+
+		alpha = aStep * (2*M_PI);
+		beta = bStep * (M_PI);
+
+		if (beta >= (M_PI / 2)) beta = (M_PI / 2) - 0.001;
+		else if (beta <= (M_PI / 2)) beta = -(M_PI / 2) + 0.001;
+
+		dx = sin(alpha);
+		dy = sin(beta);
+		dz = -cos(alpha);
+		dxP = sin(alpha + (M_PI / 2));
+		dzP = -cos(alpha + (M_PI / 2));
+
+		glutPostRedisplay();
+		
+	}
+}
+
+
+void mouseClick(int button, int state, int x, int y) {
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+		clicked = true;
+	}
+	else if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) clicked = false;
+}
 
 
 void renderScene(void) {
 
-	float xaxis = radius * cos(beta) * sin(alpha);
-	float yaxis = radius * sin(beta);
-	float zaxis = radius * cos(beta) * cos(alpha);
 
 	//glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
@@ -318,9 +371,16 @@ void renderScene(void) {
 
 	// set the camera
 	glLoadIdentity();
-	gluLookAt(xaxis,yaxis,zaxis,
-		      0.0,0.0,0.0,
+
+
+	gluLookAt(px,py,pz,
+		      px + dx,py+dy,pz+dz,
 			  0.0f,1.0f,0.0f);
+
+	if (axes) drawAxes();
+
+	if (lines) glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	else glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 // put drawing instructions here
 	drawTheFiles();
@@ -334,41 +394,47 @@ void renderScene(void) {
 void process_keys(unsigned char key, int x, int y) {
 	switch (key) {
 	case'a':
-		alpha += 0.1;
+		px -= dxP * k;
+		pz -= dzP * k;
+		glutPostRedisplay();
 		break;
 	case'd':
-		alpha -= 0.1;
+		px += dxP * k;
+		pz += dzP * k;
+		glutPostRedisplay();
 		break;
 	case 'w':
-		beta -= 0.1;
-		if (beta < -1.5) beta = 1.5;
+		px += dx * k;
+		py += dy * k;
+		pz += dy * k;
+		glutPostRedisplay();
 		break;
 	case 's':
-		beta += 0.1;
-		if (beta > 1.5) beta = 1.5;
+		px -= dx * k;
+		py -= dy * k;
+		pz -= dy * k;
+		glutPostRedisplay();
+		break;;
+	case 'f':
+		axes = !axes;
 		break;
-	case 'q':
-		radius -= 0.1;
-		break;
-	case 'e':
-		radius += 0.1;
+	case 'l':
+		lines = !lines;
 		break;
 	}
 	glutPostRedisplay();
 }
 
 int main(int argc, char **argv) {
-    fflush(stdout);
+   /*
+	fflush(stdout);
     groups[0].scaleX=groups[0].scaleY=groups[0].scaleZ=1;
     groups[0].rotX=groups[0].rotY=groups[0].rotZ=groups[0].angle=0;
     groups[0].traX=groups[0].traY=groups[0].traZ=0;
-	
+	*/
 	
   readXML();
   loadXML();
-
-	alpha = 0;
-	beta = 5;
 
 // put GLUT init here
 	glutInit(&argc, argv);
@@ -383,7 +449,9 @@ int main(int argc, char **argv) {
 	glutReshapeFunc(changeSize);
 
 	glutKeyboardFunc(process_keys);
-
+	glutMotionFunc(mouseMove);
+	glutPassiveMotionFunc(mouseMove);
+	glutMouseFunc(mouseClick);
 
 // OpenGL settings
 	glEnable(GL_DEPTH_TEST);
