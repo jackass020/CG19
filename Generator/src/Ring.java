@@ -26,7 +26,7 @@ public class Ring {
     }
 
     public void generateFile() {
-        Path p = Paths.get("./" + this.dest_file);
+        Path p = Paths.get("../Files" + this.dest_file);
         try (BufferedWriter writer = Files.newBufferedWriter(p)) {
             int j;
             double alfa = 2 * Math.PI / (double) slices;

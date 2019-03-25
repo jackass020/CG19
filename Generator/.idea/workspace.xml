@@ -8,12 +8,21 @@
       <change beforePath="$PROJECT_DIR$/out/production/CG/Cone.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CG/Cone.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CG/Generator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CG/Generator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CG/Plane.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CG/Plane.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CG/Sphere.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CG/Sphere.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Box.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Cone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cone.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Generator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Plane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../engine/Files/plane.3d" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/Files/plane.3d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/main.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ring.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ring.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sphere.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../engine/Files/Config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../engine/Files/box.3d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../engine/Files/cone.3d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../engine/Files/plane.3d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../engine/Files/ring.3d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../engine/Files/sphere.3d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/main.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/engine" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/engine" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../engine/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/main.cpp" afterDir="false" />
     </list>
@@ -26,20 +35,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Generator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="22" lean-forward="true" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Sphere.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="35" selection-start-line="35" selection-end-line="36" selection-end-column="58" />
+            <state relative-caret-position="2629">
+              <caret line="215" column="27" selection-start-line="215" selection-start-column="27" selection-end-line="215" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -47,11 +47,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Ring.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Sphere.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5">
+              <caret line="88" column="30" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Cone.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1485">
-              <caret line="101" selection-start-line="101" selection-end-line="101" />
+            <state relative-caret-position="1755">
+              <caret line="140" column="45" selection-start-line="140" selection-start-column="45" selection-end-line="140" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -62,8 +83,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Box.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="793">
-              <caret line="187" column="40" lean-forward="true" selection-start-line="187" selection-start-column="40" selection-end-line="187" selection-end-column="40" />
+            <state relative-caret-position="540">
+              <caret line="69" column="30" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -74,8 +95,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Plane.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="778">
-              <caret line="122" lean-forward="true" selection-start-line="66" selection-end-line="122" />
+            <state relative-caret-position="315">
+              <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -109,10 +130,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Config.xml" />
+        <option value="$PROJECT_DIR$/src/Cone.java" />
         <option value="$PROJECT_DIR$/src/Sphere.java" />
         <option value="$PROJECT_DIR$/src/Box.java" />
         <option value="$PROJECT_DIR$/src/Plane.java" />
-        <option value="$PROJECT_DIR$/src/Cone.java" />
+        <option value="$PROJECT_DIR$/src/Ring.java" />
         <option value="$PROJECT_DIR$/src/Generator.java" />
       </list>
     </option>
@@ -128,6 +150,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -135,18 +158,22 @@
               <item name="Generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="Generator" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Generator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Generator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551717573365" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553534601104" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -168,7 +195,7 @@
     <configuration name="Generator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Generator" />
       <module name="CG" />
-      <option name="PROGRAM_PARAMETERS" value="cone 2 2 50 50 cone.3d" />
+      <option name="PROGRAM_PARAMETERS" value="Solarsystem" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -210,11 +237,13 @@
       <workItem from="1553207477693" duration="1000" />
       <workItem from="1553207494415" duration="617000" />
       <workItem from="1553271068576" duration="976000" />
+      <workItem from="1553525374766" duration="6818000" />
+      <workItem from="1553545557218" duration="1871000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17522000" />
+    <option name="totallyTimeSpent" value="26211000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="960" height="1002" extended-state="4" />
@@ -224,7 +253,7 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.26258206" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.27571115" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.3295325" />
@@ -233,7 +262,7 @@
       <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" weight="0.32914287" />
-      <window_info anchor="bottom" id="Run" order="7" weight="0.31885713" />
+      <window_info active="true" anchor="bottom" id="Run" order="7" visible="true" weight="0.31885713" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.3990878" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
@@ -261,20 +290,17 @@
     <entry file="file://$PROJECT_DIR$/plane.txt" />
     <entry file="file://$PROJECT_DIR$/box.txt" />
     <entry file="file://$PROJECT_DIR$/Config.xml" />
-    <entry file="file://$PROJECT_DIR$/src/Sphere.java">
+    <entry file="file://$PROJECT_DIR$/src/Ring.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="35" selection-start-line="35" selection-end-line="36" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="300">
+          <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Plane.java">
+    <entry file="file://$PROJECT_DIR$/src/Cone.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="778">
-          <caret line="122" lean-forward="true" selection-start-line="66" selection-end-line="122" />
+        <state relative-caret-position="1755">
+          <caret line="140" column="45" selection-start-line="140" selection-start-column="45" selection-end-line="140" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -283,8 +309,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Box.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="793">
-          <caret line="187" column="40" lean-forward="true" selection-start-line="187" selection-start-column="40" selection-end-line="187" selection-end-column="40" />
+        <state relative-caret-position="540">
+          <caret line="69" column="30" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Plane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Sphere.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5">
+          <caret line="88" column="30" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -293,15 +339,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Generator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="22" lean-forward="true" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Cone.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1485">
-          <caret line="101" selection-start-line="101" selection-end-line="101" />
+        <state relative-caret-position="2629">
+          <caret line="215" column="27" selection-start-line="215" selection-start-column="27" selection-end-line="215" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

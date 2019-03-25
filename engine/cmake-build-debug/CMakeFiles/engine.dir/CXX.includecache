@@ -13,6 +13,8 @@ GLUT/glut.h
 -
 GL/glut.h
 -
+cmath
+-
 fstream
 -
 vector
@@ -22,8 +24,6 @@ string
 set
 -
 iostream
--
-cmath
 -
 tinyxml2.h
 /home/nelson/Desktop/CG/engine/tinyxml2.h

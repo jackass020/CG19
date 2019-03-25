@@ -73,14 +73,9 @@ bool clicked = false;
 bool lines = false;
 float alpha = 0.0;
 float beta = 0.0;
-float dx = 0.0;
-float dy = 0.0;
-float dz = -1;
-float dxP = 1.0;
-float dzP = 0.0;
-float px = 0.0;
-float py = 0.0;
-float pz = 20.0;
+float dx = 0.0,dy = 0.0,dz = -1;
+float dxP = 1.0,dzP = 0.0;
+float px = 0.0,py = 0.0,pz = 20.0;
 float k = 1;
 
 Paths paths [1024];
@@ -177,7 +172,7 @@ int groupAux(XMLElement* elem, int nr,int i){
 				if (attr != nullptr) {
 					if (strlen(attr) != 0) groups[nr].scaleZ *= strtof(attr, nullptr);//string to float 
 				}
-			else groups[nr].scaleZ *= 1;
+			    else groups[nr].scaleZ *= 1;
 
         }
 
@@ -197,7 +192,7 @@ void readXML(){
     XMLDocument doc ;
     int i = 0;
 	int j = 0;
-    doc.LoadFile("C:/Users/ricar/OneDrive/Documentos/engine/Files/Config.xml");// carrega o ficheiro XML
+    doc.LoadFile("../../Files/Config.xml");// carrega o ficheiro XML
     XMLElement* root = doc.FirstChildElement();// Aponta para o elemento raiz= "scene"
     for(XMLElement* elem = root->FirstChildElement();elem != nullptr; elem = elem->NextSiblingElement()) {//precorre os model
         string nome_elem = elem->Value();
@@ -209,8 +204,8 @@ void readXML(){
         else{
             paths_size=0;
             return;
-        }//<scene><group><translate X="1" Y="1" Z="1"/><group><translate X="1" Y="1" Z="1"/><model file="sphere.3d"/></group><model file="sphere.3d"/></group></scene>
-	}
+        }
+    }
     paths_size = i;
 }
 
@@ -232,6 +227,7 @@ void loadXML() {
         model.rotY = paths[i].rotY;
         model.rotZ = paths[i].rotZ;
         model.scaleX = paths[i].scaleX;
+
         model.scaleY = paths[i].scaleY;
         model.scaleZ = paths[i].scaleZ;
 		ifstream file (p);//leitura do fichero
@@ -267,8 +263,8 @@ void drawTheFiles(){
 		glBegin(GL_TRIANGLES);
         for (Triangle t : model) {
             if (i % 2 == 0)
-                glColor3f(0, 0, 255);
-            else glColor3f(51, 0, 0);
+                glColor3f(0.69,0.93, 0.93);
+            else glColor3f(0.93, 0.51, 0.93);
             glVertex3f(t.at(0).x, t.at(0).y, t.at(0).z);
             glVertex3f(t.at(1).x, t.at(1).y, t.at(1).z);
             glVertex3f(t.at(2).x, t.at(2).y, t.at(2).z);
@@ -282,19 +278,19 @@ void drawTheFiles(){
 void drawAxes() {
 	glBegin(GL_LINES);
 	// Eixo X
-	glColor3f(1.0, 0.0, 1.0);
+	glColor3f(1, 0, 0); //Vermelho
 	glVertex3f(0, 0, 0);
-	glVertex3f(15, 0, 0);
+	glVertex3f(100, 0, 0);
 
 	// Eixo Y
-	glColor3f(1.0, 2.0, 0.5);//grey
+	glColor3f(1, 1, 0);//Amarelo
 	glVertex3f(0, 0, 0);
-	glVertex3f(0, 15, 0);
+	glVertex3f(0, 100, 0);
 
 	// Eixo Z
-	glColor3f(0.5, 0.5, 0.5);//grey
+	glColor3f(0.75, 1, 0);//Lima
 	glVertex3f(0, 0, 0);
-	glVertex3f(0, 0, 15);
+	glVertex3f(0, 0, 100);
 	glEnd();
 }
 
@@ -361,7 +357,7 @@ void mouseClick(int button, int state, int x, int y) {
 }
 
 
-void renderScene(void) {
+void renderScene() {
 
 
 	//glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -371,8 +367,6 @@ void renderScene(void) {
 
 	// set the camera
 	glLoadIdentity();
-
-
 	gluLookAt(px,py,pz,
 		      px + dx,py+dy,pz+dz,
 			  0.0f,1.0f,0.0f);
@@ -392,47 +386,50 @@ void renderScene(void) {
 
 
 void process_keys(unsigned char key, int x, int y) {
-	switch (key) {
-	case'a':
-		px -= dxP * k;
-		pz -= dzP * k;
-		glutPostRedisplay();
-		break;
-	case'd':
-		px += dxP * k;
-		pz += dzP * k;
-		glutPostRedisplay();
-		break;
-	case 'w':
-		px += dx * k;
-		py += dy * k;
-		pz += dy * k;
-		glutPostRedisplay();
-		break;
-	case 's':
-		px -= dx * k;
-		py -= dy * k;
-		pz -= dy * k;
-		glutPostRedisplay();
-		break;;
-	case 'f':
-		axes = !axes;
-		break;
-	case 'l':
-		lines = !lines;
-		break;
+
+    switch (key) {
+	    case'a':
+		    px -= dxP * k;
+	    	pz -= dzP * k;
+    		glutPostRedisplay();
+    		break;
+    	case'd':
+    		px += dxP * k;
+	    	pz += dzP * k;
+	    	glutPostRedisplay();
+	    	break;
+        case'w':
+            py += dxP * k;
+            glutPostRedisplay();
+            break;
+        case's':
+            py -= dxP * k;
+            glutPostRedisplay();
+            break;
+	    case '+':
+	    	px += dx * k;
+	    	py += dy * k;
+    		pz += dz * k;
+    		glutPostRedisplay();
+	    	break;
+	    case '-':
+	    	px -= dx * k;
+    		py -= dy * k;
+    		pz -= dz * k;
+    		glutPostRedisplay();
+    		break;
+    	case 'f':
+		    axes = !axes;
+		    break;
+	    case 'l':
+	    	lines = !lines;
+	    	break;
 	}
 	glutPostRedisplay();
 }
 
 int main(int argc, char **argv) {
-   /*
-	fflush(stdout);
-    groups[0].scaleX=groups[0].scaleY=groups[0].scaleZ=1;
-    groups[0].rotX=groups[0].rotY=groups[0].rotZ=groups[0].angle=0;
-    groups[0].traX=groups[0].traY=groups[0].traZ=0;
-	*/
-	
+
   readXML();
   loadXML();
 
@@ -455,7 +452,7 @@ int main(int argc, char **argv) {
 
 // OpenGL settings
 	glEnable(GL_DEPTH_TEST);
-	//glEnable(GL_CULL_FACE);
+	glEnable(GL_CULL_FACE);
 
 
 // enter GLUT's main loop

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><scene>
+ <group>
+  <translate X="-8"/>
+  <scale X="8" Y="8" Z="8"/>
+  <models>
+   <model file="../../Files/sphere.3d"/>
+  </models>
+ </group>
+
+ <group>
+  <translate X="1.265"/>
+  <rotate X="0" Y="0" Z="1" angle="-0.1"/>
+  <scale X="0.218" Y="0.218" Z="0.218"/>
+  <models>
+   <model file="../../Files/sphere.3d"/>
+  </models>
+ </group>
+
+ <group>
+  <translate X="2.4"/>
+  <rotate angle="-177" axisX="0" axisY="0" axisZ="1"/>
+  <scale X="0.54" Y="0.54" Z="0.54"/>
+  <models>
+   <model file="../../Files/sphere.3d"/>
+  </models>
+ </group>
+
+ <group>
+  <translate X="4.2"/>
+  <scale X="0.568" Y="0.568" Z="0.568"/>
+  <rotate X="0" Y="0" Z="1" angle="-23.5"/>
+  <models>
+   <model file="../../Files/sphere.3d"/>
+  </models>
+  <group>
+   <translate Y="2"/>
+   <scale X="0.4" Y="0.4" Z="0.4"/>
+   <rotate X="0" Y="0" Z="1" angle="18.35"/>
+   <models>
+    <model file="../../Files/sphere.3d"/>
+   </models>
+  </group>
+ </group>
+
+ <group>
+  <translate X="6.065"/>
+  <rotate X="0" Y="0" Z="1" angle="-25"/>
+  <scale X="0.302" Y="0.302" Z="0.302"/>
+  <models>
+   <model file="../../Files/sphere.3d"/>
+  </models>
+  <group>
+   <translate Y="1.85"/>
+   <rotate X="0" Y="0" Z="1" angle="24"/>
+   <scale X="0.5" Y="0.5" Z="0.5"/>
+   <models>
+    <model file="../../Files/sphere.3d"/>
+   </models>
+  </group>
+ </group>
+
+ <group>
+  <translate X="17.335"/>
+  <rotate X="0" Y="0" Z="1" angle="-3"/>
+  <scale X="2.2" Y="2.2" Z="2.2"/>
+  <models>
+   <model file="../../Files/sphere.3d"/>
+  </models>
+  <group>
+   <translate X="-2.16" Y="2.43"/>
+   <rotate X="0" Y="0" Z="1" angle="2.8"/>
+   <scale X="0.2" Y="0.2" Z="0.2"/>
+   <models>
+    <model file="../../Files/sphere.3d"/>
+   </models>
+  </group>
+ </group>
+
+ <group>
+  <translate X="31.65"/>
+  <rotate X="0" Y="0" Z="1" angle="-27"/>
+  <scale X="2" Y="2" Z="2"/>
+  <models>
+   <model file="../../Files/sphere.3d"/>
+  </models>
+  <group>
+   <scale X="1.2" Z="1.2"/>
+   <models>
+    <model file="../../Files/ring.3d"/>
+   </models>
+  </group>
+  <group>
+   <translate Y="3.84"/>
+   <rotate X="0" Y="0" Z="1" angle="26.67"/>
+   <scale X="0.12" Y="0.12" Z="0.12"/>
+   <models>
+    <model file="../../Files/sphere.3d"/>
+   </models>
+  </group>
+ </group>
+
+ <group>
+  <translate X="50.995"/>
+  <rotate X="0" Y="0" Z="1" angle="-98"/>
+  <scale X="1.2" Y="1.2" Z="1.2"/>
+  <models>
+   <model file="../../Files/sphere.3d"/>
+  </models>
+  <group>
+   <translate Y="-2.28"/>
+   <rotate X="0" Y="0" Z="1" angle="97.86"/>
+   <scale X="0.15" Y="0.15" Z="0.15"/>
+   <models>
+    <model file="../../Files/sphere.3d"/>
+   </models>
+  </group>
+ </group>
+
+ <group>
+  <translate X="75"/>
+  <rotate X="0" Y="0" Z="1" angle="-30"/>
+  <scale X="1.1" Y="1.1" Z="1.1"/>
+  <models>
+   <model file="../../Files/sphere.3d"/>
+  </models>
+  <group>
+   <translate Y="-2.23"/>
+   <rotate X="0" Y="0" Z="1" angle="-127.35"/>
+   <scale X="0.2" Y="0.2" Z="0.2"/>
+   <models>
+    <model file="../../Files/sphere.3d"/>
+   </models>
+  </group>
+ </group>
+</scene>

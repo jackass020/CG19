@@ -38,7 +38,7 @@ public class Plane {
     }
 
     public void generateFile() {
-        Path p = Paths.get("/home/nelson/Desktop/CG/engine/Files/" + this.file_de);
+        Path p = Paths.get("/Files/" + this.file_de);
             try (BufferedWriter writer = Files.newBufferedWriter(p)) {
             writer.write(Float.toString(-comp/2)+ "\n");
             writer.write(Float.toString(0)+ "\n");
@@ -71,18 +71,18 @@ public class Plane {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse("/home/nelson/Desktop/CG/engine/Files/Config.xml");
+            Document doc = builder.parse("../Files/Config.xml");
             Element root = (Element) doc.getDocumentElement();
             Element newModel = doc.createElement("model");
             root.appendChild(newModel);
             Attr attr = doc.createAttribute("file");
-            attr.setValue("/home/nelson/Desktop/CG/engine/Files/" + this.file_de);
+            attr.setValue("../Files/" + this.file_de);
             newModel.setAttributeNode(attr);
             doc.getDocumentElement().normalize();
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
-            StreamResult streamResult = new StreamResult(new File("/home/nelson/Desktop/CG/engine/Files/Config.xml"));
+            StreamResult streamResult = new StreamResult(new File("../Files/Config.xml"));
             transformer.transform(source, streamResult);
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex);
@@ -101,12 +101,12 @@ public class Plane {
                 Element model = doc.createElement("model");
                 rootElement.appendChild(model);
                 Attr attr = doc.createAttribute("file");
-                attr.setValue("/home/nelson/Desktop/CG/engine/Files/" + this.file_de);
+                attr.setValue("../Files/" + this.file_de);
                 model.setAttributeNode(attr);
                 TransformerFactory transformerFactory = TransformerFactory.newInstance();
                 Transformer transformer = transformerFactory.newTransformer();
                 DOMSource source = new DOMSource(doc);
-                StreamResult result = new StreamResult(new File("/home/nelson/Desktop/CG/engine/Files/Config.xml"));
+                StreamResult result = new StreamResult(new File("../Files/Config.xml"));
                 transformer.transform(source, result);
             } catch (ParserConfigurationException ex1) {
                 Logger.getLogger(Plane.class.getName()).log(Level.SEVERE, null, ex1);
