@@ -71,6 +71,10 @@ public class Generator {
                 r.generateFile();
                 XMLcreate();
                 break;
+            case "comet":
+                    Comet c = new Comet(cmd[1], Integer.parseInt(cmd[2]));
+                    c.generateFile();
+                break;
             default:
                 System.out.println("Invalid input");
                 break;
