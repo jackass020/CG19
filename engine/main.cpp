@@ -12,17 +12,17 @@
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
+#include <GL/glew.h>
 #include <GL/glut.h>
 #endif
 
-#define USE_MATH_DEFINES
-#include <cmath>
 
+#include <cmath>
 #include <fstream>
 #include <vector>
 #include <string>
 #include <set>
-#include <iostream>;
+#include <iostream>
 #include "tinyxml2.h"
 
 using namespace tinyxml2;
@@ -30,23 +30,29 @@ using namespace std;
 
 typedef std::string Path;
 
-typedef struct pathInfo{
-    Path path;
-    float traX=0,traY=0,traZ=0;
-    float angle,rotX=0,rotY=0,rotZ=0;
-    float scaleX=1,scaleY=1,scaleZ=1;
-} Paths;
+
 typedef struct coordinate {
 	float x;
 	float y;
 	float z;
 }Vertex;
 
-typedef std::vector<Vertex> Triangle;
+typedef std::vector<Vertex> ControlP;
 
 static bool operator<(const coordinate &a1, const coordinate &a2) {
     return true;
 }
+typedef struct pathInfo{
+    Path path;
+    ControlP contp;
+    int nrcontp;
+    float traX=0,traY=0,traZ=0;
+    float angle,rotX=0,rotY=0,rotZ=0;
+    float scaleX=1,scaleY=1,scaleZ=1;
+    float trans_time=0;
+    float rot_time=0;
+} Paths;
+
 typedef struct groupData{
     float traX, traY,traZ;
     float angle,rotX, rotY, rotZ;
@@ -54,13 +60,18 @@ typedef struct groupData{
 
 }Group;
 
-typedef std::vector<Triangle> Model;
+typedef std::vector<float> Model;
 
 typedef struct modelData{
     Model model;
     float traX=0, traY=0,traZ=0;
     float angle,rotX=0, rotY=0, rotZ=0;
     float scaleX=1, scaleY=1, scaleZ=1;
+    ControlP contp;
+    int nrcontp;
+    float trans_time=0;
+    float rot_time=0;
+
 }ModelData;
 
 static bool operator<(const modelData &a1, const modelData &a2) {
@@ -77,9 +88,11 @@ float dx = 0.0,dy = 0.0,dz = -1;
 float dxP = 1.0,dzP = 0.0;
 float px = 0.0,py = 0.0,pz = 20.0;
 float k = 1;
+int number_of_groups =0;
 
-Paths paths [1024];
-Group groups[1024];
+Paths paths [30];
+GLuint *buffers;
+Group groups[30];
 int paths_size = 0;
 Models modelz;
 
@@ -106,11 +119,30 @@ int readModels(XMLElement* elem, int nr, int i) {
 			}
 		}
 	}
+    number_of_groups++;
 	return i;
 }
 
 
 
+
+void readPoints (XMLElement* elem) {
+    const char *attr;
+    for (XMLElement *aux = elem; aux != nullptr; aux = aux->NextSiblingElement()) {
+        string nome_elem = aux->Value();
+        if (nome_elem == "point") {
+            Vertex v;
+            attr = aux->Attribute("X");
+            if (attr != nullptr) v.x = strtof(attr, nullptr);
+            attr = aux->Attribute("Y");
+            if (attr != nullptr) v.y = strtof(attr, nullptr);
+            attr = aux->Attribute("Z");
+            if (attr != nullptr) v.z = strtof(attr, nullptr);
+            paths[number_of_groups].contp.push_back(v);
+            paths[number_of_groups].nrcontp++;
+        }
+    }
+}
 int groupAux(XMLElement* elem, int nr,int i){
     const char* attr;//Vai guardar o atributo que queremos
     if (nr==0){//Caso seja o primeiro "group" a ser analisado, este tem de ser inicializado, não sendo possível por a scale=0;
@@ -132,19 +164,28 @@ int groupAux(XMLElement* elem, int nr,int i){
 
     for(XMLElement* aux = elem;aux!= nullptr;aux = aux->NextSiblingElement()){//itera todos os model
         string nome_elem = aux->Value();
-        if(nome_elem=="translate"){//Caso seja translate, vai se armazenar os valores
-            attr= aux-> Attribute("X");//é retirado o atributo de X
-           	if(attr!=nullptr) if(strlen(attr)!=0) groups[nr].traX += strtof(attr,nullptr);//string to float
-			else groups[nr].traX+=0;
-			attr= aux-> Attribute("Y");//é retirado o atributo de Y
-            if(attr!=nullptr) if(strlen(attr)!=0) groups[nr].traY += strtof(attr,nullptr);//string to float
-			else groups[nr].traY += 0;
-			attr= aux-> Attribute("Z");//é retirado o atributo de Z
-            if(attr!=nullptr) if(strlen(attr)!=0) groups[nr].traZ += strtof(attr,nullptr);//string to float
-			else groups[nr].traZ += 0;
+        if(nome_elem=="translate") {//Caso seja translate, vai se armazenar os valores
+            attr = aux->Attribute("time");
+            if (attr != nullptr && strlen(attr) != 0) {
+                readPoints(aux->FirstChildElement());
+                paths[number_of_groups].trans_time = strtof(attr, nullptr);
+            } else {
+                attr = aux->Attribute("X");//é retirado o atributo de X
+                if (attr != nullptr && strlen(attr) != 0) groups[nr].traX += strtof(attr, nullptr);//string to float
+                else groups[nr].traX += 0;
+                attr = aux->Attribute("Y");//é retirado o atributo de Y
+                if (attr != nullptr && strlen(attr) != 0) groups[nr].traY += strtof(attr, nullptr);//string to float
+                else groups[nr].traY += 0;
+                attr = aux->Attribute("Z");//é retirado o atributo de Z
+                if (attr != nullptr && strlen(attr) != 0) groups[nr].traZ += strtof(attr, nullptr);//string to float
+                else groups[nr].traZ += 0;
+
+            }
         }
         if(nome_elem=="rotate"){//Caso seja rotate, vai se armazenar os valores
-            attr= aux-> Attribute("angle");//é retirado o atributo de X
+            attr= aux-> Attribute("time");//é retirado o atributo do time
+            if (attr!=nullptr && strlen(attr)!=0) paths[number_of_groups].rot_time += strtof(attr,nullptr);//string to float
+            attr= aux-> Attribute("angle");//é retirado o atributo do angle
             if (attr!=nullptr) if(strlen(attr)!=0) groups[nr].angle += strtof(attr,nullptr);//string to float
 			else groups[nr].angle = 0;
 			attr= aux-> Attribute("X");//é retirado o atributo de X
@@ -191,7 +232,6 @@ int groupAux(XMLElement* elem, int nr,int i){
 void readXML(){
     XMLDocument doc ;
     int i = 0;
-	int j = 0;
     doc.LoadFile("../../Files/Config.xml");// carrega o ficheiro XML
     XMLElement* root = doc.FirstChildElement();// Aponta para o elemento raiz= "scene"
     for(XMLElement* elem = root->FirstChildElement();elem != nullptr; elem = elem->NextSiblingElement()) {//precorre os model
@@ -209,6 +249,15 @@ void readXML(){
     paths_size = i;
 }
 
+void preparaBuffers() {
+    int i = 0;
+    for(ModelData m : modelz) {
+        glBindBuffer(GL_ARRAY_BUFFER,buffers[i]);
+        float *vertexB = &m.model[0];
+        glBufferData(GL_ARRAY_BUFFER,sizeof(float) * m.model.size(),vertexB,GL_STATIC_DRAW);
+        i++;
+    }
+}
 
 void loadXML() {
 	float x, y, z;
@@ -227,29 +276,29 @@ void loadXML() {
         model.rotY = paths[i].rotY;
         model.rotZ = paths[i].rotZ;
         model.scaleX = paths[i].scaleX;
-
         model.scaleY = paths[i].scaleY;
         model.scaleZ = paths[i].scaleZ;
+        model.trans_time=paths[i].trans_time;
+        model.rot_time=paths[i].rot_time;
+        model.contp=paths[i].contp;
+        model.nrcontp=paths[i].nrcontp;
 		ifstream file (p);//leitura do fichero
         if (file.is_open()) {//Caso o ficheiro abra
-			Triangle t;
 			while (getline(file, c1) && getline(file, c2) && getline(file, c3)) {// obter as 3 primeiras linha sendo estas as coordenadas(x,y,z)
 				x = strtof(c1.c_str(),nullptr);//obter um apontador para o array c1 através do uso c_str
 				y = strtof(c2.c_str(),nullptr);//obter um apontador para o array c2 através do uso c_str
 				z = strtof(c3.c_str(),nullptr);//obter um apontador para o array c3 através do uso c_str
-				Vertex v = {x,y,z};//criação do pum vértice
-				t.push_back(v);//adiciona ao vetor t
-				j++;
-				if (j % 3 == 0) {//tendo 3 vértices, cria-se um triângulo
-					model.model.push_back(t);//adiciona ao vetor model
-					t.clear();
-				}
+				model.model.push_back(x);
+                model.model.push_back(y);
+                model.model.push_back(z);
+
 			}
 			file.close();
 		}
 		modelz.insert(model);
 		model.model.clear();
 	}
+
 }
 
 void drawTheFiles(){
@@ -260,17 +309,12 @@ void drawTheFiles(){
         glTranslatef(m.traX, m.traY,m.traZ);//Sendo que as funções são postas em "stack", vão ser executadas inversamente à ordem que são chamadas.
         glRotatef(m.angle, m.rotX, m.rotY, m.rotZ);//Logo Rotate->translate->scale. Rotate aplica o m.angle a um dos vértice, sendo o que está a 1.
 		glScalef(m.scaleX, m.scaleY, m.scaleZ);//Neste caso é necessário executar a rotate primeiro devido ao facto da rotação deve ser feita no ponto(0,0,0).
-		glBegin(GL_TRIANGLES);
-        for (Triangle t : model) {
-            if (i % 2 == 0)
-                glColor3f(0.69,0.93, 0.93);
-            else glColor3f(0.93, 0.51, 0.93);
-            glVertex3f(t.at(0).x, t.at(0).y, t.at(0).z);
-            glVertex3f(t.at(1).x, t.at(1).y, t.at(1).z);
-            glVertex3f(t.at(2).x, t.at(2).y, t.at(2).z);
-            i++;
-        }
-        glEnd();
+		glColor3f(0.69,0.93, 0.93);
+		glColor3f(0.93, 0.51, 0.93);
+        glBindBuffer(GL_ARRAY_BUFFER,buffers[i]);
+        glVertexPointer(3,GL_FLOAT,0,0);
+        glDrawArrays(GL_TRIANGLES,0,model.size());
+        i++;
         glPopMatrix();//Pop da matriz antiga sem transformações
     }
 }

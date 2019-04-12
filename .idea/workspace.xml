@@ -13,27 +13,9 @@
   <component name="ChangeListManager">
     <list default="true" id="253d0532-138c-43e1-a9ac-336284388f15" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CG19.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Filesring.3d" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Generator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generator/out/production/CG/Box.class" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/out/production/CG/Box.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generator/out/production/CG/Cone.class" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/out/production/CG/Cone.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generator/out/production/CG/Generator.class" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/out/production/CG/Generator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generator/out/production/CG/Plane.class" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/out/production/CG/Plane.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generator/out/production/CG/Sphere.class" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/out/production/CG/Sphere.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generator/src/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/src/Box.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generator/src/Cone.java" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/src/Cone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generator/src/Generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/src/Generator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generator/src/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/src/Plane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generator/src/Ring.java" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/src/Ring.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generator/src/Sphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/src/Sphere.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/Files/Config.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/Files/box.3d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/Files/cone.3d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/Files/plane.3d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/Files/ring.3d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/Files/sphere.3d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/main.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/engine" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/engine" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/main.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/engine/cmake-build-debug/" />
@@ -76,8 +58,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/engine/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="77" column="30" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
+            <state relative-caret-position="419">
+              <caret line="425" lean-forward="true" selection-start-line="425" selection-end-line="425" />
+              <folding>
+                <element signature="e#247#269#0" expanded="true" />
+                <element signature="e#306#322#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -108,6 +94,7 @@
       <find>writerintWriter</find>
       <find>acrescentar ao array global paths o path do ficheiro</find>
       <find>grupos</find>
+      <find>number_of_groups</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -193,12 +180,18 @@
       <workItem from="1553254937225" duration="4275000" />
       <workItem from="1553265669731" duration="7322000" />
       <workItem from="1553524805748" duration="6082000" />
-      <workItem from="1553545622394" duration="2205000" />
+      <workItem from="1553545622394" duration="2367000" />
+      <workItem from="1553554237052" duration="599000" />
+      <workItem from="1554722745826" duration="599000" />
+      <workItem from="1554738402550" duration="1000" />
+      <workItem from="1554850821030" duration="1662000" />
+      <workItem from="1554904852237" duration="609000" />
+      <workItem from="1555079211417" duration="6864000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31812000" />
+    <option name="totallyTimeSpent" value="42308000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -222,7 +215,7 @@
       <window_info id="UI Designer" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32914287" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32914287" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32914287" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -232,7 +225,7 @@
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32914287" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32914287" />
-      <window_info anchor="bottom" id="CMake" order="12" weight="0.3249715" />
+      <window_info anchor="bottom" id="CMake" order="12" weight="0.3257143" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -320,8 +313,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/engine/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="77" column="30" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
+        <state relative-caret-position="419">
+          <caret line="425" lean-forward="true" selection-start-line="425" selection-end-line="425" />
+          <folding>
+            <element signature="e#247#269#0" expanded="true" />
+            <element signature="e#306#322#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
