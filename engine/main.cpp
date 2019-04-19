@@ -252,9 +252,9 @@ void readXML(){
 void preparaBuffers() {
     int i = 0;
     for(ModelData m : modelz) {
-        glBindBuffer(GL_ARRAY_BUFFER,buffers[i]);
+        glBindBuffer(GL_ARRAY_BUFFER,buffers[i]);//Após a crição do buffer, precisamos de ligar o buffer com o devido id antes de este ser usado.
         float *vertexB = &m.model[0];
-        glBufferData(GL_ARRAY_BUFFER,sizeof(float) * m.model.size(),vertexB,GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER,sizeof(float) * m.model.size(),vertexB,GL_STATIC_DRAW);// Sendo o buffer inicializado, é possivel copiar os dados para o buffer-
         i++;
     }
 }
@@ -477,6 +477,8 @@ int main(int argc, char **argv) {
   readXML();
   loadXML();
 
+  buffers = new GLuint[paths_size];
+
 // put GLUT init here
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
@@ -484,7 +486,9 @@ int main(int argc, char **argv) {
 	glutInitWindowSize(1600, 800);
 	glutCreateWindow("Engine");
 
-
+    glEnableClientState(GL_VERTEX_ARRAY);// activate vertex position array
+    glGenBuffers(paths_size,buffers);//the first one is the number of buffer objects to create, and the second parameter is the address of a GLuint variable or array to store a single ID or multiple IDs
+    preparaBuffers();
 // put callback registration here
 	glutDisplayFunc(renderScene);
 	glutReshapeFunc(changeSize);
