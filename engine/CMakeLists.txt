@@ -16,7 +16,7 @@ endif(NOT OPENGL_FOUND)
 
 add_executable(${PROJECT_NAME} ./main.cpp ./tinyxml2.cpp ./tinyxml2.h)
 
-target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
+target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES})
 
 if  (WIN32)
 
@@ -33,13 +33,19 @@ if  (WIN32)
 else (WIN32) #Linux and Mac
 
 	find_package(GLUT REQUIRED)
+	find_package(GLEW REQUIRED)
 	include_directories(${GLUT_INCLUDE_DIR})
 	link_directories(${GLUT_LIBRARY_DIRS})
 	add_definitions(${GLUT_DEFINITIONS})
-	target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
+	include_directories(${GLEW_INCLUDE_DIRS})
+	link_libraries(${GLEW_LIBRARIES})
+	target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES})
 	if(NOT GLUT_FOUND)
 	   message(ERROR ": GLUT not found!")
 	endif(NOT GLUT_FOUND)
+	if(NOT GLEW_FOUND)
+		message(ERROR ": GLEW not found!")
+	endif(NOT GLEW_FOUND)
 	
 endif(WIN32)
 

@@ -90,9 +90,9 @@ float px = 0.0,py = 0.0,pz = 20.0;
 float k = 1;
 int number_of_groups =0;
 
-Paths paths [30];
+Paths paths [1024];
 GLuint *buffers;
-Group groups[30];
+Group groups[1024];
 int paths_size = 0;
 Models modelz;
 
@@ -224,7 +224,8 @@ int groupAux(XMLElement* elem, int nr,int i){
 			i += groupAux(aux->FirstChildElement(), nr + 1,i);
 		
 		}
-
+        cout << i;
+        cout << "\n";
     }
 	return i;
 }
@@ -486,6 +487,7 @@ int main(int argc, char **argv) {
 	glutInitWindowSize(1600, 800);
 	glutCreateWindow("Engine");
 
+    glewInit();
     glEnableClientState(GL_VERTEX_ARRAY);// activate vertex position array
     glGenBuffers(paths_size,buffers);//the first one is the number of buffer objects to create, and the second parameter is the address of a GLuint variable or array to store a single ID or multiple IDs
     preparaBuffers();

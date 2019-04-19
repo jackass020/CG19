@@ -11,6 +11,8 @@ stdlib.h
 -
 GLUT/glut.h
 -
+GL/glew.h
+-
 GL/glut.h
 -
 cmath
