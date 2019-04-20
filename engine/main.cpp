@@ -24,6 +24,7 @@
 #include <set>
 #include <iostream>
 #include "tinyxml2.h"
+#include "CatmullRom.h"
 
 using namespace tinyxml2;
 using namespace std;
@@ -69,6 +70,7 @@ typedef struct modelData{
     float scaleX=1, scaleY=1, scaleZ=1;
     ControlP contp;
     int nrcontp;
+    bool curved;
     float trans_time=0;
     float rot_time=0;
 
@@ -303,21 +305,51 @@ void loadXML() {
 }
 
 void drawTheFiles(){
-    int i=0;
-	for (ModelData m : modelz) {
+    for(ModelData m : modelz) {
+        glPushMatrix();
+        float controlPoints[m.number_control_points][3];
+        for(int i = 0; i<m.number_control_points;i++) {
+                controlPoints[i][0] = m.controlpoints[i].x;
+                controlPoints[i][1] = m.controlpoints[i].y;
+                controlPoints[i][2] = m.controlpoints[i].z;
+        }
+        if(m.curved) {
+            renderCatmullRomCurve(controlPoints,m.number_control_points);
+            getGlobalCatmullRomPoint(glutGet(GLUT_ELAPSED_TIME)/(1000 * m.translate_time),p1,res, controlPoints,m.number_control_points);
+            *deriv = *res;
+            glTranslatef(p1[0],p1[1],p1[2]);
+            normalize_vector(deriv);
+            cross_product(deriv,globalY,z);
+            normalize_vector(z);
+            cross_product(z,deriv,globalY);
+            normalize_vector(globalY);
+            build_Rotation_Matrix(deriv,globalY,z,ma);
+            glMultMatrixf(ma);
+        }
+
+            glTranslatef(m.transX,m.transY,m.transZ);
+
         Model model = m.model;
-        glPushMatrix();//Coloca a Matriz atual na stack
-        glTranslatef(m.traX, m.traY,m.traZ);//Sendo que as funções são postas em "stack", vão ser executadas inversamente à ordem que são chamadas.
-        glRotatef(m.angle, m.rotX, m.rotY, m.rotZ);//Logo Rotate->translate->scale. Rotate aplica o m.angle a um dos vértice, sendo o que está a 1.
-		glScalef(m.scaleX, m.scaleY, m.scaleZ);//Neste caso é necessário executar a rotate primeiro devido ao facto da rotação deve ser feita no ponto(0,0,0).
-		glColor3f(0.69,0.93, 0.93);
-		glColor3f(0.93, 0.51, 0.93);
-        glBindBuffer(GL_ARRAY_BUFFER,buffers[i]);
+        if(!m.curved)
+            glTranslatef(m.transX, m.transY,m.transZ);
+        glScalef(m.scaleX, m.scaleY, m.scaleZ);
+        if(m.rotate_time==0) {
+            glRotatef(m.rotateX, 1, 0, 0);
+            glRotatef(m.rotateY, 0, 1, 0);
+            glRotatef(m.rotateZ, 0, 0, 1);
+        }
+        else {
+            float alpha = (glutGet(GLUT_ELAPSED_TIME) * 4) / 36;
+            glRotatef(m.rotateX * alpha, 1, 0, 0);
+            glRotatef(m.rotateY * alpha, 0, 1, 0);
+            glRotatef(m.rotateZ * alpha, 0, 0, 1);
+        }
+        glBindBuffer(GL_ARRAY_BUFFER,buffers[j]);
         glVertexPointer(3,GL_FLOAT,0,0);
         glDrawArrays(GL_TRIANGLES,0,model.size());
-        i++;
-        glPopMatrix();//Pop da matriz antiga sem transformações
-    }
+        j++;
+        glPopMatrix();
+
 }
 
 void drawAxes() {
