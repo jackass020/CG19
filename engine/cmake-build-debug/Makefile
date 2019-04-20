@@ -123,6 +123,33 @@ engine/fast:
 	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/build
 .PHONY : engine/fast
 
+CatmullRom.o: CatmullRom.cpp.o
+
+.PHONY : CatmullRom.o
+
+# target to build an object file
+CatmullRom.cpp.o:
+	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/CatmullRom.cpp.o
+.PHONY : CatmullRom.cpp.o
+
+CatmullRom.i: CatmullRom.cpp.i
+
+.PHONY : CatmullRom.i
+
+# target to preprocess a source file
+CatmullRom.cpp.i:
+	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/CatmullRom.cpp.i
+.PHONY : CatmullRom.cpp.i
+
+CatmullRom.s: CatmullRom.cpp.s
+
+.PHONY : CatmullRom.s
+
+# target to generate assembly for a file
+CatmullRom.cpp.s:
+	$(MAKE) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/CatmullRom.cpp.s
+.PHONY : CatmullRom.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -186,6 +213,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... engine"
 	@echo "... edit_cache"
+	@echo "... CatmullRom.o"
+	@echo "... CatmullRom.i"
+	@echo "... CatmullRom.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

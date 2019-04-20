@@ -1,135 +1,180 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><scene>
+<scene>
+ <!--Sol-->
  <group>
-  <translate X="-8"/>
-  <scale X="8" Y="8" Z="8"/>
+  <scale X="5" Y="5" Z="5" />
+  <rotate time="52" X="0" Y="1" Z="0" />
   <models>
-   <model file="../../Files/sphere.3d"/>
+   <model  file="../../Files/sphere.3d" />
   </models>
  </group>
 
+ <!--Mercúrio-->
  <group>
-  <translate X="1.265"/>
-  <rotate X="0" Y="0" Z="1" angle="-0.1"/>
-  <scale X="0.218" Y="0.218" Z="0.218"/>
+   <translate time="70">
+   <point X="9.265" Y="0" Z="0"/>
+   <point X="6.55" Y="0" Z="-6.55"/>
+   <point X="0" Y="0" Z="-9.265"/>
+   <point X="-6.55" Y="0" Z="-6.55"/>
+   <point X="-9.265" Y="0" Z="0"/>
+   <point X="-6.55" Y="0" Z="6.55"/>
+   <point X="0" Y="0" Z="9.265"/>
+   <point X="6.55" Y="0" Z="6.55"/>
+  </translate>
+  <rotate time="60" X="0" Y="1" Z="0" />
+  <scale X="0.218" Y="0.218" Z="0.218" />
   <models>
-   <model file="../../Files/sphere.3d"/>
+   <model file="../../Files/sphere.3d" />
   </models>
  </group>
 
+ <!--Vénus-->
  <group>
-  <translate X="2.4"/>
-  <rotate angle="-177" axisX="0" axisY="0" axisZ="1"/>
-  <scale X="0.54" Y="0.54" Z="0.54"/>
+  <translate time="80">
+   <point X="10.4" Y="0" Z="0"/>
+   <point X="7.35" Y="0" Z="-7.35"/>
+   <point X="0" Y="0" Z="-10.4"/>
+   <point X="-7.35" Y="0" Z="-7.35"/>
+   <point X="-10.4" Y="0" Z="0"/>
+   <point X="-7.35" Y="0" Z="7.35"/>
+   <point X="0" Y="0" Z="10.4"/>
+   <point X="7.35" Y="0" Z="7.35"/>
+  </translate>
+  <rotate time="-100" X="0" Y="1" Z="0" />
+  <scale X="0.54" Y="0.54" Z="0.54" />
   <models>
-   <model file="../../Files/sphere.3d"/>
+   <model  file="../../Files/sphere.3d" />
   </models>
  </group>
 
+ <!--Terra-->
  <group>
-  <translate X="4.2"/>
-  <scale X="0.568" Y="0.568" Z="0.568"/>
-  <rotate X="0" Y="0" Z="1" angle="-23.5"/>
+  <translate time="94.75">
+   <point X="12.2" Y="0" Z="0"/>
+   <point X="8.627" Y="0" Z="-8.627"/>
+   <point X="0" Y="0" Z="-12.2"/>
+   <point X="-8.627" Y="0" Z="-8.627"/>
+   <point X="-12.2" Y="0" Z="0"/>
+   <point X="-8.627" Y="0" Z="8.627"/>
+   <point X="0" Y="0" Z="12.2"/>
+   <point X="8.627" Y="0" Z="8.627"/>
+  </translate>
+  <scale X="0.568" Y="0.568" Z="0.568" />
+  <rotate time="10" X="0" Y="1" Z="0" />
   <models>
-   <model file="../../Files/sphere.3d"/>
+   <model file="../../Files/sphere.3d" />
   </models>
-  <group>
-   <translate Y="2"/>
-   <scale X="0.4" Y="0.4" Z="0.4"/>
-   <rotate X="0" Y="0" Z="1" angle="18.35"/>
-   <models>
-    <model file="../../Files/sphere.3d"/>
-   </models>
-  </group>
  </group>
 
+ <!--Marte-->
  <group>
-  <translate X="6.065"/>
-  <rotate X="0" Y="0" Z="1" angle="-25"/>
-  <scale X="0.302" Y="0.302" Z="0.302"/>
+  <translate time="105">
+   <point X="14.065" Y="0" Z="0"/>
+   <point X="9.95" Y="0" Z="-9.95"/>
+   <point X="0" Y="0" Z="-14.065"/>
+   <point X="-9.95" Y="0" Z="-9.95"/>
+   <point X="-14.065" Y="0" Z="0"/>
+   <point X="-9.95" Y="0" Z="9.95"/>
+   <point X="0" Y="0" Z="14.065"/>
+   <point X="9.95" Y="0" Z="9.95"/>
+  </translate>
+  <rotate time="12" X="0" Y="1" Z="0" />
+  <scale X="0.302" Y="0.302" Z="0.302" />
   <models>
-   <model file="../../Files/sphere.3d"/>
+   <model file="../../Files/sphere.3d" />
   </models>
-  <group>
-   <translate Y="1.85"/>
-   <rotate X="0" Y="0" Z="1" angle="24"/>
-   <scale X="0.5" Y="0.5" Z="0.5"/>
-   <models>
-    <model file="../../Files/sphere.3d"/>
-   </models>
-  </group>
  </group>
 
+ <!--Júpiter-->
  <group>
-  <translate X="17.335"/>
-  <rotate X="0" Y="0" Z="1" angle="-3"/>
-  <scale X="2.2" Y="2.2" Z="2.2"/>
+  <translate time="130">
+   <point X="25.4" Y="0" Z="0"/>
+   <point X="17.96" Y="0" Z="-17.96"/>
+   <point X="0" Y="0" Z="-25.4"/>
+   <point X="-17.96" Y="0" Z="-17.96"/>
+   <point X="-25.4" Y="0" Z="0"/>
+   <point X="-17.96" Y="0" Z="17.96"/>
+   <point X="0" Y="0" Z="25.4"/>
+   <point X="17.96" Y="0" Z="17.96"/>
+  </translate>
+  <rotate time="6" X="0" Y="1" Z="0" />
+  <scale X="2.2" Y="2.2" Z="2.2" />
   <models>
-   <model file="../../Files/sphere.3d"/>
+   <model file="../../Files/sphere.3d" />
   </models>
-  <group>
-   <translate X="-2.16" Y="2.43"/>
-   <rotate X="0" Y="0" Z="1" angle="2.8"/>
-   <scale X="0.2" Y="0.2" Z="0.2"/>
-   <models>
-    <model file="../../Files/sphere.3d"/>
-   </models>
-  </group>
  </group>
 
+ <!--Saturno-->
  <group>
-  <translate X="31.65"/>
-  <rotate X="0" Y="0" Z="1" angle="-27"/>
-  <scale X="2" Y="2" Z="2"/>
+  <translate time="150">
+   <point X="39.65" Y="0" Z="0"/>
+   <point X="28.03" Y="0" Z="-28.03"/>
+   <point X="0" Y="0" Z="-39.65"/>
+   <point X="-28.03" Y="0" Z="-28.03"/>
+   <point X="-39.65" Y="0" Z="0"/>
+   <point X="-28.03" Y="0" Z="28.03"/>
+   <point X="0" Y="0" Z="39.65"/>
+   <point X="28.03" Y="0" Z="28.03"/>
+  </translate>
+  <rotate time="7" X="0" Y="1" Z="0" />
+  <scale X="2" Y="2" Z="2" />
   <models>
-   <model file="../../Files/sphere.3d"/>
+   <model file="../../Files/sphere.3d" />
   </models>
-  <group>
-   <scale X="1.2" Z="1.2"/>
-   <models>
-    <model file="../../Files/ring.3d"/>
-   </models>
-  </group>
-  <group>
-   <translate Y="3.84"/>
-   <rotate X="0" Y="0" Z="1" angle="26.67"/>
-   <scale X="0.12" Y="0.12" Z="0.12"/>
-   <models>
-    <model file="../../Files/sphere.3d"/>
-   </models>
-  </group>
  </group>
 
+ <!--Urano-->
  <group>
-  <translate X="50.995"/>
-  <rotate X="0" Y="0" Z="1" angle="-98"/>
-  <scale X="1.2" Y="1.2" Z="1.2"/>
+  <color X="0.529" Y="0.808" Z="0.922"/>
+  <translate time="169">
+   <point X="49.66" Y="0" Z="0"/>
+   <point X="35.12" Y="0" Z="-35.12"/>
+   <point X="0" Y="0" Z="-49.66"/>
+   <point X="-35.12" Y="0" Z="-35.12"/>
+   <point X="-49.66" Y="0" Z="0"/>
+   <point X="-35.12" Y="0" Z="35.12"/>
+   <point X="0" Y="0" Z="49.66"/>
+   <point X="35.12" Y="0" Z="35.12"/>
+  </translate>
+  <rotate time="-6.97" X="0" Y="1" Z="0" />
+  <scale X="1.8" Y="1.8" Z="1.8" />
   <models>
-   <model file="../../Files/sphere.3d"/>
+   <model file="../../Files/sphere.3d" />
   </models>
-  <group>
-   <translate Y="-2.28"/>
-   <rotate X="0" Y="0" Z="1" angle="97.86"/>
-   <scale X="0.15" Y="0.15" Z="0.15"/>
-   <models>
-    <model file="../../Files/sphere.3d"/>
-   </models>
-  </group>
  </group>
 
+ <!--Neptuno-->
  <group>
-  <translate X="75"/>
-  <rotate X="0" Y="0" Z="1" angle="-30"/>
-  <scale X="1.1" Y="1.1" Z="1.1"/>
+  <translate time="180">
+   <point X="83" Y="0" Z="0"/>
+   <point X="58.69" Y="0" Z="-58.69"/>
+   <point X="0" Y="0" Z="-83"/>
+   <point X="-58.69" Y="0" Z="-58.69"/>
+   <point X="-83" Y="0" Z="0"/>
+   <point X="-58.69" Y="0" Z="58.69"/>
+   <point X="0" Y="0" Z="83"/>
+   <point X="58.69" Y="0" Z="58.69"/>
+  </translate>
+  <rotate time="8" X="0" Y="1" Z="0" />
+  <scale X="1.65" Y="1.65" Z="1.65" />
   <models>
-   <model file="../../Files/sphere.3d"/>
+   <model file="../../Files/sphere.3d" />
   </models>
-  <group>
-   <translate Y="-2.23"/>
-   <rotate X="0" Y="0" Z="1" angle="-127.35"/>
-   <scale X="0.2" Y="0.2" Z="0.2"/>
-   <models>
-    <model file="../../Files/sphere.3d"/>
-   </models>
-  </group>
  </group>
+
+<group>  
+<translate time="30">
+   <point X="20" Y="0" Z="0"/>
+   <point X="10" Y="5" Z="-20"/>
+   <point X="0" Y="0" Z="-20"/>
+   <point X="-20" Y="0" Z="0"/>
+   <point X="-10" Y="-5" Z="-20"/>
+   <point X="-15" Y="0" Z="20"/>
+  </translate>
+  <scale X="0.3" Y="0.3" Z="0.3"/>
+  <models>
+   <model file="../../Files/comet.3d" />
+  </models>
+ </group>
+
+
 </scene>

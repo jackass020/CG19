@@ -11,6 +11,7 @@ import java.util.List;
 public class Comet {
 
     private String file;
+    private String dest;
     private int number_of_patches;
     private int number_of_control_points;
     private static final int CONTROL_POINTS_PER_PATCH = 16;
@@ -35,17 +36,17 @@ public class Comet {
         }
     }
 
-    public Comet(String file,int tesselation) {
+    public Comet(String file,int tesselation,String dest) {
         vertexes = new ArrayList<>();
         this.file=file;
         this.tesselation=tesselation;
+        this.dest =dest;
     }
 
     public void generateFile() {
         readFile();
         calculate_Bezier();
-        // Tentei fazer caminhos relativos no meu mas escaxou, podes alterar se funcar com relativos
-        Path p = Paths.get("/home/marcoriano/Documents/Cadeiras/18-19/CG/TP/CG19/Files/comet.3d");
+        Path p = Paths.get("../Files/" +this.dest);
         try(BufferedWriter bw = Files.newBufferedWriter(p)) {
             for(Point p1 : vertexes) {
                 bw.write(Float.toString(p1.x) + "\n");

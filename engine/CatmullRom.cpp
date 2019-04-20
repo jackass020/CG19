@@ -102,6 +102,7 @@ void getGlobalCatmullRomPoint(float gt, float *pos, float *deriv, float controlP
 
 void renderCatmullRomCurve(float controlPoints[][3], int number_points) { 
     float deriv[3];
+    float pos[3];
     glBegin(GL_LINE_LOOP);
     for(float i=0.01; i< 100; i += 0.01) {
         getGlobalCatmullRomPoint(i,pos,deriv, controlPoints, number_points);

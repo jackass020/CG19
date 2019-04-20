@@ -6,6 +6,8 @@
 
 #IncludeRegexTransform: 
 
+/home/nelson/Desktop/CG/engine/CatmullRom.h
+
 /home/nelson/Desktop/CG/engine/main.cpp
 stdlib.h
 -
@@ -29,6 +31,8 @@ iostream
 -
 tinyxml2.h
 /home/nelson/Desktop/CG/engine/tinyxml2.h
+CatmullRom.h
+/home/nelson/Desktop/CG/engine/CatmullRom.h
 
 /home/nelson/Desktop/CG/engine/tinyxml2.h
 ctype.h

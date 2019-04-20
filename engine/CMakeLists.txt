@@ -14,7 +14,7 @@ if(NOT OPENGL_FOUND)
     message(ERROR " OPENGL not found!")
 endif(NOT OPENGL_FOUND)
 
-add_executable(${PROJECT_NAME} ./main.cpp ./tinyxml2.cpp ./tinyxml2.h)
+add_executable(${PROJECT_NAME} ./main.cpp ./tinyxml2.cpp ./tinyxml2.h ./CatmullRom.cpp ./CatmullRom.h)
 
 target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES})
 

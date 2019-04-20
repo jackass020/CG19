@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/nelson/Desktop/CG/engine/CatmullRom.cpp" "/home/nelson/Desktop/CG/engine/cmake-build-debug/CMakeFiles/engine.dir/CatmullRom.cpp.o"
   "/home/nelson/Desktop/CG/engine/main.cpp" "/home/nelson/Desktop/CG/engine/cmake-build-debug/CMakeFiles/engine.dir/main.cpp.o"
   "/home/nelson/Desktop/CG/engine/tinyxml2.cpp" "/home/nelson/Desktop/CG/engine/cmake-build-debug/CMakeFiles/engine.dir/tinyxml2.cpp.o"
   )
