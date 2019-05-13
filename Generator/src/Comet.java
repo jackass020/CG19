@@ -17,8 +17,10 @@ public class Comet {
     private static final int CONTROL_POINTS_PER_PATCH = 16;
     private int[][] control_points_index;
     private float[][] control_points;
+    private float step;
     private List<Point> vertexes;
     private List<Point> normals;
+    private List<TexturePoint> textures;
     private static int[][] m ={{-1,3,-3,1},{3,-6,3,0},{-3,3,0,0},{1,0,0,0}};
     private int tesselation;
     private float[][] prod_matrix_x;
@@ -37,8 +39,20 @@ public class Comet {
         }
     }
 
+    private class TexturePoint {
+        public float x;
+        public float y;
+
+        public TexturePoint(float u, float v) {
+            x=v;
+            y=u;
+        }
+    }
+
     public Comet(String file,int tesselation,String dest) {
         vertexes = new ArrayList<>();
+        normals = new ArrayList<>();
+        textures = new ArrayList<>();
         this.file=file;
         this.tesselation=tesselation;
         this.dest =dest;
@@ -66,7 +80,14 @@ public class Comet {
     public void generateFile() {
         readFile();
         calculate_Bezier();
-        Path p = Paths.get("../Files/" +this.dest);
+        generatePoints();
+        generateNormals();
+        generateTextures();
+
+    }
+
+    private void generatePoints() {
+        Path p = Paths.get("../Files/" + this.dest);
         try(BufferedWriter bw = Files.newBufferedWriter(p)) {
             for(Point p1 : vertexes) {
                 bw.write(Float.toString(p1.x) + "\n");
@@ -78,9 +99,37 @@ public class Comet {
         }
     }
 
+    private void generateNormals() {
+        Path norm = Paths.get("../Files/" + this.dest + ".n");
+        try(BufferedWriter bw = Files.newBufferedWriter(norm)) {
+            for(Point p : normals) {
+                bw.write(Float.toString(p.x) + "\n");
+                bw.write(Float.toString(p.y) + "\n");
+                bw.write(Float.toString(p.z) + "\n");
+            }
+        } catch(IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
+    private void generateTextures() {
+        Path ptext = Paths.get("../Files/" + this.dest + ".t");
+        try(BufferedWriter bw = Files.newBufferedWriter(ptext)) {
+            for(TexturePoint tp : textures) {
+                bw.write(Float.toString(tp.x) + "\n");
+                bw.write(Float.toString(tp.y) + "\n");
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+
     private void calculate_Bezier() {
         float[][] temp_control_points = new float[CONTROL_POINTS_PER_PATCH][3];
-        float step = (float)1/(float)this.tesselation;
+        this.step = (float) 1 / (float) this.tesselation;
         for(int np = 0; np<number_of_patches;np++) {
             for(int j = 0;j<CONTROL_POINTS_PER_PATCH;j++) {
                 temp_control_points[j][0] = control_points[control_points_index[np][j]][0];
@@ -95,6 +144,9 @@ public class Comet {
                 for(int j=0; j< tesselation+1;j++) {
                     float u = i*step;
                     float v = j*step;
+                    float u1 = (i+1)*step;
+                    float v1 = (j+1)*step;
+
                     float x = calculate_Bezier_Patch(u,v,0);
                     float y = calculate_Bezier_Patch(u,v,1);
                     float z = calculate_Bezier_Patch(u,v,2);
@@ -132,12 +184,10 @@ public class Comet {
 
                     Point n_point3 = new Point(n3[0],n3[1],n3[2]);
 
-                    //float[] dU4 = calculate_U_Derivate(u+step,v+step);
-                    //float[] dV4 = calculate_V_Derivate(u+step,v+step);
-                    //float[] n4 = normalize_vector(cross_product(dU4,dV4));
-
-                  //  Point n_point4 = new Point(n4[0],n4[1],n4[2]);
-
+                    TexturePoint tp1 = new TexturePoint(u,v);
+                    TexturePoint tp2 = new TexturePoint(u,v1);
+                    TexturePoint tp3 = new TexturePoint(u1,v);
+                    TexturePoint tp4 = new TexturePoint(u1,v1);
 
                     vertexes.add(point);
                     vertexes.add(point1);
@@ -152,6 +202,11 @@ public class Comet {
                     normals.add(n_point3);
                     normals.add(n_point1);
                     normals.add(n_point2);
+
+                    textures.add(tp1);
+                    textures.add(tp2);
+                    textures.add(tp3);
+                    textures.add(tp4);
                 }
             }
         }

@@ -86,6 +86,21 @@ public class Sphere {
     }
 
     public void generateFile() {
+        calculate_Points();
+        calculate_Normals();
+        calculate_Textures();
+    }
+
+    private float[] normalize_vector(float[] array) {
+        float distance = (float) Math.sqrt(array[0]*array[0] + array[1]*array[1] + array[2]*array[2]);
+        float res[] = new float[3];
+        res[0] = array[0] / distance;
+        res[1] = array[1] / distance;
+        res[2] = array[2] / distance;
+        return array;
+    }
+
+    private void calculate_Points() {
         Path p = Paths.get("../Files/" + this.dest_file);
         try (BufferedWriter writer = Files.newBufferedWriter(p)) {
             int j, i;
@@ -125,15 +140,6 @@ public class Sphere {
             }
         } catch (IOException ex) {
         }
-    }
-
-    private float[] normalize_vector(float[] array) {
-        float distance = (float) Math.sqrt(array[0]*array[0] + array[1]*array[1] + array[2]*array[2]);
-        float res[] = new float[3];
-        res[0] = array[0] / distance;
-        res[1] = array[1] / distance;
-        res[2] = array[2] / distance;
-        return array;
     }
 
     private void calculate_Normals(){
@@ -194,6 +200,39 @@ public class Sphere {
             }
         } catch (Exception e) {}
     }
+
+    private void calculate_Textures() {
+        Path p = Paths.get("../Files/" + this.dest_file + ".t");
+        try (BufferedWriter writer = Files.newBufferedWriter(p)) {
+            int i,j;
+            for (i=0;i<stacks;i++){
+                float y1 = i / stacks;
+                float y2 = (i+1) / stacks;
+                for(j=0;j<slices;j++) {
+                    float x1 = j / slices;
+                    float x2 = (j+1) / slices;
+
+                    writer.write(Float.toString(x1) + "\n");
+                    writer.write(Float.toString(y1) + "\n");
+
+                    writer.write(Float.toString(x2) + "\n");
+                    writer.write(Float.toString(y1) + "\n");
+
+                    writer.write(Float.toString(x2) + "\n");
+                    writer.write(Float.toString(y2) + "\n");
+
+                    writer.write(Float.toString(x1) + "\n");
+                    writer.write(Float.toString(y2) + "\n");
+
+                }
+            }
+
+
+        } catch (Exception e) {
+
+        }
+
+        }
 
     public void writeToXML() {
         StringBuilder sb = new StringBuilder();

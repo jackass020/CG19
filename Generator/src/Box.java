@@ -36,10 +36,11 @@ public class Box {
         this.file_dest = "n/a";
     }
 
-    public Box(float x, float y, float z,  String file_dest) {
+    public Box(float x, float y, float z,  float div,String file_dest) {
         this.x = x;
         this.y = y;
         this.z = z;
+        this.div = div;
         this.file_dest = file_dest;
     }
 
@@ -67,9 +68,16 @@ public class Box {
         this.z = z;
     }
 
+
     public void generateFile() {
+        generatePoints();
+        generateNormals();
+        generateTextures();
+    }
+
+    public void generatePoints() {
         Path p = Paths.get("../Files/" + this.file_dest);
-            try (BufferedWriter writer = Files.newBufferedWriter(p)) {
+        try (BufferedWriter writer = Files.newBufferedWriter(p)) {
             faceBaixo(writer);
             faceEsq(writer);
             faceDir(writer);
@@ -80,173 +88,221 @@ public class Box {
             e.getMessage();
         }
     }
-    public void faceDir(BufferedWriter writer){
-
-        try {
-            writer.write(Float.toString(x/2)+ "\n");
-            writer.write(Float.toString(0)+ "\n");
-            writer.write(Float.toString(z/2)+ "\n");
-            writer.write(Float.toString(x/2)+ "\n");
-            writer.write(Float.toString(y)+ "\n");
-            writer.write(Float.toString(z/2)+ "\n");
-            writer.write(Float.toString(x/2)+ "\n");
-            writer.write(Float.toString(0)+ "\n");
-            writer.write(Float.toString(-z/2)+ "\n");
-            writer.write(Float.toString(x/2)+ "\n");
-            writer.write(Float.toString(y)+ "\n");
-            writer.write(Float.toString(z/2)+ "\n");
-            writer.write(Float.toString(x/2)+ "\n");
-            writer.write(Float.toString(0)+ "\n");
-            writer.write(Float.toString(-z/2)+ "\n");
-            writer.write(Float.toString(x/2)+ "\n");
-            writer.write(Float.toString(y)+ "\n");
-            writer.write(Float.toString(-z/2)+ "\n");
 
 
+    public void generateNormals() {
+        Path p = Paths.get("../Files/" + this.file_dest + ".n");
+        try (BufferedWriter writer = Files.newBufferedWriter(p)){
+            normalBaixo(writer);
+            normalEsquerda(writer);
+            normalDireita(writer);
+            normalCima(writer);
+            normalFrente(writer);
+            normalTras(writer);
         } catch (Exception e) {
-            e.getMessage();
+
+        }
+    }
+
+    public void generateTextures() {
+        Path p = Paths.get("../Files/" + this.file_dest + ".t");
+        try (BufferedWriter writer = Files.newBufferedWriter(p)) {
+            texturaBaixo(writer);
+            texturaEsquerda(writer);
+            texturaDireita(writer);
+            texturaCima(writer);
+            texturaFrente(writer);
+            texturaTras(writer);
+        } catch (Exception e) {
+
+        }
+    }
+    public void faceDir(BufferedWriter writer){
+        try{
+            int l, c;
+            for (l = 0; l < this.div; l++) {
+                for (c = 0; c < this.div; c++) {
+                    writer.write(Float.toString(x)+"\n");
+                    writer.write(Float.toString(-y + l * 2 * y / this.div)+"\n");
+                    writer.write(Float.toString(z - (c + 1) * 2 * z / this.div)+"\n");
+                    writer.write(Float.toString(x)+"\n");
+                    writer.write(Float.toString(-y + (l + 1) * 2 * y / this.div)+"\n");
+                    writer.write(Float.toString(z - (c) * 2 * z / this.div)+"\n");
+                    writer.write(Float.toString(x)+"\n");
+                    writer.write(Float.toString(-y + (l) * 2 * y / this.div)+"\n");
+                    writer.write(Float.toString(z - (c) * 2 * z / this.div)+"\n");
+
+                    writer.write(Float.toString(x)+"\n");
+                    writer.write(Float.toString(-y + l * 2 * y / this.div)+"\n");
+                    writer.write(Float.toString(z - (c + 1) * 2 * z / this.div)+"\n");
+                    writer.write(Float.toString(x)+"\n");
+                    writer.write(Float.toString(-y + (l + 1) * 2 * y / this.div)+"\n");
+                    writer.write(Float.toString(z - (c+1) * 2 * z / this.div)+"\n");
+                    writer.write(Float.toString(x)+"\n");
+                    writer.write(Float.toString(-y + (l+1) * 2 * y / this.div)+"\n");
+                    writer.write(Float.toString(z - (c) * 2 * z / this.div)+"\n");
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
         }
     }
 
     public void faceEsq(BufferedWriter writer){
+        try{
+            int l, c;
+            for (l = 0; l < this.div; l++) {
+                for (c = 0; c < this.div; c++) {
+                    writer.write(Float.toString(-x)+"\n");
+                    writer.write(Float.toString(-y + (l + 1) * 2 * y / this.div)+"\n");
+                    writer.write(Float.toString(z - (c) * 2 * z / this.div)+"\n");
+                    writer.write(Float.toString(-x)+"\n");
+                    writer.write(Float.toString(-y + l * 2 * y / this.div)+"\n");
+                    writer.write(Float.toString(z - (c + 1) * 2 * z / this.div)+"\n");
+                    writer.write(Float.toString(-x)+"\n");
+                    writer.write(Float.toString(-y + (l) * 2 * y / this.div)+"\n");
+                    writer.write(Float.toString(z - (c) * 2 * z / this.div)+"\n");
 
-        try {
-
-            writer.write(Float.toString(-x/2)+ "\n");
-            writer.write(Float.toString(0)+ "\n");
-            writer.write(Float.toString(z/2)+ "\n");
-            writer.write(Float.toString(-x/2)+ "\n");
-            writer.write(Float.toString(y)+ "\n");
-            writer.write(Float.toString(z/2)+ "\n");
-            writer.write(Float.toString(-x/2)+ "\n");
-            writer.write(Float.toString(0)+ "\n");
-            writer.write(Float.toString(-z/2)+ "\n");
-            writer.write(Float.toString(-x/2)+ "\n");
-            writer.write(Float.toString(y)+ "\n");
-            writer.write(Float.toString(z/2)+ "\n");
-            writer.write(Float.toString(-x/2)+ "\n");
-            writer.write(Float.toString(0)+ "\n");
-            writer.write(Float.toString(-z/2)+ "\n");
-            writer.write(Float.toString(-x/2)+ "\n");
-            writer.write(Float.toString(y)+ "\n");
-            writer.write(Float.toString(-z/2)+ "\n");
-
-
-        } catch (Exception e) {
-            e.getMessage();
+                    writer.write(Float.toString(-x)+"\n");
+                    writer.write(Float.toString(-y + (l + 1) * 2 * y / this.div)+"\n");
+                    writer.write(Float.toString(z - (c+1) * 2 * z / this.div)+"\n");
+                    writer.write(Float.toString(-x)+"\n");
+                    writer.write(Float.toString(-y + l * 2 * y / this.div)+"\n");
+                    writer.write(Float.toString(z - (c + 1) * 2 * z / this.div)+"\n");
+                    writer.write(Float.toString(-x)+"\n");
+                    writer.write(Float.toString(-y + (l+1) * 2 * y / this.div)+"\n");
+                    writer.write(Float.toString(z - (c) * 2 * z / this.div)+"\n");
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
         }
     }
 
     public void faceCima(BufferedWriter writer){
+        try{
+            int l, c;
+            for (l = 0; l < this.div; l++) {
+                for (c = 0; c < this.div; c++) {
+                    writer.write(Float.toString(-x+(l+1)*2*x/div)+"\n");
+                    writer.write(Float.toString(y)+"\n");
+                    writer.write(Float.toString(z-(c)*2*z/div)+"\n");
+                    writer.write(Float.toString(-x+(l)*2*x/div)+"\n");
+                    writer.write(Float.toString(y)+"\n");
+                    writer.write(Float.toString(z-(c+1)*2*z/div)+"\n");
+                    writer.write(Float.toString(-x+(l)*2*x/div)+"\n");
+                    writer.write(Float.toString(y)+"\n");
+                    writer.write(Float.toString(z-(c)*2*z/div)+"\n");
 
-        try {
-
-            writer.write(Float.toString(-x/2)+ "\n");
-            writer.write(Float.toString(y)+ "\n");
-            writer.write(Float.toString(z/2)+ "\n");
-            writer.write(Float.toString(x/2)+ "\n");
-            writer.write(Float.toString(y)+ "\n");
-            writer.write(Float.toString(z/2)+ "\n");
-            writer.write(Float.toString(-x/2)+ "\n");
-            writer.write(Float.toString(y)+ "\n");
-            writer.write(Float.toString(-z/2)+ "\n");
-            writer.write(Float.toString(x/2)+ "\n");
-            writer.write(Float.toString(y)+ "\n");
-            writer.write(Float.toString(z/2)+ "\n");
-            writer.write(Float.toString(-x/2)+ "\n");
-            writer.write(Float.toString(y)+ "\n");
-            writer.write(Float.toString(-z/2)+ "\n");
-            writer.write(Float.toString(x/2)+ "\n");
-            writer.write(Float.toString(y)+ "\n");
-            writer.write(Float.toString(-z/2)+ "\n");
-
-
-        } catch (Exception e) {
-            e.getMessage();
+                    writer.write(Float.toString(-x+(l+1)*2*x/div)+"\n");
+                    writer.write(Float.toString(y)+"\n");
+                    writer.write(Float.toString(z-(c)*2*z/div)+"\n");
+                    writer.write(Float.toString(-x+(l+1)*2*x/div)+"\n");
+                    writer.write(Float.toString(y)+"\n");
+                    writer.write(Float.toString(z-(c+1)*2*z/div)+"\n");
+                    writer.write(Float.toString(-x+(l)*2*x/div)+"\n");
+                    writer.write(Float.toString(y)+"\n");
+                    writer.write(Float.toString(z-(c+1)*2*z/div)+"\n");
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
         }
     }
 
     public void faceBaixo(BufferedWriter writer){
+        try{
+            int l, c;
+            for (l = 0; l < this.div; l++) {
+                for (c = 0; c < this.div; c++) {
+                    writer.write(Float.toString(-x+(l)*2*x/div)+"\n");
+                    writer.write(Float.toString(-y)+"\n");
+                    writer.write(Float.toString(z-(c+1)*2*z/div)+"\n");
+                    writer.write(Float.toString(-x+(l+1)*2*x/div)+"\n");
+                    writer.write(Float.toString(-y)+"\n");
+                    writer.write(Float.toString(z-(c)*2*z/div)+"\n");
+                    writer.write(Float.toString(-x+(l)*2*x/div)+"\n");
+                    writer.write(Float.toString(-y)+"\n");
+                    writer.write(Float.toString(z-(c)*2*z/div)+"\n");
 
-        try {
-            writer.write(Float.toString(-x/2)+ "\n");
-            writer.write(Float.toString(0)+ "\n");
-            writer.write(Float.toString(z/2)+ "\n");
-            writer.write(Float.toString(x/2)+ "\n");
-            writer.write(Float.toString(0)+ "\n");
-            writer.write(Float.toString(z/2)+ "\n");
-            writer.write(Float.toString(-x/2)+ "\n");
-            writer.write(Float.toString(0)+ "\n");
-            writer.write(Float.toString(-z/2)+ "\n");
-            writer.write(Float.toString(x/2)+ "\n");
-            writer.write(Float.toString(0)+ "\n");
-            writer.write(Float.toString(z/2)+ "\n");
-            writer.write(Float.toString(-x/2)+ "\n");
-            writer.write(Float.toString(0)+ "\n");
-            writer.write(Float.toString(-z/2)+ "\n");
-            writer.write(Float.toString(x/2)+ "\n");
-            writer.write(Float.toString(0)+ "\n");
-            writer.write(Float.toString(-z/2)+ "\n");
-
-
-        } catch (Exception e) {
-            e.getMessage();
+                    writer.write(Float.toString(-x+(l+1)*2*x/div)+"\n");
+                    writer.write(Float.toString(-y)+"\n");
+                    writer.write(Float.toString(z-(c+1)*2*z/div)+"\n");
+                    writer.write(Float.toString(-x+(l+1)*2*x/div)+"\n");
+                    writer.write(Float.toString(-y)+"\n");
+                    writer.write(Float.toString(z-(c)*2*z/div)+"\n");
+                    writer.write(Float.toString(-x+(l)*2*x/div)+"\n");
+                    writer.write(Float.toString(-y)+"\n");
+                    writer.write(Float.toString(z-(c+1)*2*z/div)+"\n");
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
         }
     }
 
     public void faceFrente(BufferedWriter writer){
+        try{
+            int l, c;
+            for (l = 0; l < this.div; l++) {
+                for (c = 0; c < this.div; c++) {
+                    writer.write(Float.toString(-x+(l+1)*2*x/div)+"\n");
+                    writer.write(Float.toString(-y+c*2*y/div)+"\n");
+                    writer.write(Float.toString(z)+"\n");
+                    writer.write(Float.toString(-x+(l)*2*x/div)+"\n");
+                    writer.write(Float.toString(-y+(c+1)*2*y/div)+"\n");
+                    writer.write(Float.toString(z)+"\n");
+                    writer.write(Float.toString(-x+(l)*2*x/div)+"\n");
+                    writer.write(Float.toString(-y+c*2*y/div)+"\n");
+                    writer.write(Float.toString(z)+"\n");
 
-        try {
-
-            writer.write(Float.toString(-x/2)+ "\n");
-            writer.write(Float.toString(y)+ "\n");
-            writer.write(Float.toString(z/2)+ "\n");
-            writer.write(Float.toString(-x/2)+ "\n");
-            writer.write(Float.toString(0)+ "\n");
-            writer.write(Float.toString(z/2)+ "\n");
-            writer.write(Float.toString(x/2)+ "\n");
-            writer.write(Float.toString(0)+ "\n");
-            writer.write(Float.toString(z/2)+ "\n");
-            writer.write(Float.toString(-x/2)+ "\n");
-            writer.write(Float.toString(y)+ "\n");
-            writer.write(Float.toString(z/2)+ "\n");
-            writer.write(Float.toString(x/2)+ "\n");
-            writer.write(Float.toString(0)+ "\n");
-            writer.write(Float.toString(z/2)+ "\n");
-            writer.write(Float.toString(x/2)+ "\n");
-            writer.write(Float.toString(y)+ "\n");
-            writer.write(Float.toString(z/2)+ "\n");
-
-
-        } catch (Exception e) {
-            e.getMessage();
+                    writer.write(Float.toString(-x+(l+1)*2*x/div)+"\n");
+                    writer.write(Float.toString(-y+c*2*y/div)+"\n");
+                    writer.write(Float.toString(z)+"\n");
+                    writer.write(Float.toString(-x+(l+1)*2*x/div)+"\n");
+                    writer.write(Float.toString(-y+(c+1)*2*y/div)+"\n");
+                    writer.write(Float.toString(z)+"\n");
+                    writer.write(Float.toString(-x+(l)*2*x/div)+"\n");
+                    writer.write(Float.toString(-y+(c+1)*2*y/div)+"\n");
+                    writer.write(Float.toString(z)+"\n");
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
         }
     }
 
     public void faceAtras(BufferedWriter writer) {
-
         try {
+            int l, c;
+            for (l = 0; l < this.div; l++) {
+                for (c = 0; c < this.div; c++) {
+                    writer.write(Float.toString(-x + (l) * 2 * x / div) + "\n");
+                    writer.write(Float.toString(-y + (c + 1) * 2 * y / div) + "\n");
+                    writer.write(Float.toString(-z) + "\n");
+                    writer.write(Float.toString(-x + (l + 1) * 2 * x / div) + "\n");
+                    writer.write(Float.toString(-y + c * 2 * y / div) + "\n");
+                    writer.write(Float.toString(-z) + "\n");
+                    writer.write(Float.toString(-x + (l) * 2 * x / div) + "\n");
+                    writer.write(Float.toString(-y + c * 2 * y / div) + "\n");
+                    writer.write(Float.toString(-z) + "\n");
 
-            writer.write(Float.toString(-x / 2) + "\n");
-            writer.write(Float.toString(0) + "\n");
-            writer.write(Float.toString(-z / 2) + "\n");
-            writer.write(Float.toString(-x / 2) + "\n");
-            writer.write(Float.toString(y) + "\n");
-            writer.write(Float.toString(-z / 2) + "\n");
-            writer.write(Float.toString(x / 2) + "\n");
-            writer.write(Float.toString(0) + "\n");
-            writer.write(Float.toString(-z / 2) + "\n");
-            writer.write(Float.toString(-x / 2) + "\n");
-            writer.write(Float.toString(y) + "\n");
-            writer.write(Float.toString(-z / 2) + "\n");
-            writer.write(Float.toString(x / 2) + "\n");
-            writer.write(Float.toString(0) + "\n");
-            writer.write(Float.toString(-z / 2) + "\n");
-            writer.write(Float.toString(x / 2) + "\n");
-            writer.write(Float.toString(y) + "\n");
-            writer.write(Float.toString(-z / 2) + "\n");
-
-
+                    writer.write(Float.toString(-x + (l + 1) * 2 * x / div) + "\n");
+                    writer.write(Float.toString(-y + (c + 1) * 2 * y / div) + "\n");
+                    writer.write(Float.toString(-z) + "\n");
+                    writer.write(Float.toString(-x + (l + 1) * 2 * x / div) + "\n");
+                    writer.write(Float.toString(-y + c * 2 * y / div) + "\n");
+                    writer.write(Float.toString(-z) + "\n");
+                    writer.write(Float.toString(-x + (l) * 2 * x / div) + "\n");
+                    writer.write(Float.toString(-y + (c + 1) * 2 * y / div) + "\n");
+                    writer.write(Float.toString(-z) + "\n");
+                }
+            }
         } catch (Exception e) {
             e.getMessage();
         }
@@ -352,6 +408,204 @@ public class Box {
             }
         } catch(Exception e) {}
     }
+
+    public void texturaDireita(BufferedWriter writer) {
+        try{
+            float l,c;
+            for (l=0;l<this.div;l++){
+                float y1 = (l / (div*2));
+                float y2 = ((l+1) / (div*2));
+                for (c=0;c<this.div;c++) {
+                    float x1 = Math.abs(c/(div*3));
+                    float x2 = Math.abs((c+1) / (div*3));
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(y1)+"\n");
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(y2)+"\n");
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(y1)+"\n");
+
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(y1)+"\n");
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(y2)+"\n");
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(y2)+"\n");
+
+                }
+            }
+        } catch (Exception e) {
+
+        }
+    }
+
+    public void texturaEsquerda (BufferedWriter writer) {
+        try{
+            float l,c;
+            for(l=0;l<this.div;l++) {
+                float y1 = 0.5f + (l / (div*2));
+                float y2 = 0.5f + ((l+1) / (div*2));
+                for (c=0;c<this.div;c++) {
+                    float x1 = Math.abs(c/(div*3));
+                    float x2 = Math.abs((c+1) / (div*3));
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(y2)+"\n");
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(y1)+"\n");
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(y1)+"\n");
+
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(y2)+"\n");
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(y1)+"\n");
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(y2)+"\n");
+
+                }
+            }
+
+        } catch (Exception e) {
+
+        }
+    }
+
+    public void texturaCima (BufferedWriter writer) {
+        try{
+            float l,c;
+            for (l=0;l<this.div;l++) {
+                for (c=0;c<this.div;c++) {
+                    float y1 = (c / (div*2));
+                    float y2 = ((c+1) / (div*2));
+                    float x1 = ((1f/3f) + (l)) / (div*3);
+                    float x2 = ((1f/3f) + (l+1)) / (div*3);
+
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(y1)+"\n");
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(y2)+"\n");
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(y1)+"\n");
+
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(y1)+"\n");
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(y2)+"\n");
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(y2)+"\n");
+
+                }
+            }
+         } catch(Exception e) {
+
+        }
+    }
+
+    public void texturaBaixo(BufferedWriter writer) {
+        try{
+            float l,c;
+            for (l=0;l<this.div;l++) {
+                for (c=0;c<this.div;c++) {
+                    float y1 = ( 0.5f + (c/2) ) / div;
+                    float y2 = ( 0.5f + (c+1)/2 ) / div;
+                    float x1 = ( (1f/3f) + (l/3) )/ div;
+                    float x2 = ( (1f/3f) + ((l+1)/3) ) / div;
+
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(y2)+"\n");
+
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(y1)+"\n");
+
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(y1)+"\n");
+
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(y2)+"\n");
+
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(y1)+"\n");
+
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(y2)+"\n");
+                }
+            }
+        } catch(Exception e) {
+
+        }
+    }
+
+    public void texturaFrente(BufferedWriter writer) {
+        try{
+            float l,c;
+            for (l=0;l<this.div;l++) {
+                for (c=0;c<this.div;c++) {
+                    float y1 = c / div;
+                    float y2 = (c+1) / div;
+                    float x1 = ( (2f/3f) + (l/3) ) / div;
+                    float x2 = ( (2f/3f) + ((l+1)/3) ) / div;
+
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(y1)+"\n");
+
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(y2)+"\n");
+
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(y1)+"\n");
+
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(y1)+"\n");
+
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(y2)+"\n");
+
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(y2)+"\n");
+                }
+            }
+        } catch(Exception e) {
+
+        }
+    }
+
+    public void texturaTras(BufferedWriter writer) {
+        try{
+            float l,c;
+            for (l=0;l<this.div;l++) {
+                for (c=0;c<this.div;c++) {
+                    float y1 = ( 0.5f + c ) / div*2;
+                    float y2 = ( 0.5f + (c+1) ) / div*2;;
+                    float x1 = ( 1f - l ) / (div*3);
+                    float x2 = ( 1f - (l+1) ) / (div*3);
+
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(y2)+"\n");
+
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(y1)+"\n");
+
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(y1)+"\n");
+
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(y2)+"\n");
+
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(y1)+"\n");
+
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(y2)+"\n");
+
+
+                }
+            }
+        } catch(Exception e) {
+
+        }
+    }
+
+
 
     public void writeToXML() {
         StringBuilder sb = new StringBuilder();

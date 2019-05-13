@@ -44,12 +44,12 @@ public class Generator {
                 }
                 break;
             case "box":
-                if(argc>5){
+                if(argc>6){
                     System.out.println("Too many arguments");
-                }else if(argc<5)
+                }else if(argc<6)
                     System.out.println("Not enough arguments");
                 else {
-                    Box bo = new Box(Float.parseFloat(cmd[1]), Float.parseFloat(cmd[2]), Float.parseFloat(cmd[3]), cmd[4]);
+                    Box bo = new Box(Float.parseFloat(cmd[1]), Float.parseFloat(cmd[2]), Float.parseFloat(cmd[3]), Float.parseFloat(cmd[4]), cmd[5]);
                     bo.generateFile();
 
                 }
