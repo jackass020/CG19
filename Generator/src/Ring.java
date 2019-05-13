@@ -26,13 +26,16 @@ public class Ring {
     }
 
     public void generateFile() {
-        Path p = Paths.get("../Files/" + this.dest_file);
+        Path p = Paths.get("../Files/ " + this.dest_file);
         try (BufferedWriter writer = Files.newBufferedWriter(p)) {
             int j;
             double alfa = 2 * Math.PI / (double) slices;
                 for(j=0;j<slices;j++){
                     double alfa1 = j * alfa;
                     double alfa2 = (j+1) * alfa;
+
+                    //lado positivo
+
                     writer.write(Float.toString(calculate_xAxis(outter_radious,alfa1)) + "\n"); // x1
                     writer.write(Float.toString(0) + "\n"); // y
                     writer.write(Float.toString(calculate_zAxis(outter_radious,alfa1)) + "\n"); // z1
@@ -51,8 +54,111 @@ public class Ring {
                     writer.write(Float.toString(calculate_xAxis(radius,alfa1)) + "\n"); //x4
                     writer.write(Float.toString(0) + "\n"); // y
                     writer.write(Float.toString(calculate_zAxis(radius,alfa1))+ "\n"); //z4
+
+
+                    // lado negativo
+
+                    writer.write(Float.toString(calculate_xAxis(outter_radious,alfa2)) + "\n"); //x2;
+                    writer.write(Float.toString(0) + "\n"); // y
+                    writer.write(Float.toString(calculate_zAxis(outter_radious,alfa2)) + "\n"); //z2
+
+                    writer.write(Float.toString(calculate_xAxis(outter_radious,alfa1)) + "\n"); // x1
+                    writer.write(Float.toString(0) + "\n"); // y
+                    writer.write(Float.toString(calculate_zAxis(outter_radious,alfa1)) + "\n"); // z1
+
+                    writer.write(Float.toString(calculate_xAxis(radius,alfa1)) + "\n"); //x4
+                    writer.write(Float.toString(0) + "\n"); // y
+                    writer.write(Float.toString(calculate_zAxis(radius,alfa1))+ "\n"); //z4
+
+                    writer.write(Float.toString(calculate_xAxis(radius,alfa1)) + "\n"); //x4
+                    writer.write(Float.toString(0) + "\n"); // y
+                    writer.write(Float.toString(calculate_zAxis(radius,alfa1))+ "\n"); //z4
+
+                    writer.write(Float.toString(calculate_xAxis(radius,alfa2)) + "\n"); //x3
+                    writer.write(Float.toString(0) + "\n"); // y
+                    writer.write(Float.toString(calculate_zAxis(radius,alfa2)) + "\n"); //z3
+
+
+                    writer.write(Float.toString(calculate_xAxis(outter_radious,alfa2)) + "\n"); //x2;
+                    writer.write(Float.toString(0) + "\n"); // y
+                    writer.write(Float.toString(calculate_zAxis(outter_radious,alfa2)) + "\n"); //z2
+
+
+
+
                 }
             } catch(IOException ex) {}
+    }
+
+    public void generateNormals() {
+        Path p = Paths.get("../Files/ " + this.dest_file + ".n");
+        try (BufferedWriter writer = Files.newBufferedWriter(p)) {
+            int j;
+            double alfa = 2 * Math.PI / (double) slices;
+            for(j=0;j<slices;j++){
+                double alfa1 = j * alfa;
+                double alfa2 = (j+1) * alfa;
+
+                //lado positivo
+
+                writer.write(Float.toString(0) + "\n"); // x1
+                writer.write(Float.toString(1) + "\n"); // y
+                writer.write(Float.toString(0) + "\n"); // z1
+
+                writer.write(Float.toString(0) + "\n"); // x2
+                writer.write(Float.toString(1) + "\n"); // y
+                writer.write(Float.toString(0) + "\n"); // z2
+
+                writer.write(Float.toString(0) + "\n"); // x4
+                writer.write(Float.toString(1) + "\n"); // y
+                writer.write(Float.toString(0) + "\n"); // z4
+
+                writer.write(Float.toString(0) + "\n"); // x2;
+                writer.write(Float.toString(1) + "\n"); // y
+                writer.write(Float.toString(0) + "\n"); // z2
+
+                writer.write(Float.toString(0) + "\n"); // x3
+                writer.write(Float.toString(1) + "\n"); // y
+                writer.write(Float.toString(0) + "\n"); // z3
+
+                writer.write(Float.toString(0) + "\n"); // x4
+                writer.write(Float.toString(1) + "\n"); // y
+                writer.write(Float.toString(0) + "\n"); // z4
+
+
+                // lado negativo
+
+                writer.write(Float.toString(0) + "\n"); //x2;
+                writer.write(Float.toString(-1) + "\n"); // y
+                writer.write(Float.toString(0) + "\n");//z2
+
+                writer.write(Float.toString(0) + "\n"); // x1
+                writer.write(Float.toString(-1) + "\n"); // y
+                writer.write(Float.toString(0) + "\n"); // z1
+
+                writer.write(Float.toString(0) + "\n"); //x4
+                writer.write(Float.toString(-1) + "\n"); // y
+                writer.write(Float.toString(0) + "\n"); //z4
+
+                writer.write(Float.toString(0) + "\n"); //x4
+                writer.write(Float.toString(-1) + "\n"); // y
+                writer.write(Float.toString(0) + "\n"); //z4
+
+                writer.write(Float.toString(0) + "\n"); //x3
+                writer.write(Float.toString(-1) + "\n"); // y
+                writer.write(Float.toString(0) + "\n"); //z3
+
+
+                writer.write(Float.toString(0) + "\n"); //x2;
+                writer.write(Float.toString(-1) + "\n"); // y
+                writer.write(Float.toString(0) + "\n"); //z2
+
+
+
+
+            }
+        } catch(IOException ex) {}
+
     }
 
 }

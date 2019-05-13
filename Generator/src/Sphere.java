@@ -114,11 +114,11 @@ public class Sphere {
                     writer.write(Float.toString(calculate_xAxis(radius, alfa1, beta1)) + "\n");
                     writer.write(Float.toString(z1) + "\n");
                     writer.write(Float.toString(y2) + "\n");
-                    writer.write(Float.toString(calculate_xAxis(radius, alfa1, beta2)) + "\n");
+                    writer.write(Float.toString(calculate_xAxis(radius, alfa1, beta2)) + "\n");//
                     writer.write(Float.toString(calculate_zAxis(radius, alfa2, beta2)) + "\n");
                     writer.write(Float.toString(y2) + "\n");
                     writer.write(Float.toString(calculate_xAxis(radius, alfa2, beta2)) + "\n");
-                    writer.write(Float.toString(z2) + "\n");
+                    writer.write(Float.toString(z2) + "\n");//
                     writer.write(Float.toString(y1) + "\n");
                     writer.write(Float.toString(calculate_xAxis(radius, alfa2, beta1)) + "\n");
                 }
@@ -126,6 +126,75 @@ public class Sphere {
         } catch (IOException ex) {
         }
     }
+
+    private float[] normalize_vector(float[] array) {
+        float distance = (float) Math.sqrt(array[0]*array[0] + array[1]*array[1] + array[2]*array[2]);
+        float res[] = new float[3];
+        res[0] = array[0] / distance;
+        res[1] = array[1] / distance;
+        res[2] = array[2] / distance;
+        return array;
+    }
+
+    private void calculate_Normals(){
+        Path p = Paths.get("../Files/" + this.dest_file + ".n");
+        try (BufferedWriter writer = Files.newBufferedWriter(p)) {
+            int j, i;
+            double alfa = 2.0 * Math.PI / (double) slices;
+            double beta = Math.PI / (double) stacks;
+            for (i = 0; i < (stacks * 2); i++) {
+                double beta1 = i * beta;
+                double beta2 = (i + 1) * beta;
+                for (j = 0; j < slices; j++) {
+                    double alfa1 = j * alfa;
+                    double alfa2 = (j + 1) * alfa;
+
+                    float z1,z2;
+                    float y1,y2;
+
+                    y1 = calculate_yAxis(radius, beta1);
+                    y2 = calculate_yAxis(radius, beta2);
+                    z1 = calculate_zAxis(radius, alfa1, beta2);
+                    z2 = calculate_zAxis(radius, alfa2, beta1);
+
+                    float array[] = {z1,y2,calculate_xAxis(radius,alfa1,beta2)};
+                    float n_vector[] = normalize_vector(array);
+                    float array1[] = {z2,y1,calculate_xAxis(radius,alfa2,beta1)};
+                    float[] n_vector1 = normalize_vector(array1);
+                    float array2[] = {calculate_zAxis(radius,alfa1,beta1), y1 , calculate_xAxis(radius,alfa1,beta1)};
+                    float[] n_vector2 = normalize_vector(array2);
+                    float array3[] = {z1,y2, calculate_xAxis(radius,alfa1,beta2)};
+                    float[] n_vector3 = normalize_vector(array3);
+                    float array4[] = {calculate_zAxis(radius, alfa2, beta2),y2, calculate_xAxis(radius,alfa2,beta2)};
+                    float[] n_vector4 = normalize_vector(array4);
+                    float array5[] = {z2,y1, calculate_xAxis(radius,alfa2,beta1)};
+                    float[] n_vector5 = normalize_vector(array5);
+
+                    writer.write(Float.toString(n_vector[0]) + "\n");
+                    writer.write(Float.toString(n_vector[1]) + "\n");
+                    writer.write(Float.toString(n_vector[2]) + "\n");
+                    writer.write(Float.toString(n_vector1[0]) + "\n");
+                    writer.write(Float.toString(n_vector1[1]) + "\n");
+                    writer.write(Float.toString(n_vector1[2]) + "\n");
+                    writer.write(Float.toString(n_vector2[0]) + "\n");
+                    writer.write(Float.toString(n_vector2[1]) + "\n");
+                    writer.write(Float.toString(n_vector2[2]) + "\n");
+                    writer.write(Float.toString(n_vector3[0]) + "\n");
+                    writer.write(Float.toString(n_vector3[1]) + "\n");
+                    writer.write(Float.toString(n_vector3[2]) + "\n");
+                    writer.write(Float.toString(n_vector4[0]) + "\n");
+                    writer.write(Float.toString(n_vector4[1]) + "\n");
+                    writer.write(Float.toString(n_vector4[2]) + "\n");
+                    writer.write(Float.toString(n_vector5[0]) + "\n");
+                    writer.write(Float.toString(n_vector5[1]) + "\n");
+                    writer.write(Float.toString(n_vector5[2]) + "\n");
+
+
+                }
+            }
+        } catch (Exception e) {}
+    }
+
     public void writeToXML() {
         StringBuilder sb = new StringBuilder();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

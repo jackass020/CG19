@@ -18,6 +18,7 @@ public class Comet {
     private int[][] control_points_index;
     private float[][] control_points;
     private List<Point> vertexes;
+    private List<Point> normals;
     private static int[][] m ={{-1,3,-3,1},{3,-6,3,0},{-3,3,0,0},{1,0,0,0}};
     private int tesselation;
     private float[][] prod_matrix_x;
@@ -41,6 +42,25 @@ public class Comet {
         this.file=file;
         this.tesselation=tesselation;
         this.dest =dest;
+        this.dest =dest;
+    }
+
+    private float[] normalize_vector(float[] array) {
+        float distance = (float) Math.sqrt(array[0]*array[0] + array[1]*array[1] + array[2]*array[2]);
+        float res[] = new float[3];
+        res[0] = array[0] / distance;
+        res[1] = array[1] / distance;
+        res[2] = array[2] / distance;
+        return array;
+    }
+
+    private float[] cross_product(float[] u, float[] v) {
+        float[] vector = new float[3];
+        vector[0] = u[1]*v[2] - u[2]*v[1];
+        vector[1] = u[2]*v[0] - u[0]*v[2];
+        vector[2] = u[0]*v[1] - u[1]*v[0];
+
+        return vector;
     }
 
     public void generateFile() {
@@ -93,12 +113,45 @@ public class Comet {
                     Point point1 = new Point(x1,y1,z1);
                     Point point2 = new Point(x2,y2,z2);
                     Point point3 = new Point(x3,y3,z3);
+
+                    float[] dU1 = calculate_U_Derivate(u,v);
+                    float[] dV1 = calculate_V_Derivate(u,v);
+                    float[] n1 = normalize_vector(cross_product(dU1,dV1));
+
+                    Point n_point1 = new Point(n1[0],n1[1],n1[2]);
+
+                    float[] dU2 = calculate_U_Derivate(u+step,v);
+                    float[] dV2 = calculate_V_Derivate(u+step,v);
+                    float[] n2 = normalize_vector(cross_product(dU2,dV2));
+
+                    Point n_point2 = new Point(n2[0],n2[1],n2[2]);
+
+                    float[] dU3 = calculate_U_Derivate(u,v+step);
+                    float[] dV3 = calculate_V_Derivate(u,v+step);
+                    float[] n3 = normalize_vector(cross_product(dU3,dV3));
+
+                    Point n_point3 = new Point(n3[0],n3[1],n3[2]);
+
+                    //float[] dU4 = calculate_U_Derivate(u+step,v+step);
+                    //float[] dV4 = calculate_V_Derivate(u+step,v+step);
+                    //float[] n4 = normalize_vector(cross_product(dU4,dV4));
+
+                  //  Point n_point4 = new Point(n4[0],n4[1],n4[2]);
+
+
                     vertexes.add(point);
                     vertexes.add(point1);
                     vertexes.add(point2);
                     vertexes.add(point2);
                     vertexes.add(point1);
                     vertexes.add(point3);
+
+                    normals.add(n_point1);
+                    normals.add(n_point2);
+                    normals.add(n_point3);
+                    normals.add(n_point3);
+                    normals.add(n_point1);
+                    normals.add(n_point2);
                 }
             }
         }
@@ -182,6 +235,59 @@ public class Comet {
         return patch;
 
     }
+
+    private float[] calculate_U_Derivate(float u, float v) {
+        float[] u_matrix = {3*u*u,2*u,1,0};
+        float[] v_matrix = {v*v*v,v*v,v,1};
+        float[] vector = new float[3];
+        float[] u_array = new float[4];
+
+        u_array[0] = u_matrix[0]*prod_matrix_x[0][0] + u_matrix[1]*prod_matrix_x[1][0] + u_matrix[2]*prod_matrix_x[2][0] + u_matrix[3]*prod_matrix_x[3][0];
+        u_array[1] = u_matrix[0]*prod_matrix_x[0][1] + u_matrix[1]*prod_matrix_x[1][1] + u_matrix[2]*prod_matrix_x[2][1] + u_matrix[3]*prod_matrix_x[3][1];
+        u_array[2] = u_matrix[0]*prod_matrix_x[0][2] + u_matrix[1]*prod_matrix_x[1][2] + u_matrix[2]*prod_matrix_x[2][2] + u_matrix[3]*prod_matrix_x[3][2];
+        u_array[3] = u_matrix[0]*prod_matrix_x[0][3] + u_matrix[1]*prod_matrix_x[1][3] + u_matrix[2]*prod_matrix_x[2][3] + u_matrix[3]*prod_matrix_x[3][3];
+        vector[0] = u_array[0]*v_matrix[0] + u_array[1]*v_matrix[1] + u_array[2]*v_matrix[2] + u_array[3]*v_matrix[3];
+        u_array[0] = u_matrix[0]*prod_matrix_y[0][0] + u_matrix[1]*prod_matrix_y[1][0] + u_matrix[2]*prod_matrix_y[2][0] + u_matrix[3]*prod_matrix_y[3][0];
+        u_array[1] = u_matrix[0]*prod_matrix_y[0][1] + u_matrix[1]*prod_matrix_y[1][1] + u_matrix[2]*prod_matrix_y[2][1] + u_matrix[3]*prod_matrix_y[3][1];
+        u_array[2] = u_matrix[0]*prod_matrix_y[0][2] + u_matrix[1]*prod_matrix_y[1][2] + u_matrix[2]*prod_matrix_y[2][2] + u_matrix[3]*prod_matrix_y[3][2];
+        u_array[3] = u_matrix[0]*prod_matrix_y[0][3] + u_matrix[1]*prod_matrix_y[1][3] + u_matrix[2]*prod_matrix_y[2][3] + u_matrix[3]*prod_matrix_y[3][3];
+        vector[1] = u_array[0]*v_matrix[0] + u_array[1]*v_matrix[1] + u_array[2]*v_matrix[2] + u_array[3]*v_matrix[3];
+        u_array[0] = u_matrix[0]*prod_matrix_z[0][0] + u_matrix[1]*prod_matrix_z[1][0] + u_matrix[2]*prod_matrix_z[2][0] + u_matrix[3]*prod_matrix_z[3][0];
+        u_array[1] = u_matrix[0]*prod_matrix_z[0][1] + u_matrix[1]*prod_matrix_z[1][1] + u_matrix[2]*prod_matrix_z[2][1] + u_matrix[3]*prod_matrix_z[3][1];
+        u_array[2] = u_matrix[0]*prod_matrix_z[0][2] + u_matrix[1]*prod_matrix_z[1][2] + u_matrix[2]*prod_matrix_z[2][2] + u_matrix[3]*prod_matrix_z[3][2];
+        u_array[3] = u_matrix[0]*prod_matrix_z[0][3] + u_matrix[1]*prod_matrix_z[1][3] + u_matrix[2]*prod_matrix_z[2][3] + u_matrix[3]*prod_matrix_z[3][3];
+        vector[2] = u_array[0]*v_matrix[0] + u_array[1]*v_matrix[1] + u_array[2]*v_matrix[2] + u_array[3]*v_matrix[3];
+
+        return vector;
+    }
+
+    private float[] calculate_V_Derivate(float u, float v) {
+        float[] u_matrix = {u*u*u,u*u,u,1};
+        float[] v_matrix = {3*v*v,2*v,1,0};
+        float[] vector = new float[3];
+        float[] u_array = new float[4];
+
+        u_array[0] = u_matrix[0]*prod_matrix_x[0][0] + u_matrix[1]*prod_matrix_x[1][0] + u_matrix[2]*prod_matrix_x[2][0] + u_matrix[3]*prod_matrix_x[3][0];
+        u_array[1] = u_matrix[0]*prod_matrix_x[0][1] + u_matrix[1]*prod_matrix_x[1][1] + u_matrix[2]*prod_matrix_x[2][1] + u_matrix[3]*prod_matrix_x[3][1];
+        u_array[2] = u_matrix[0]*prod_matrix_x[0][2] + u_matrix[1]*prod_matrix_x[1][2] + u_matrix[2]*prod_matrix_x[2][2] + u_matrix[3]*prod_matrix_x[3][2];
+        u_array[3] = u_matrix[0]*prod_matrix_x[0][3] + u_matrix[1]*prod_matrix_x[1][3] + u_matrix[2]*prod_matrix_x[2][3] + u_matrix[3]*prod_matrix_x[3][3];
+        vector[0] = u_array[0]*v_matrix[0] + u_array[1]*v_matrix[1] + u_array[2]*v_matrix[2] + u_array[3]*v_matrix[3];
+        u_array[0] = u_matrix[0]*prod_matrix_y[0][0] + u_matrix[1]*prod_matrix_y[1][0] + u_matrix[2]*prod_matrix_y[2][0] + u_matrix[3]*prod_matrix_y[3][0];
+        u_array[1] = u_matrix[0]*prod_matrix_y[0][1] + u_matrix[1]*prod_matrix_y[1][1] + u_matrix[2]*prod_matrix_y[2][1] + u_matrix[3]*prod_matrix_y[3][1];
+        u_array[2] = u_matrix[0]*prod_matrix_y[0][2] + u_matrix[1]*prod_matrix_y[1][2] + u_matrix[2]*prod_matrix_y[2][2] + u_matrix[3]*prod_matrix_y[3][2];
+        u_array[3] = u_matrix[0]*prod_matrix_y[0][3] + u_matrix[1]*prod_matrix_y[1][3] + u_matrix[2]*prod_matrix_y[2][3] + u_matrix[3]*prod_matrix_y[3][3];
+        vector[1] = u_array[0]*v_matrix[0] + u_array[1]*v_matrix[1] + u_array[2]*v_matrix[2] + u_array[3]*v_matrix[3];
+        u_array[0] = u_matrix[0]*prod_matrix_z[0][0] + u_matrix[1]*prod_matrix_z[1][0] + u_matrix[2]*prod_matrix_z[2][0] + u_matrix[3]*prod_matrix_z[3][0];
+        u_array[1] = u_matrix[0]*prod_matrix_z[0][1] + u_matrix[1]*prod_matrix_z[1][1] + u_matrix[2]*prod_matrix_z[2][1] + u_matrix[3]*prod_matrix_z[3][1];
+        u_array[2] = u_matrix[0]*prod_matrix_z[0][2] + u_matrix[1]*prod_matrix_z[1][2] + u_matrix[2]*prod_matrix_z[2][2] + u_matrix[3]*prod_matrix_z[3][2];
+        u_array[3] = u_matrix[0]*prod_matrix_z[0][3] + u_matrix[1]*prod_matrix_z[1][3] + u_matrix[2]*prod_matrix_z[2][3] + u_matrix[3]*prod_matrix_z[3][3];
+        vector[2] = u_array[0]*v_matrix[0] + u_array[1]*v_matrix[1] + u_array[2]*v_matrix[2] + u_array[3]*v_matrix[3];
+
+        return vector;
+
+    }
+
+
 
 
     private void readFile() {

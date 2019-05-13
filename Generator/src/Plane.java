@@ -66,6 +66,17 @@ public class Plane {
     }
 
 
+    public void create_normals() {
+        Path p = Paths.get("/Files/" + this.file_de +".n");
+        try (BufferedWriter writer = Files.newBufferedWriter(p)) {
+        for (int i=0;i<6;i++) {
+            writer.write("0\n1\n0");
+        }
+        } catch (Exception e) {}
+
+
+    }
+
     public void writeToXML() {
         StringBuilder sb = new StringBuilder();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

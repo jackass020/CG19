@@ -26,6 +26,7 @@ public class Box {
     private float x;
     private float y;
     private float z;
+    private float div;
     private String file_dest;
 
     public Box() {
@@ -249,6 +250,107 @@ public class Box {
         } catch (Exception e) {
             e.getMessage();
         }
+    }
+
+    public void normalFrente(BufferedWriter writer) {
+        try{
+            int l,c;
+            for(l=0;l<this.div;l++){
+                for(c=0;c<this.div;c++){
+                    writer.write("0\n0\n1\n");
+                    writer.write("0\n0\n1\n");
+                    writer.write("0\n0\n1\n");
+                    writer.write("0\n0\n1\n");
+                    writer.write("0\n0\n1\n");
+                    writer.write("0\n0\n1\n");
+
+                }
+            }
+        } catch (Exception e) {}
+
+    }
+
+    public void normalTras(BufferedWriter writer) {
+        try{
+            int l,c;
+            for(l=0;l<this.div;l++){
+                for(c=0;c<this.div;c++) {
+                    writer.write("0\n0\n-1\n");
+                    writer.write("0\n0\n-1\n");
+                    writer.write("0\n0\n-1\n");
+                    writer.write("0\n0\n-1\n");
+                    writer.write("0\n0\n-1\n");
+                    writer.write("0\n0\n-1\n");
+                }
+            }
+        } catch(Exception e) {}
+    }
+
+    public void normalEsquerda(BufferedWriter writer) {
+        try{
+            int l,c;
+            for(l=0;l<this.div;l++){
+                for(c=0;c<this.div;c++) {
+                    writer.write("-1\n0\n0\n");
+                    writer.write("-1\n0\n0\n");
+                    writer.write("-1\n0\n0\n");
+                    writer.write("-1\n0\n0\n");
+                    writer.write("-1\n0\n0\n");
+                    writer.write("-1\n0\n0\n");
+                }
+            }
+
+        } catch(Exception e) {}
+    }
+
+    public void normalDireita(BufferedWriter writer) {
+        try{
+            int l,c;
+            for(l=0;l<this.div;l++){
+                for(c=0;c<this.div;c++) {
+                    writer.write("1\n0\n0\n");
+                    writer.write("1\n0\n0\n");
+                    writer.write("1\n0\n0\n");
+                    writer.write("1\n0\n0\n");
+                    writer.write("1\n0\n0\n");
+                    writer.write("1\n0\n0\n");
+                }
+            }
+
+        } catch(Exception e) {}
+    }
+
+    public void normalCima(BufferedWriter writer){
+        try{
+            int l,c;
+            for(l=0;l<this.div;l++){
+                for(c=0;c<this.div;c++) {
+                    writer.write("0\n1\n0\n");
+                    writer.write("0\n1\n0\n");
+                    writer.write("0\n1\n0\n");
+                    writer.write("0\n1\n0\n");
+                    writer.write("0\n1\n0\n");
+                    writer.write("0\n1\n0\n");
+                }
+            }
+
+        } catch(Exception e) {}
+    }
+
+    public void normalBaixo(BufferedWriter writer){
+        try{
+            int l,c;
+            for(l=0;l<this.div;l++){
+                for(c=0;c<this.div;c++) {
+                    writer.write("0\n-1\n0\n");
+                    writer.write("0\n-1\n0\n");
+                    writer.write("0\n-1\n0\n");
+                    writer.write("0\n-1\n0\n");
+                    writer.write("0\n-1\n0\n");
+                    writer.write("0\n-1\n0\n");
+                }
+            }
+        } catch(Exception e) {}
     }
 
     public void writeToXML() {
