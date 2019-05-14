@@ -202,7 +202,7 @@ public class Sphere {
         private void generate_UpperTexture(BufferedWriter writer) {
         try {
             int i,j;
-            for (i=Math.round(stacks-2);i>=0;i--){
+            for (i=Math.round(stacks*2)+3;i>=0;i--){
                 float y1 = ( i / stacks);
                 float y2 = ((i +1) / stacks);
                 for(j=0;j<slices;j++) {
@@ -237,7 +237,7 @@ public class Sphere {
         private void generate_LowerTexture(BufferedWriter writer){
         try{
             int i,j;
-            for (i=Math.round(stacks)-1;i>=Math.round(stacks)/2;i--){
+            for (i=Math.round(stacks*2);i>=Math.round(stacks)/2;i--){
                 float y1 = ( i / stacks);
                 float y2 = ((i +1) / stacks);
                 for (j=0;j<slices;j++) {
