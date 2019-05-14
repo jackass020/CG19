@@ -16,7 +16,7 @@
 #include <GL/glut.h>
 #endif
 
-
+#include <IL/il.h>
 #include <cmath>
 #include <fstream>
 #include <vector>
@@ -39,10 +39,46 @@ typedef struct coordinate {
 }Vertex;
 
 typedef std::vector<Vertex> ControlP;
+typedef std::vector<float> Texture;
+typedef std::vector<float> Normals;
 
 static bool operator<(const coordinate &a1, const coordinate &a2) {
     return true;
 }
+
+typedef struct rgb {
+    float r;
+    float g;
+    float b;
+}Col;
+
+typedef struct light {
+    bool amb= false;
+    bool differ = false;
+    bool spect = false;
+    bool emiss = false;
+    Col ambient;
+    Col diffuse;
+    Col specular;
+    Col emissive;
+}Lights;
+
+typedef struct type {
+    char* light_type;
+    bool joint_camera;
+    float posx;
+    float posy;
+    float posz;//pox, posy, poz can either be a direction or a position, depending on the light_type
+    Vertex spotDir;
+    Lights lights;
+    float cutoff;
+    float exponent;
+    float directional; //0.0(directional) or 1.0(positional)
+} LightType;
+
+vector<LightType> light_type;
+
+
 typedef struct pathInfo{
     Path path;
     ControlP contp;
@@ -53,7 +89,13 @@ typedef struct pathInfo{
     float scaleX=1,scaleY=1,scaleZ=1;
     float trans_time=0;
     float rot_time=0;
+    char* text;
+    bool has_texture = false;
+    Lights light;
 } Paths;
+
+int textures[20];
+int curText=0;
 
 typedef struct groupData{
     float traX, traY,traZ;
@@ -74,6 +116,12 @@ typedef struct modelData{
     bool curved;
     float trans_time=0;
     float rot_time=0;
+    char* text;
+    bool has_texture = false;
+    Lights light;
+    Texture texture;
+    Normals normals;
+    int tex;
 }ModelData;
 
 static bool operator<(const modelData &a1, const modelData &a2) {
@@ -81,6 +129,7 @@ static bool operator<(const modelData &a1, const modelData &a2) {
 }
 
 typedef std::set<ModelData> Models;
+
 bool axes = false;
 bool clicked = false;
 bool lines = false;
@@ -102,7 +151,13 @@ float gloY[3] = {0,1,0};
 
 void readModels(XMLElement* elem, int nr) {
 	const char* attr;
+
 	for (XMLElement* aux = elem; aux != nullptr; aux = aux->NextSiblingElement()) {
+        Lights l;
+        Col amb;
+        Col diff;
+        Col spec;
+        Col emis;
 		string nome_elem = aux->Value();
 
 		if (nome_elem == "model") {
@@ -118,9 +173,101 @@ void readModels(XMLElement* elem, int nr) {
 				paths[paths_size].scaleX = groups[nr].scaleX; //Adicionar no array paths os valores armazenados
 				paths[paths_size].scaleY = groups[nr].scaleY; //Adicionar no array paths os valores armazenados
 				paths[paths_size].scaleZ = groups[nr].scaleZ; //Adicionar no array paths os valores armazenados
-				paths_size++;
+
 			}
+
 		}
+		attr= aux->Attribute("texture");
+		if(attr!=nullptr){
+		    paths[paths_size].text= strdup(attr);
+		    paths[paths_size].has_texture = true;
+		}
+		else{
+		    paths[paths_size].text="";
+		}
+
+        attr = aux->Attribute("diffR");
+        if(attr!=nullptr) {
+            diff.r = strtof(attr,nullptr);
+            l.differ = true;
+        }
+
+        attr = aux->Attribute("diffG");
+        if(attr!=nullptr) {
+            diff.g = strtof(attr,nullptr);
+            l.differ=true;
+        }
+
+        attr = aux->Attribute("diffB");
+        if(attr!=nullptr) {
+            diff.b = strtof(attr,nullptr);
+            l.differ=true;
+        }
+
+
+        if(l.differ)
+            l.diffuse = diff;
+
+
+
+        attr = aux->Attribute("ambR");
+        if(attr!=nullptr) {
+            amb.r = strtof(attr, nullptr);
+            l.amb = true;
+        }
+        attr = aux->Attribute("ambG");
+        if(attr!=nullptr) {
+            amb.g = strtof(attr, nullptr);
+            l.amb = true;
+        }
+        attr = aux->Attribute("ambB");
+        if(attr!=nullptr) {
+            amb.b = strtof(attr,nullptr);
+            l.amb=true;
+        }
+        if(l.amb)
+            l.ambient = amb;
+
+        attr = aux->Attribute("specR");
+        if(attr!=nullptr) {
+            spec.r = strtof(attr, nullptr);
+            l.spect = true;
+        }
+        attr = aux->Attribute("specG");
+        if(attr!=nullptr) {
+            spec.g = strtof(attr, nullptr);
+            l.spect = true;
+        }
+        attr = aux->Attribute("specB");
+        if(attr!=nullptr) {
+            spec.b = strtof(attr,nullptr);
+            l.spect=true;
+        }
+
+        if(l.spect) l.specular = spec;
+
+
+        attr = aux->Attribute("emissR");
+        if(attr!=nullptr) {
+            emis.r = strtof(attr, nullptr);
+            l.emiss = true;
+        }
+        attr = aux->Attribute("emissG");
+        if(attr!=nullptr) {
+            emis.g = strtof(attr, nullptr);
+            l.emiss = true;
+        }
+        attr = aux->Attribute("emissB");
+        if(attr!=nullptr) {
+            emis.b = strtof(attr,nullptr);
+            l.emiss=true;
+        }
+
+        if(l.emiss) l.emissive = emis;
+
+        paths[paths_size].light = l;
+		paths_size++;
+
 	}
     number_of_groups++;
 
@@ -128,9 +275,41 @@ void readModels(XMLElement* elem, int nr) {
 
 
 
+int readTexture(string s) {
+    unsigned int t,tw,th;
+    unsigned char *texData;
+    unsigned int texID;
 
+    ilInit();
+    ilEnable(IL_ORIGIN_SET);
+    ilOriginFunc(IL_ORIGIN_LOWER_LEFT);
+    ilGenImages(1,&t);
+    ilBindImage(t);
+    ilLoadImage((ILstring)s.c_str());
+    tw = ilGetInteger(IL_IMAGE_WIDTH);
+    th = ilGetInteger(IL_IMAGE_HEIGHT);
+    ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
+    texData = ilGetData();
+
+    glGenTextures(1,&texID);
+
+    glBindTexture(GL_TEXTURE_2D,texID);
+    glTexParameteri(GL_TEXTURE_2D,	GL_TEXTURE_WRAP_S,		GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D,	GL_TEXTURE_WRAP_T,		GL_REPEAT);
+
+    glTexParameteri(GL_TEXTURE_2D,	GL_TEXTURE_MAG_FILTER,   	GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,	GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tw, th, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
+    glGenerateMipmap(GL_TEXTURE_2D);
+
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    return texID;
+}
 void readPoints (XMLElement* elem) {
     const char *attr;
+
     for (XMLElement *aux = elem; aux != nullptr; aux = aux->NextSiblingElement()) {
         string nome_elem = aux->Value();
         if (nome_elem == "point") {
@@ -147,6 +326,447 @@ void readPoints (XMLElement* elem) {
         }
     }
 }
+
+void colorL(int color,LightType lt) {
+
+    switch(color) {
+        case 0:
+            if(lt.lights.amb) {
+                GLfloat amb[4] = {lt.lights.ambient.r, lt.lights.ambient.g, lt.lights.ambient.b, 1.0};
+                glLightfv(GL_LIGHT0,GL_AMBIENT,amb);
+            }
+            if(lt.lights.differ) {
+                GLfloat differ[4] = {lt.lights.diffuse.r, lt.lights.diffuse.g, lt.lights.diffuse.b, 1.0};
+                glLightfv(GL_LIGHT0,GL_AMBIENT,differ);
+            }
+            if(lt.lights.spect) {
+                GLfloat spect[4] = {lt.lights.specular.r, lt.lights.specular.g, lt.lights.specular.b, 1.0};
+                glLightfv(GL_LIGHT0,GL_AMBIENT,spect);
+            }
+            if(lt.lights.emiss) {
+                GLfloat emiss[4] = {lt.lights.emissive.r, lt.lights.emissive.g, lt.lights.emissive.b, 1.0};
+                glLightfv(GL_LIGHT0,GL_AMBIENT,emiss);
+            }
+            break;
+        case 1:
+            if(lt.lights.amb) {
+                GLfloat amb[4] = {lt.lights.ambient.r, lt.lights.ambient.g, lt.lights.ambient.b, 1.0};
+                glLightfv(GL_LIGHT1,GL_AMBIENT,amb);
+            }
+            if(lt.lights.differ) {
+                GLfloat differ[4] = {lt.lights.diffuse.r, lt.lights.diffuse.g, lt.lights.diffuse.b, 1.0};
+                glLightfv(GL_LIGHT1,GL_AMBIENT,differ);
+            }
+            if(lt.lights.spect) {
+                GLfloat spect[4] = {lt.lights.specular.r, lt.lights.specular.g, lt.lights.specular.b, 1.0};
+                glLightfv(GL_LIGHT1,GL_AMBIENT,spect);
+            }
+            if(lt.lights.emiss) {
+                GLfloat emiss[4] = {lt.lights.emissive.r, lt.lights.emissive.g, lt.lights.emissive.b, 1.0};
+                glLightfv(GL_LIGHT1,GL_AMBIENT,emiss);
+            }
+            break;
+        case 2:
+            if(lt.lights.amb) {
+                GLfloat amb[4] = {lt.lights.ambient.r, lt.lights.ambient.g, lt.lights.ambient.b, 1.0};
+                glLightfv(GL_LIGHT2,GL_AMBIENT,amb);
+            }
+            if(lt.lights.differ) {
+                GLfloat differ[4] = {lt.lights.diffuse.r, lt.lights.diffuse.g, lt.lights.diffuse.b, 1.0};
+                glLightfv(GL_LIGHT2,GL_AMBIENT,differ);
+            }
+            if(lt.lights.spect) {
+                GLfloat spect[4] = {lt.lights.specular.r, lt.lights.specular.g, lt.lights.specular.b, 1.0};
+                glLightfv(GL_LIGHT2,GL_AMBIENT,spect);
+            }
+            if(lt.lights.emiss) {
+                GLfloat emiss[4] = {lt.lights.emissive.r, lt.lights.emissive.g, lt.lights.emissive.b, 1.0};
+                glLightfv(GL_LIGHT2,GL_AMBIENT,emiss);
+            }
+            break;
+        case 3:
+            if(lt.lights.amb) {
+                GLfloat amb[4] = {lt.lights.ambient.r, lt.lights.ambient.g, lt.lights.ambient.b, 1.0};
+                glLightfv(GL_LIGHT3,GL_AMBIENT,amb);
+            }
+            if(lt.lights.differ) {
+                GLfloat differ[4] = {lt.lights.diffuse.r, lt.lights.diffuse.g, lt.lights.diffuse.b, 1.0};
+                glLightfv(GL_LIGHT3,GL_AMBIENT,differ);
+            }
+            if(lt.lights.spect) {
+                GLfloat spect[4] = {lt.lights.specular.r, lt.lights.specular.g, lt.lights.specular.b, 1.0};
+                glLightfv(GL_LIGHT3,GL_AMBIENT,spect);
+            }
+            if(lt.lights.emiss) {
+                GLfloat emiss[4] = {lt.lights.emissive.r, lt.lights.emissive.g, lt.lights.emissive.b, 1.0};
+                glLightfv(GL_LIGHT3,GL_AMBIENT,emiss);
+            }
+            break;
+        case 4:
+            if(lt.lights.amb) {
+                GLfloat amb[4] = {lt.lights.ambient.r, lt.lights.ambient.g, lt.lights.ambient.b, 1.0};
+                glLightfv(GL_LIGHT4,GL_AMBIENT,amb);
+            }
+            if(lt.lights.differ) {
+                GLfloat differ[4] = {lt.lights.diffuse.r, lt.lights.diffuse.g, lt.lights.diffuse.b, 1.0};
+                glLightfv(GL_LIGHT4,GL_AMBIENT,differ);
+            }
+            if(lt.lights.spect) {
+                GLfloat spect[4] = {lt.lights.specular.r, lt.lights.specular.g, lt.lights.specular.b, 1.0};
+                glLightfv(GL_LIGHT4,GL_AMBIENT,spect);
+            }
+            if(lt.lights.emiss) {
+                GLfloat emiss[4] = {lt.lights.emissive.r, lt.lights.emissive.g, lt.lights.emissive.b, 1.0};
+                glLightfv(GL_LIGHT4,GL_AMBIENT,emiss);
+            }
+            break;
+        case 5:
+            if(lt.lights.amb) {
+                GLfloat amb[4] = {lt.lights.ambient.r, lt.lights.ambient.g, lt.lights.ambient.b, 1.0};
+                glLightfv(GL_LIGHT5,GL_AMBIENT,amb);
+            }
+            if(lt.lights.differ) {
+                GLfloat differ[4] = {lt.lights.diffuse.r, lt.lights.diffuse.g, lt.lights.diffuse.b, 1.0};
+                glLightfv(GL_LIGHT5,GL_AMBIENT,differ);
+            }
+            if(lt.lights.spect) {
+                GLfloat spect[4] = {lt.lights.specular.r, lt.lights.specular.g, lt.lights.specular.b, 1.0};
+                glLightfv(GL_LIGHT5,GL_AMBIENT,spect);
+            }
+            if(lt.lights.emiss) {
+                GLfloat emiss[4] = {lt.lights.emissive.r, lt.lights.emissive.g, lt.lights.emissive.b, 1.0};
+                glLightfv(GL_LIGHT5,GL_AMBIENT,emiss);
+            }
+            break;
+        case 6:
+            if(lt.lights.amb) {
+                GLfloat amb[4] = {lt.lights.ambient.r, lt.lights.ambient.g, lt.lights.ambient.b, 1.0};
+                glLightfv(GL_LIGHT6,GL_AMBIENT,amb);
+            }
+            if(lt.lights.differ) {
+                GLfloat differ[4] = {lt.lights.diffuse.r, lt.lights.diffuse.g, lt.lights.diffuse.b, 1.0};
+                glLightfv(GL_LIGHT6,GL_AMBIENT,differ);
+            }
+            if(lt.lights.spect) {
+                GLfloat spect[4] = {lt.lights.specular.r, lt.lights.specular.g, lt.lights.specular.b, 1.0};
+                glLightfv(GL_LIGHT6,GL_AMBIENT,spect);
+            }
+            if(lt.lights.emiss) {
+                GLfloat emiss[4] = {lt.lights.emissive.r, lt.lights.emissive.g, lt.lights.emissive.b, 1.0};
+                glLightfv(GL_LIGHT6,GL_AMBIENT,emiss);
+            }
+            break;
+        case 7:
+            if(lt.lights.amb) {
+                GLfloat amb[4] = {lt.lights.ambient.r, lt.lights.ambient.g, lt.lights.ambient.b, 1.0};
+                glLightfv(GL_LIGHT7,GL_AMBIENT,amb);
+            }
+            if(lt.lights.differ) {
+                GLfloat differ[4] = {lt.lights.diffuse.r, lt.lights.diffuse.g, lt.lights.diffuse.b, 1.0};
+                glLightfv(GL_LIGHT7,GL_AMBIENT,differ);
+            }
+            if(lt.lights.spect) {
+                GLfloat spect[4] = {lt.lights.specular.r, lt.lights.specular.g, lt.lights.specular.b, 1.0};
+                glLightfv(GL_LIGHT7,GL_AMBIENT,spect);
+            }
+            if(lt.lights.emiss) {
+                GLfloat emiss[4] = {lt.lights.emissive.r, lt.lights.emissive.g, lt.lights.emissive.b, 1.0};
+                glLightfv(GL_LIGHT7,GL_AMBIENT,emiss);
+            }
+            break;
+    }
+}
+
+void posL(bool before) {
+    for(int j=0 ; j<light_type.size();j++) {
+        LightType lt = light_type[j];
+        if((j==0) && ((before && lt.joint_camera) || (!before && !lt.joint_camera)) ) {
+            colorL(0,lt);
+            if(lt.light_type=="POINT" || lt.light_type=="DIRECTIONAL") {
+                GLfloat pos[4] = {lt.posx,lt.posy,lt.posz,lt.directional};
+                glLightfv(GL_LIGHT0,GL_POSITION,pos);
+            } else if(lt.light_type=="SPOT") {
+                GLfloat pos[4] = {lt.posx,lt.posy,lt.posz};
+                GLfloat spotDir[3] = {lt.spotDir.x,lt.spotDir.y,lt.spotDir.z};
+                glLightfv(GL_LIGHT0,GL_POSITION,pos);
+                glLightfv(GL_LIGHT0,GL_SPOT_DIRECTION,spotDir);
+                glLightf(GL_LIGHT0,GL_SPOT_CUTOFF,lt.cutoff);
+                glLightf(GL_LIGHT0,GL_SPOT_EXPONENT,lt.exponent);
+            }
+
+
+
+        } else if((j==1) && ((before && lt.joint_camera) || (!before && !lt.joint_camera))) {
+            colorL(1,lt);
+            if(lt.light_type=="POINT" || lt.light_type=="DIRECTIONAL") {
+                GLfloat pos[4] = {lt.posx,lt.posy,lt.posz,lt.directional};
+                glLightfv(GL_LIGHT1,GL_POSITION,pos);
+            } else if(lt.light_type=="SPOT") {
+                GLfloat pos[4] = {lt.posx,lt.posy,lt.posz};
+                GLfloat spotDir[3] = {lt.spotDir.x,lt.spotDir.y,lt.spotDir.z};
+                glLightfv(GL_LIGHT1,GL_POSITION,pos);
+                glLightfv(GL_LIGHT1,GL_SPOT_DIRECTION,spotDir);
+                glLightf(GL_LIGHT1,GL_SPOT_CUTOFF,lt.cutoff);
+                glLightf(GL_LIGHT1,GL_SPOT_EXPONENT,lt.exponent);
+            }
+
+
+        } else if((j==2) && ((before && lt.joint_camera) || (!before && !lt.joint_camera))) {
+            colorL(2,lt);
+            if(lt.light_type=="POINT" || lt.light_type=="DIRECTIONAL") {
+                GLfloat pos[4] = {lt.posx,lt.posy,lt.posz,lt.directional};
+                glLightfv(GL_LIGHT2,GL_POSITION,pos);
+            } else if(lt.light_type=="SPOT") {
+                GLfloat pos[4] = {lt.posx,lt.posy,lt.posz};
+                GLfloat spotDir[3] = {lt.spotDir.x,lt.spotDir.y,lt.spotDir.z};
+                glLightfv(GL_LIGHT2,GL_POSITION,pos);
+                glLightfv(GL_LIGHT2,GL_SPOT_DIRECTION,spotDir);
+                glLightf(GL_LIGHT2,GL_SPOT_CUTOFF,lt.cutoff);
+                glLightf(GL_LIGHT2,GL_SPOT_EXPONENT,lt.exponent);
+            }
+
+
+        } else if((j==3) && ((before && lt.joint_camera) || (!before && !lt.joint_camera))) {
+            colorL(3,lt);
+            if(lt.light_type=="POINT" || lt.light_type=="DIRECTIONAL") {
+                GLfloat pos[4] = {lt.posx,lt.posy,lt.posz,lt.directional};
+                glLightfv(GL_LIGHT3,GL_POSITION,pos);
+            } else if(lt.light_type=="SPOT") {
+                GLfloat pos[4] = {lt.posx,lt.posy,lt.posz};
+                GLfloat spotDir[3] = {lt.spotDir.x,lt.spotDir.y,lt.spotDir.z};
+                glLightfv(GL_LIGHT3,GL_POSITION,pos);
+                glLightfv(GL_LIGHT3,GL_SPOT_DIRECTION,spotDir);
+                glLightf(GL_LIGHT3,GL_SPOT_CUTOFF,lt.cutoff);
+                glLightf(GL_LIGHT3,GL_SPOT_EXPONENT,lt.exponent);
+            }
+
+
+        } else if((j==4) && ((before && lt.joint_camera) || (!before && !lt.joint_camera))) {
+            colorL(4,lt);
+            if(lt.light_type=="POINT" || lt.light_type=="DIRECTIONAL") {
+                GLfloat pos[4] = {lt.posx,lt.posy,lt.posz,lt.directional};
+                glLightfv(GL_LIGHT4,GL_POSITION,pos);
+            } else if(lt.light_type=="SPOT") {
+                GLfloat pos[4] = {lt.posx,lt.posy,lt.posz};
+                GLfloat spotDir[3] = {lt.spotDir.x,lt.spotDir.y,lt.spotDir.z};
+                glLightfv(GL_LIGHT4,GL_POSITION,pos);
+                glLightfv(GL_LIGHT4,GL_SPOT_DIRECTION,spotDir);
+                glLightf(GL_LIGHT4,GL_SPOT_CUTOFF,lt.cutoff);
+                glLightf(GL_LIGHT4,GL_SPOT_EXPONENT,lt.exponent);
+            }
+
+
+        } else if((j==5) && ((before && lt.joint_camera) || (!before && !lt.joint_camera))) {
+            colorL(5,lt);
+            if(lt.light_type=="POINT" || lt.light_type=="DIRECTIONAL") {
+                GLfloat pos[4] = {lt.posx,lt.posy,lt.posz,lt.directional};
+                glLightfv(GL_LIGHT5,GL_POSITION,pos);
+            } else if(lt.light_type=="SPOT") {
+                GLfloat pos[4] = {lt.posx,lt.posy,lt.posz};
+                GLfloat spotDir[3] = {lt.spotDir.x,lt.spotDir.y,lt.spotDir.z};
+                glLightfv(GL_LIGHT5,GL_POSITION,pos);
+                glLightfv(GL_LIGHT5,GL_SPOT_DIRECTION,spotDir);
+                glLightf(GL_LIGHT5,GL_SPOT_CUTOFF,lt.cutoff);
+                glLightf(GL_LIGHT5,GL_SPOT_EXPONENT,lt.exponent);
+            }
+
+
+        } else if((j==6) && ((before && lt.joint_camera) || (!before && !lt.joint_camera))) {
+
+            colorL(6,lt);
+            if(lt.light_type=="POINT" || lt.light_type=="DIRECTIONAL") {
+                GLfloat pos[4] = {lt.posx,lt.posy,lt.posz,lt.directional};
+                glLightfv(GL_LIGHT6,GL_POSITION,pos);
+            } else if(lt.light_type=="SPOT") {
+                GLfloat pos[4] = {lt.posx,lt.posy,lt.posz};
+                GLfloat spotDir[3] = {lt.spotDir.x,lt.spotDir.y,lt.spotDir.z};
+                glLightfv(GL_LIGHT6,GL_POSITION,pos);
+                glLightfv(GL_LIGHT6,GL_SPOT_DIRECTION,spotDir);
+                glLightf(GL_LIGHT6,GL_SPOT_CUTOFF,lt.cutoff);
+                glLightf(GL_LIGHT6,GL_SPOT_EXPONENT,lt.exponent);
+            }
+
+
+        } else if((j==7) && ((before && lt.joint_camera) || (!before && !lt.joint_camera))) {
+
+            colorL(7,lt);
+            if(lt.light_type=="POINT" || lt.light_type=="DIRECTIONAL") {
+                GLfloat pos[4] = {lt.posx,lt.posy,lt.posz,lt.directional};
+                glLightfv(GL_LIGHT7,GL_POSITION,pos);
+            } else if(lt.light_type=="SPOT") {
+                GLfloat pos[4] = {lt.posx,lt.posy,lt.posz};
+                GLfloat spotDir[3] = {lt.spotDir.x,lt.spotDir.y,lt.spotDir.z};
+                glLightfv(GL_LIGHT7,GL_POSITION,pos);
+                glLightfv(GL_LIGHT7,GL_SPOT_DIRECTION,spotDir);
+                glLightf(GL_LIGHT7,GL_SPOT_CUTOFF,lt.cutoff);
+                glLightf(GL_LIGHT7,GL_SPOT_EXPONENT,lt.exponent);
+            }
+            break;
+        }
+    }
+}
+
+void lightAux(XMLElement * elem){
+    const char * attr;
+
+    for(XMLElement * aux = elem; aux != nullptr;aux =aux->NextSiblingElement()){
+        Lights l;
+        Col amb;
+        Col diff;
+        Col spec;
+        Col emis;
+        string nome_elem= aux->Value();
+        if(nome_elem =="light"){
+            LightType lt;
+            attr= aux->Attribute("jointCamera");
+            if(attr!= nullptr){
+                if(attr == "true"){
+                    lt.joint_camera=true;
+                }
+                else{lt.joint_camera=false;}
+            }
+            else {lt.joint_camera=false;}
+            attr=aux->Attribute("type");
+            if(attr != nullptr)
+                lt.light_type=strdup(attr);
+            if(lt.light_type=="DIRECTIONAL") {
+                attr = aux->Attribute("dirX");
+                if(attr != nullptr)
+                    lt.posx= strtof(attr,nullptr);
+                attr = aux->Attribute("dirY");
+                if(attr!=nullptr)
+                    lt.posy = strtof(attr,nullptr);
+                attr = aux->Attribute("dirZ");
+                if(attr!=nullptr)
+                    lt.posz = strtof(attr,nullptr);
+                lt.directional = 0.0;
+            } else lt.directional = 1.0;
+            attr = aux->Attribute("posX");
+            if(attr != nullptr)
+                lt.posx = strtof(attr,nullptr);
+            attr = aux->Attribute("posY");
+            if(attr != nullptr)
+                lt.posy = strtof(attr,nullptr);
+            attr = aux->Attribute("posZ");
+            if(attr != nullptr)
+                lt.posz = strtof(attr,nullptr);
+            if(lt.light_type=="SPOT") {
+                attr = aux->Attribute("cutoff");
+                if (attr != nullptr) {
+                    float cutoff = strtof(attr, nullptr);
+                    if ((cutoff >= 0.0 && cutoff <= 90.0) || cutoff == 180.0)
+                        lt.cutoff = cutoff;
+                    else lt.cutoff = 90.0;
+                }
+
+                Vertex v;
+                attr = aux->Attribute("spotDirX");
+                if(attr!=nullptr)
+                    v.x = strtof(attr,nullptr);
+                attr = aux->Attribute("spotDirY");
+                if(attr!=nullptr)
+                    v.y = strtof(attr,nullptr);
+                attr = aux->Attribute("spotDirZ");
+                if(attr!=nullptr)
+                    v.z = strtof(attr,nullptr);
+
+                lt.spotDir = v;
+
+                attr = aux->Attribute("exponent");
+                if(attr!=nullptr) {
+                    float exponent = strtof(attr, nullptr);
+                    if (exponent >= 0.0 && exponent <= 128.0)
+                        lt.exponent = exponent;
+                    else lt.exponent = 0.0;
+                }
+            }
+
+            attr = aux->Attribute("diffR");
+            if(attr!=nullptr) {
+                diff.r = strtof(attr,nullptr);
+                l.differ = true;
+            }
+
+            attr = aux->Attribute("diffG");
+            if(attr!=nullptr) {
+                diff.g = strtof(attr,nullptr);
+                l.differ=true;
+            }
+
+            attr = aux->Attribute("diffB");
+            if(attr!=nullptr) {
+                diff.b = strtof(attr,nullptr);
+                l.differ=true;
+            }
+
+
+            if(l.differ)
+                l.diffuse = diff;
+
+
+
+            attr = aux->Attribute("ambR");
+            if(attr!=nullptr) {
+                amb.r = strtof(attr, nullptr);
+                l.amb = true;
+            }
+            attr = aux->Attribute("ambG");
+            if(attr!=nullptr) {
+                amb.g = strtof(attr, nullptr);
+                l.amb = true;
+            }
+            attr = aux->Attribute("ambB");
+            if(attr!=nullptr) {
+                amb.b = strtof(attr,nullptr);
+                l.amb=true;
+            }
+            if(l.amb)
+                l.ambient = amb;
+
+            attr = aux->Attribute("specR");
+            if(attr!=nullptr) {
+                spec.r = strtof(attr, nullptr);
+                l.spect = true;
+            }
+            attr = aux->Attribute("specG");
+            if(attr!=nullptr) {
+                spec.g = strtof(attr, nullptr);
+                l.spect = true;
+            }
+            attr = aux->Attribute("specB");
+            if(attr!=nullptr) {
+                spec.b = strtof(attr,nullptr);
+                l.spect=true;
+            }
+
+            if(l.spect) l.specular = spec;
+
+
+            attr = aux->Attribute("emissR");
+            if(attr!=nullptr) {
+                emis.r = strtof(attr, nullptr);
+                l.emiss = true;
+            }
+            attr = aux->Attribute("emissG");
+            if(attr!=nullptr) {
+                emis.g = strtof(attr, nullptr);
+                l.emiss = true;
+            }
+            attr = aux->Attribute("emissB");
+            if(attr!=nullptr) {
+                emis.b = strtof(attr,nullptr);
+                l.emiss=true;
+            }
+
+            if(l.emiss) l.emissive = emis;
+            lt.lights = l;
+
+            light_type.push_back(lt);
+        }
+    }
+
+}
+
 void groupAux(XMLElement* elem, int nr){
     const char* attr;//Vai guardar o atributo que queremos
     bool trans,rot,scale;
@@ -175,6 +795,9 @@ void groupAux(XMLElement* elem, int nr){
         if (nome_elem == "group") {//Caso seja "group" este iŕa ser um sub-group
              groupAux(aux->FirstChildElement(), nr + 1);
 
+        }
+        if(nome_elem == "lights") {
+            lightAux(aux->FirstChildElement());
         }
         if(nome_elem=="translate" && !trans) {//Caso seja translate, vai se armazenar os valores
             trans=true;
@@ -236,6 +859,7 @@ void groupAux(XMLElement* elem, int nr){
 
 }
 
+
 void readXML(){
     XMLDocument doc ;
     int i = 0;
@@ -246,20 +870,29 @@ void readXML(){
         if(nome_elem == "group") {
 			groupAux(elem->FirstChildElement(),0);//chama a função auxiliar para poder armazenar a informação de cada grupo
 		}
+        else if (nome_elem=="lights") {
+            lightAux(elem->FirstChildElement());//chama a função auxiliar para armazenar os atributos
+        }
         else{
             paths_size=0;
             return;
         }
     }
-    paths_size;
+
 }
 
 void preparaBuffers() {
     int i = 0;
     for(ModelData m : modelz) {
-        glBindBuffer(GL_ARRAY_BUFFER,buffers[i]);//Após a crição do buffer, precisamos de ligar o buffer com o devido id antes de este ser usado.
+        glBindBuffer(GL_ARRAY_BUFFER,buffers[i*3]);//Após a crição do buffer, precisamos de ligar o buffer com o devido id antes de este ser usado.
         float *vertexB = &m.model[0];
         glBufferData(GL_ARRAY_BUFFER,sizeof(float) * m.model.size(),vertexB,GL_STATIC_DRAW);// Sendo o buffer inicializado, é possivel copiar os dados para o buffer-
+        glBindBuffer(GL_ARRAY_BUFFER,buffers[i*3+1]);
+        float *normalsB = &m.normals[0];
+        glBufferData(GL_ARRAY_BUFFER,sizeof(float) * m.normals.size(),normalsB,GL_STATIC_DRAW);
+        glBindBuffer(GL_ARRAY_BUFFER,buffers[i*3+2]);//possivel ERRO!
+        float *textures = &m.texture[0];
+        glBufferData(GL_ARRAY_BUFFER,sizeof(float) * m.texture.size(),textures,GL_STATIC_DRAW);
         i++;
     }
 }
@@ -272,6 +905,10 @@ void loadXML() {
 	for (i=0;i<paths_size;i++) {
 
 	    Path p = paths[i].path;
+	    cout<< paths[i].path;
+        Path points=p+".3d";
+        Path text = p+".t";
+        Path normals = p+".n";
 		model.traX = paths[i].traX;
         model.traY = paths[i].traY;
         model.traZ = paths[i].traZ;
@@ -286,6 +923,13 @@ void loadXML() {
         model.rot_time=paths[i].rot_time;
         model.contp=paths[i].contp;
         model.nrcontp=paths[i].nrcontp;
+        model.light=paths[i].light;
+        model.text=paths[i].text;
+        model.has_texture = paths[i].has_texture;
+        if(model.has_texture && strlen(model.text)!=0){
+            model.tex=curText;
+            curText++;
+        }
 		ifstream file (p);//leitura do fichero
         if (file.is_open()) {//Caso o ficheiro abra
 			while (getline(file, c1) && getline(file, c2) && getline(file, c3)) {// obter as 3 primeiras linha sendo estas as coordenadas(x,y,z)
@@ -299,6 +943,28 @@ void loadXML() {
 			}
 			file.close();
 		}
+        ifstream filetext(text.c_str());
+        if (filetext.is_open()) {
+            while (getline(filetext, c1) && getline(filetext, c2)) {
+                x = strtof(c1.c_str(), nullptr);
+                y = strtof(c2.c_str(), nullptr);
+                model.texture.push_back(x);
+                model.texture.push_back(y);
+            }
+            filetext.close();
+        }
+        ifstream filetext2(normals.c_str());
+        if(filetext2.is_open()) {
+            while(getline(filetext2,c1) && getline(filetext2,c2) && getline(filetext2,c3)) {
+                x = strtof(c1.c_str(),nullptr);
+                y = strtof(c2.c_str(),nullptr);
+                z = strtof(c3.c_str(),nullptr);
+                model.normals.push_back(x);
+                model.normals.push_back(y);
+                model.normals.push_back(z);
+            }
+        }
+
 		modelz.insert(model);
 		model.model.clear();
 	}
@@ -354,10 +1020,36 @@ void drawTheFiles(float t) {
             glRotatef(m.rotY * alpha, 0, 1, 0);
             glRotatef(m.rotZ * alpha, 0, 0, 1);
         }
-        glBindBuffer(GL_ARRAY_BUFFER, buffers[j]);
-        glVertexPointer(3, GL_FLOAT, 0, 0);
-        glDrawArrays(GL_TRIANGLES, 0, model.size());
-        j++;
+        if(m.light.differ) {
+            float a[4] = {m.light.diffuse.r,m.light.diffuse.g,m.light.diffuse.b,1.0};
+            glMaterialfv(GL_FRONT,GL_DIFFUSE,a);
+        } else if(m.light.amb) {
+            float a[4] = {m.light.ambient.r,m.light.ambient.g,m.light.ambient.b,1.0};
+            glMaterialfv(GL_FRONT,GL_AMBIENT,a);
+        } else if(m.light.spect) {
+            float a[4] = {m.light.specular.r,m.light.specular.g,m.light.specular.b,1.0};
+            glMaterialfv(GL_FRONT,GL_SPECULAR,a);
+        } else if(m.light.emiss) {
+            float a[4] = {m.light.emissive.r,m.light.emissive.g,m.light.emissive.b,1.0};
+            glMaterialfv(GL_FRONT,GL_EMISSION,a);
+        }
+        if(m.has_texture) {
+            if (strlen(m.text) != 0) glBindTexture(GL_TEXTURE_2D, textures[m.tex]);
+            glBindBuffer(GL_ARRAY_BUFFER, buffers[j]);
+            glVertexPointer(3, GL_FLOAT, 0, 0);
+            glBindBuffer(GL_ARRAY_BUFFER, buffers[j + 1]);
+            glNormalPointer(GL_FLOAT, 0, 0);
+            glBindBuffer(GL_ARRAY_BUFFER, buffers[j + 2]);
+            glTexCoordPointer(2, GL_FLOAT, 0, 0);
+            glDrawArrays(GL_TRIANGLES, 0, model.size()/3);
+        } else {
+            glBindBuffer(GL_ARRAY_BUFFER, buffers[j]);
+            glVertexPointer(3, GL_FLOAT, 0, 0);
+            glBindBuffer(GL_ARRAY_BUFFER, buffers[j + 1]);
+            glNormalPointer(GL_FLOAT, 0, 0);
+            glDrawArrays(GL_TRIANGLES, 0, model.size()/3);
+        }
+        j+=3;
         glPopMatrix();
 
     }
@@ -455,9 +1147,12 @@ void renderScene() {
 
 	// set the camera
 	glLoadIdentity();
+    posL(true); // true means positioning the lights before positioning the camera
 	gluLookAt(px,py,pz,
 		      px + dx,py+dy,pz+dz,
 			  0.0f,1.0f,0.0f);
+
+    posL(false); // false means positioning the lights after positioning the camera
 
 	if (axes) drawAxes();
 
@@ -528,13 +1223,51 @@ void process_keys(unsigned char key, int x, int y) {
 	}
 	glutPostRedisplay();
 }
+void enableLighting() {
+    long n_lights = light_type.size();
+    for(int i =0; i< n_lights;i++) {
+        if (i == 0)
+            glEnable(GL_LIGHT0);
+        else if (i == 1)
+            glEnable(GL_LIGHT1);
+        else if (i == 2)
+            glEnable(GL_LIGHT2);
+        else if (i == 3)
+            glEnable(GL_LIGHT3);
+        else if (i == 4)
+            glEnable(GL_LIGHT4);
+        else if (i == 5)
+            glEnable(GL_LIGHT5);
+        else if (i == 6)
+            glEnable(GL_LIGHT6);
+        else if (i == 7) {
+            glEnable(GL_LIGHT7);
+            break;
+        }
+
+    }
+
+    glEnable(GL_LIGHTING);
+}
+
+void initGL(){
+
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+    glEnable(GL_TEXTURE_2D);
+    enableLighting();
+    for(ModelData m: modelz){
+        if(m.has_texture)
+            textures[m.tex]=readTexture(m.text);
+    }
+}
 
 int main(int argc, char **argv) {
 
   readXML();
   loadXML();
 
-  buffers = new GLuint[paths_size];
+  buffers = new GLuint[paths_size*3];
 
 // put GLUT init here
 	glutInit(&argc, argv);
@@ -545,7 +1278,9 @@ int main(int argc, char **argv) {
 
     glewInit();
     glEnableClientState(GL_VERTEX_ARRAY);// activate vertex position array
-    glGenBuffers(paths_size,buffers);//the first one is the number of buffer objects to create, and the second parameter is the address of a GLuint variable or array to store a single ID or multiple IDs
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    glEnableClientState(GL_NORMAL_ARRAY);
+    glGenBuffers(paths_size*3,buffers);//the first one is the number of buffer objects to create, and the second parameter is the address of a GLuint variable or array to store a single ID or multiple IDs
     preparaBuffers();
 // put callback registration here
 	glutDisplayFunc(renderScene);
@@ -556,6 +1291,8 @@ int main(int argc, char **argv) {
 	glutMotionFunc(mouseMove);
 	glutPassiveMotionFunc(mouseMove);
 	glutMouseFunc(mouseClick);
+
+	initGL();
 
 // OpenGL settings
 	glEnable(GL_DEPTH_TEST);

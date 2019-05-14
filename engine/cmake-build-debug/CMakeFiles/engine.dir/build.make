@@ -109,12 +109,16 @@ engine: CMakeFiles/engine.dir/main.cpp.o
 engine: CMakeFiles/engine.dir/tinyxml2.cpp.o
 engine: CMakeFiles/engine.dir/CatmullRom.cpp.o
 engine: CMakeFiles/engine.dir/build.make
-engine: /usr/lib/x86_64-linux-gnu/libGL.so
-engine: /usr/lib/x86_64-linux-gnu/libGLU.so
+engine: /usr/lib/x86_64-linux-gnu/libGLEW.so
+engine: /usr/lib/x86_64-linux-gnu/libIL.so
 engine: /usr/lib/x86_64-linux-gnu/libGL.so
 engine: /usr/lib/x86_64-linux-gnu/libGLU.so
 engine: /usr/lib/x86_64-linux-gnu/libglut.so
 engine: /usr/lib/x86_64-linux-gnu/libGLEW.so
+engine: /usr/lib/x86_64-linux-gnu/libIL.so
+engine: /usr/lib/x86_64-linux-gnu/libGL.so
+engine: /usr/lib/x86_64-linux-gnu/libGLU.so
+engine: /usr/lib/x86_64-linux-gnu/libglut.so
 engine: CMakeFiles/engine.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/nelson/Desktop/CG/engine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable engine"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/engine.dir/link.txt --verbose=$(VERBOSE)

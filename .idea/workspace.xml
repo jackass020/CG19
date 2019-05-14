@@ -13,28 +13,30 @@
   <component name="ChangeListManager">
     <list default="true" id="253d0532-138c-43e1-a9ac-336284388f15" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CG19_Fase2_.pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Files/Config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Files/Config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Files/ring.3d" beforeDir="false" afterPath="$PROJECT_DIR$/Files/ring.3d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Files/sphere.3d" beforeDir="false" afterPath="$PROJECT_DIR$/Files/sphere.3d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Filescomet.3d" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Generator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Generator/out/production/CG/Box.class" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/out/production/CG/Box.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Generator/out/production/CG/Comet$Point.class" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/out/production/CG/Comet$Point.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Generator/out/production/CG/Comet.class" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/out/production/CG/Comet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Generator/out/production/CG/Generator.class" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/out/production/CG/Generator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Generator/out/production/CG/Plane.class" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/out/production/CG/Plane.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Generator/out/production/CG/Ring.class" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/out/production/CG/Ring.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generator/src/Comet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/src/Comet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generator/src/Generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/src/Generator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generator/src/Ring.java" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/src/Ring.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Generator/out/production/CG/Sphere.class" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/out/production/CG/Sphere.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/engine/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/CatmullRom.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/CatmullRom.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/CatmullRom.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/CatmullRom.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/DependInfo.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/flags.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/link.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/main.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/tinyxml2.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/CMakeFiles/engine.dir/tinyxml2.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/engine" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/engine" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/cmake-build-debug/engine.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/cmake-build-debug/engine.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/main.cpp" afterDir="false" />
@@ -52,8 +54,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Generator/src/Sphere.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1984">
-              <caret line="124" column="13" selection-start-line="124" selection-start-column="13" selection-end-line="124" selection-end-column="13" />
+            <state relative-caret-position="2224">
+              <caret line="139" column="13" selection-start-line="139" selection-start-column="13" selection-end-line="139" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -62,7 +64,7 @@
         <entry file="file://$PROJECT_DIR$/Generator/src/Box.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="4896">
-              <caret line="306" column="4" selection-start-line="306" selection-start-column="4" selection-end-line="306" selection-end-column="4" />
+              <caret line="662" column="4" selection-start-line="662" selection-start-column="4" selection-end-line="662" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -79,12 +81,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/engine/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="526" column="7" selection-start-line="526" selection-start-column="7" selection-end-line="526" selection-end-column="7" />
+            <state relative-caret-position="502">
+              <caret line="1293" lean-forward="true" selection-start-line="1293" selection-end-line="1293" />
               <folding>
                 <element signature="e#247#269#0" expanded="true" />
                 <element signature="e#276#296#0" expanded="true" />
-                <element signature="e#327#343#0" expanded="true" />
+                <element signature="e#326#344#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -93,8 +95,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/engine/CatmullRom.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1712">
-              <caret line="107" column="40" selection-start-line="107" selection-start-column="40" selection-end-line="107" selection-end-column="40" />
+            <state relative-caret-position="4">
+              <caret line="68" column="44" selection-start-line="68" selection-start-column="44" selection-end-line="68" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -102,8 +104,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/engine/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="16" column="102" selection-start-line="16" selection-start-column="102" selection-end-line="16" selection-end-column="102" />
+            <state relative-caret-position="-35">
+              <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -111,7 +113,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Generator/src/Cone.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2528">
+            <state relative-caret-position="525">
               <caret line="158" selection-start-line="158" selection-end-line="158" />
             </state>
           </provider>
@@ -121,7 +123,7 @@
         <entry file="file://$PROJECT_DIR$/Generator/src/Plane.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1344">
-              <caret line="84" column="89" selection-start-line="84" selection-start-column="89" selection-end-line="84" selection-end-column="89" />
+              <caret line="125" column="89" selection-start-line="125" selection-start-column="89" selection-end-line="125" selection-end-column="89" />
             </state>
           </provider>
         </entry>
@@ -138,6 +140,12 @@
       <find>angle</find>
       <find>col</find>
       <find>number_</find>
+      <find>curText</find>
+      <find>render</find>
+      <find>readTe</find>
+      <find>readTexture</find>
+      <find>load</find>
+      <find>loadxm</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -152,14 +160,13 @@
         <option value="$PROJECT_DIR$/Generator/src/Box.java" />
         <option value="$PROJECT_DIR$/engine/Files/Config.xml" />
         <option value="$PROJECT_DIR$/Generator/src/Plane.java" />
-        <option value="$PROJECT_DIR$/engine/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/engine/CatmullRom.cpp" />
+        <option value="$PROJECT_DIR$/engine/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/engine/main.cpp" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="4">
-    <option name="x" value="960" />
     <option name="y" value="27" />
     <option name="width" value="960" />
     <option name="height" value="1002" />
@@ -172,7 +179,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -189,6 +195,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -254,11 +261,15 @@
       <workItem from="1555697798657" duration="2347000" />
       <workItem from="1555787376846" duration="1041000" />
       <workItem from="1555790563044" duration="11000" />
+      <workItem from="1557227089465" duration="2000" />
+      <workItem from="1557703439052" duration="35000" />
+      <workItem from="1557761956149" duration="7415000" />
+      <workItem from="1557841278562" duration="14066000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68776000" />
+    <option name="totallyTimeSpent" value="91405000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -270,10 +281,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="960" y="27" width="960" height="1002" extended-state="4" />
+    <frame x="0" y="27" width="960" height="1002" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14004377" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.20897156" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Designer" order="3" />
@@ -282,7 +293,7 @@
       <window_info id="UI Designer" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32914287" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32914287" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.23885715" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -292,7 +303,7 @@
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32914287" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32914287" />
-      <window_info anchor="bottom" id="CMake" order="12" weight="0.32342857" />
+      <window_info anchor="bottom" id="CMake" order="12" weight="0.32114285" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -304,6 +315,38 @@
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20897156" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info id="Designer" order="3" />
+      <window_info id="Image Layers" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="UI Designer" order="6" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32914287" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.23885715" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32914287" />
+      <window_info anchor="bottom" id="Database Changes" order="7" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.32914287" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32914287" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32914287" />
+      <window_info anchor="bottom" id="CMake" order="12" weight="0.32114285" />
+      <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Palette" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -357,15 +400,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Generator/src/Sphere.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1984">
-          <caret line="124" column="13" selection-start-line="124" selection-start-column="13" selection-end-line="124" selection-end-column="13" />
+        <state relative-caret-position="2224">
+          <caret line="139" column="13" selection-start-line="139" selection-start-column="13" selection-end-line="139" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Generator/src/Box.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4896">
-          <caret line="306" column="4" selection-start-line="306" selection-start-column="4" selection-end-line="306" selection-end-column="4" />
+          <caret line="662" column="4" selection-start-line="662" selection-start-column="4" selection-end-line="662" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -376,42 +419,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/engine/CatmullRom.cpp">
+    <entry file="file://$PROJECT_DIR$/Generator/src/Plane.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1712">
-          <caret line="107" column="40" selection-start-line="107" selection-start-column="40" selection-end-line="107" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="16" column="102" selection-start-line="16" selection-start-column="102" selection-end-line="16" selection-end-column="102" />
+        <state relative-caret-position="1344">
+          <caret line="125" column="89" selection-start-line="125" selection-start-column="89" selection-end-line="125" selection-end-column="89" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Generator/src/Cone.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2528">
+        <state relative-caret-position="525">
           <caret line="158" selection-start-line="158" selection-end-line="158" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Generator/src/Plane.java">
+    <entry file="file://$PROJECT_DIR$/engine/CatmullRom.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1344">
-          <caret line="84" column="89" selection-start-line="84" selection-start-column="89" selection-end-line="84" selection-end-column="89" />
+        <state relative-caret-position="4">
+          <caret line="68" column="44" selection-start-line="68" selection-start-column="44" selection-end-line="68" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-35">
+          <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/engine/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="526" column="7" selection-start-line="526" selection-start-column="7" selection-end-line="526" selection-end-column="7" />
+        <state relative-caret-position="502">
+          <caret line="1293" lean-forward="true" selection-start-line="1293" selection-end-line="1293" />
           <folding>
             <element signature="e#247#269#0" expanded="true" />
             <element signature="e#276#296#0" expanded="true" />
-            <element signature="e#327#343#0" expanded="true" />
+            <element signature="e#326#344#0" expanded="true" />
           </folding>
         </state>
       </provider>

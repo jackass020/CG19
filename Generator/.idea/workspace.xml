@@ -3,28 +3,30 @@
   <component name="ChangeListManager">
     <list default="true" id="a5c08869-0900-44e8-be31-7ce50a4b6661" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CG19_Fase2_.pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Files/Config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Files/Config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Files/ring.3d" beforeDir="false" afterPath="$PROJECT_DIR$/../Files/ring.3d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Files/sphere.3d" beforeDir="false" afterPath="$PROJECT_DIR$/../Files/sphere.3d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Filescomet.3d" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CG/Box.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CG/Box.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CG/Comet$Point.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CG/Comet$Point.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CG/Comet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CG/Comet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CG/Generator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CG/Generator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CG/Plane.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CG/Plane.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CG/Ring.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CG/Ring.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Comet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Comet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Generator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ring.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ring.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CG/Sphere.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CG/Sphere.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../engine/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../engine/CatmullRom.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/CatmullRom.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/CatmullRom.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/CatmullRom.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/DependInfo.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/flags.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/link.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/main.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/tinyxml2.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/CMakeFiles/engine.dir/tinyxml2.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/engine" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/engine" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../engine/cmake-build-debug/engine.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/cmake-build-debug/engine.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../engine/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../engine/main.cpp" afterDir="false" />
@@ -38,25 +40,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Generator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-318">
-              <caret line="81" column="19" selection-start-line="81" selection-start-column="19" selection-end-line="81" selection-end-column="19" />
+            <state relative-caret-position="660">
+              <caret line="76" column="44" selection-start-line="76" selection-start-column="44" selection-end-line="76" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#9570#9571#0" expanded="true" />
-                <element signature="e#9603#9604#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Comet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-660">
-              <caret line="48" column="28" selection-start-line="48" selection-start-column="28" selection-end-line="48" selection-end-column="28" />
+            <state relative-caret-position="240">
+              <caret line="102" column="53" selection-start-line="102" selection-start-column="53" selection-end-line="102" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -73,8 +73,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Sphere.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="90" column="21" lean-forward="true" selection-start-line="90" selection-start-column="21" selection-end-line="90" selection-end-column="21" />
+            <state relative-caret-position="765">
+              <caret line="90" column="21" selection-start-line="90" selection-start-column="21" selection-end-line="90" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -85,7 +85,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Cone.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1684">
+            <state relative-caret-position="1755">
               <caret line="140" column="45" selection-start-line="140" selection-start-column="45" selection-end-line="140" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -97,8 +97,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Box.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="514">
-              <caret line="69" column="30" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
+            <state relative-caret-position="540">
+              <caret line="69" selection-start-line="69" selection-end-line="69" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -110,7 +110,7 @@
         <entry file="file://$PROJECT_DIR$/src/Plane.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="315">
-              <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
+              <caret line="42" column="26" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -154,9 +154,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="4">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="27" />
-    <option name="width" value="960" />
+    <option name="width" value="950" />
     <option name="height" value="1002" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -210,7 +210,7 @@
     <configuration name="Generator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Generator" />
       <module name="CG" />
-      <option name="PROGRAM_PARAMETERS" value="Solarsystem" />
+      <option name="PROGRAM_PARAMETERS" value="comet ../Files/teapot.patch 10 comet.3d" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -257,14 +257,15 @@
       <workItem from="1554738124713" duration="1265000" />
       <workItem from="1554770915090" duration="85000" />
       <workItem from="1555790576553" duration="2375000" />
+      <workItem from="1557853959172" duration="1358000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30105000" />
+    <option name="totallyTimeSpent" value="31463000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="960" height="1002" extended-state="4" />
+    <frame x="0" y="27" width="1920" height="1002" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
@@ -272,7 +273,7 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.28884026" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.14247599" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.3295325" />
@@ -281,7 +282,7 @@
       <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" weight="0.32914287" />
-      <window_info anchor="bottom" id="Run" order="7" weight="0.31885713" />
+      <window_info active="true" anchor="bottom" id="Run" order="7" visible="true" weight="0.31885713" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.3990878" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
@@ -309,9 +310,29 @@
     <entry file="file://$PROJECT_DIR$/plane.txt" />
     <entry file="file://$PROJECT_DIR$/box.txt" />
     <entry file="file://$PROJECT_DIR$/Config.xml" />
+    <entry file="file://$PROJECT_DIR$/../Files/comet.3d">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ring.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="28" column="37" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Sphere.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="90" column="21" selection-start-line="90" selection-start-column="21" selection-end-line="90" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Cone.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1684">
+        <state relative-caret-position="1755">
           <caret line="140" column="45" selection-start-line="140" selection-start-column="45" selection-end-line="140" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -321,8 +342,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Box.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="69" column="30" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
+        <state relative-caret-position="540">
+          <caret line="69" selection-start-line="69" selection-end-line="69" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -332,49 +353,27 @@
     <entry file="file://$PROJECT_DIR$/src/Plane.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
+          <caret line="42" column="26" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Files/comet.3d">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Sphere.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="90" column="21" lean-forward="true" selection-start-line="90" selection-start-column="21" selection-end-line="90" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ring.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="28" column="37" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Comet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-660">
-          <caret line="48" column="28" selection-start-line="48" selection-start-column="28" selection-end-line="48" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Generator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-318">
-          <caret line="81" column="19" selection-start-line="81" selection-start-column="19" selection-end-line="81" selection-end-column="19" />
+        <state relative-caret-position="660">
+          <caret line="76" column="44" selection-start-line="76" selection-start-column="44" selection-end-line="76" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#9570#9571#0" expanded="true" />
-            <element signature="e#9603#9604#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Comet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="102" column="53" selection-start-line="102" selection-start-column="53" selection-end-line="102" selection-end-column="53" />
         </state>
       </provider>
     </entry>

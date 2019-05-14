@@ -1,10 +1,12 @@
 <scene>
- <!--Sol-->
+<lights>
+        <light type="POINT" posX="0" posY="0" posZ="0" /> 
+</lights>
  <group>
   <scale X="5" Y="5" Z="5" />
   <rotate time="52" X="0" Y="1" Z="0" />
   <models>
-   <model  file="../../Files/sphere.3d" />
+   <model  file="../../Files/sphere.3d" texture = "../../Files/Sun.jpg" emissR="0.9" emissG="0.9" emissB="0.0" />
   </models>
  </group>
 
@@ -23,7 +25,7 @@
   <rotate time="60" X="0" Y="1" Z="0" />
   <scale X="0.218" Y="0.218" Z="0.218" />
   <models>
-   <model file="../../Files/sphere.3d" />
+   <model file="../../Files/sphere.3d" texture="../../Files/Mercury.jpg" />
   </models>
  </group>
 
@@ -42,7 +44,7 @@
   <rotate time="-100" X="0" Y="1" Z="0" />
   <scale X="0.54" Y="0.54" Z="0.54" />
   <models>
-   <model  file="../../Files/sphere.3d" />
+   <model  file="../../Files/sphere.3d" texture="../../Files/Venus.jpg"  />
   </models>
  </group>
 
@@ -61,7 +63,7 @@
   <scale X="0.568" Y="0.568" Z="0.568" />
   <rotate time="10" X="0" Y="1" Z="0" />
   <models>
-   <model file="../../Files/sphere.3d" />
+   <model file="../../Files/sphere.3d" texture="../../Files/Earth.jpg" />
   </models>
  </group>
 
@@ -80,7 +82,7 @@
   <rotate time="12" X="0" Y="1" Z="0" />
   <scale X="0.302" Y="0.302" Z="0.302" />
   <models>
-   <model file="../../Files/sphere.3d" />
+   <model file="../../Files/sphere.3d" texture="../../Files/Mars.jpg" />
   </models>
  </group>
 
@@ -99,7 +101,7 @@
   <rotate time="6" X="0" Y="1" Z="0" />
   <scale X="2.2" Y="2.2" Z="2.2" />
   <models>
-   <model file="../../Files/sphere.3d" />
+   <model file="../../Files/sphere.3d" texture="../../Files/Jupiter.jpg" />
   </models>
  </group>
 
@@ -118,7 +120,7 @@
   <rotate time="7" X="0" Y="1" Z="0" />
   <scale X="2" Y="2" Z="2" />
   <models>
-   <model file="../../Files/sphere.3d" />
+   <model file="../../Files/sphere.3d" texture="../../Files/Saturn.jpg" />
   </models>
  </group>
 
@@ -138,7 +140,7 @@
   <rotate time="-6.97" X="0" Y="1" Z="0" />
   <scale X="1.8" Y="1.8" Z="1.8" />
   <models>
-   <model file="../../Files/sphere.3d" />
+   <model file="../../Files/sphere.3d" texture="../../Files/Uranus.jpg" />
   </models>
  </group>
 
@@ -157,7 +159,7 @@
   <rotate time="8" X="0" Y="1" Z="0" />
   <scale X="1.65" Y="1.65" Z="1.65" />
   <models>
-   <model file="../../Files/sphere.3d" />
+   <model file="../../Files/sphere.3d" texture="../../Files/Neptine.jpg" />
   </models>
  </group>
 

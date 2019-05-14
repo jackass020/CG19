@@ -17,6 +17,8 @@ GL/glew.h
 -
 GL/glut.h
 -
+IL/il.h
+-
 cmath
 -
 fstream
