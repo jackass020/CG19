@@ -6,7 +6,7 @@
   <scale X="5" Y="5" Z="5" />
   <rotate time="52" X="0" Y="1" Z="0" />
   <models>
-   <model  file="../../Files/sphere.3d" texture = "../../Files/Sun.jpg" emissR="0.9" emissG="0.9" emissB="0.0" />
+   <model  file="../../Files/sphere.3d" texture = "../../Files/Sun.jpg" emissR="0.9" emissG="0.4" emissB="0.4" />
   </models>
  </group>
 
@@ -159,7 +159,7 @@
   <rotate time="8" X="0" Y="1" Z="0" />
   <scale X="1.65" Y="1.65" Z="1.65" />
   <models>
-   <model file="../../Files/sphere.3d" texture="../../Files/Neptine.jpg" />
+   <model file="../../Files/sphere.3d" texture="../../Files/Neptune.jpg" />
   </models>
  </group>
 
@@ -174,7 +174,7 @@
   </translate>
   <scale X="0.3" Y="0.3" Z="0.3"/>
   <models>
-   <model file="../../Files/comet.3d" />
+   <model file="../../Files/comet.3d" texture = "../../Files/teapot.jpg"/>
   </models>
  </group>
 

@@ -15,6 +15,7 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -91,22 +92,13 @@ public class Sphere {
         calculate_Textures();
     }
 
-    private float[] normalize_vector(float[] array) {
-        float distance = (float) Math.sqrt(array[0]*array[0] + array[1]*array[1] + array[2]*array[2]);
-        float res[] = new float[3];
-        res[0] = array[0] / distance;
-        res[1] = array[1] / distance;
-        res[2] = array[2] / distance;
-        return array;
-    }
-
     private void calculate_Points() {
         Path p = Paths.get("../Files/" + this.dest_file);
         try (BufferedWriter writer = Files.newBufferedWriter(p)) {
             int j, i;
             double alfa = 2.0 * Math.PI / (double) slices;
             double beta = Math.PI / (double) stacks;
-            for (i = 0; i < (stacks * 2); i++) {
+            for (i = 0; i < (stacks*2) ; i++) {
                 double beta1 = i * beta;
                 double beta2 = (i + 1) * beta;
                 for (j = 0; j < slices; j++) {
@@ -174,23 +166,18 @@ public class Sphere {
                     writer.write(Float.toString(array[0]) + "\n");
                     writer.write(Float.toString(array[1]) + "\n");
                     writer.write(Float.toString(array[2]) + "\n");
-
                     writer.write(Float.toString(array1[0]) + "\n");
                     writer.write(Float.toString(array1[1]) + "\n");
                     writer.write(Float.toString(array1[2]) + "\n");
-
                     writer.write(Float.toString(array2[0]) + "\n");
                     writer.write(Float.toString(array2[1]) + "\n");
                     writer.write(Float.toString(array2[2]) + "\n");
-
                     writer.write(Float.toString(array3[0]) + "\n");
                     writer.write(Float.toString(array3[1]) + "\n");
                     writer.write(Float.toString(array3[2]) + "\n");
-
                     writer.write(Float.toString(array4[0]) + "\n");
                     writer.write(Float.toString(array4[1]) + "\n");
                     writer.write(Float.toString(array4[2]) + "\n");
-
                     writer.write(Float.toString(array5[0]) + "\n");
                     writer.write(Float.toString(array5[1]) + "\n");
                     writer.write(Float.toString(array5[2]) + "\n");
@@ -204,36 +191,81 @@ public class Sphere {
     private void calculate_Textures() {
         Path p = Paths.get("../Files/" + this.dest_file + ".t");
         try (BufferedWriter writer = Files.newBufferedWriter(p)) {
-            int i,j;
-            for (i=0;i<stacks;i++){
-                float y1 = i / stacks;
-                float y2 = (i+1) / stacks;
-                for(j=0;j<slices;j++) {
-                    float x1 = j / slices;
-                    float x2 = (j+1) / slices;
-
-                    writer.write(Float.toString(x1) + "\n");
-                    writer.write(Float.toString(y1) + "\n");
-
-                    writer.write(Float.toString(x2) + "\n");
-                    writer.write(Float.toString(y1) + "\n");
-
-                    writer.write(Float.toString(x2) + "\n");
-                    writer.write(Float.toString(y2) + "\n");
-
-                    writer.write(Float.toString(x1) + "\n");
-                    writer.write(Float.toString(y2) + "\n");
-
-                }
-            }
-
-
+            generate_UpperTexture(writer);
+            generate_LowerTexture(writer);
         } catch (Exception e) {
 
         }
 
         }
 
+        private void generate_UpperTexture(BufferedWriter writer) {
+        try {
+            int i,j;
+            for (i=Math.round(stacks-2);i>=0;i--){
+                float y1 = ( i / stacks);
+                float y2 = ((i +1) / stacks);
+                for(j=0;j<slices;j++) {
+                    float x1 =  ( j / slices) ;
+                    float x2 =  ((j+1) / slices) ;
+
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(1-y1)+"\n");
+
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(1-y2)+"\n");
+
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(1-y2)+"\n");
+
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(1-y1)+"\n");
+
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(1-y1)+"\n");
+
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(1-y2)+"\n");
+
+                }
+            }
+        } catch (Exception e) {}
+
+        }
+
+
+        private void generate_LowerTexture(BufferedWriter writer){
+        try{
+            int i,j;
+            for (i=Math.round(stacks)-1;i>=Math.round(stacks)/2;i--){
+                float y1 = ( i / stacks);
+                float y2 = ((i +1) / stacks);
+                for (j=0;j<slices;j++) {
+                    float x1 =  ( j / slices);
+                    float x2 =  ((j+1) / slices);
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(1-y1)+"\n");
+
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(1-y2)+"\n");
+
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(1-y2)+"\n");
+
+                    writer.write(Float.toString(x1)+"\n");
+                    writer.write(Float.toString(1-y1)+"\n");
+
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(1-y1)+"\n");
+
+                    writer.write(Float.toString(x2)+"\n");
+                    writer.write(Float.toString(1-y2)+"\n");
+                }
+            }
+
+            } catch (Exception e) {}
+
+        }
     public void writeToXML() {
         StringBuilder sb = new StringBuilder();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
