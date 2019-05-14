@@ -905,7 +905,6 @@ void loadXML() {
 	for (i=0;i<paths_size;i++) {
 
 	    Path p = paths[i].path;
-	    cout<< paths[i].path;
         Path points=p+".3d";
         Path text = p+".t";
         Path normals = p+".n";
