@@ -155,45 +155,45 @@ public class Sphere {
                     double alfa1 = j * alfa;
                     double alfa2 = (j + 1) * alfa;
 
-                    float z1,z2;
-                    float y1,y2;
+                    float z1 = calculate_zAxis(1, alfa1, beta2) , z2 = calculate_zAxis(1, alfa2, beta1);
+                    float y1 = calculate_yAxis(1, beta1) ,y2 = calculate_yAxis(1, beta2) ;
 
-                    y1 = calculate_yAxis(radius, beta1);
-                    y2 = calculate_yAxis(radius, beta2);
-                    z1 = calculate_zAxis(radius, alfa1, beta2);
-                    z2 = calculate_zAxis(radius, alfa2, beta1);
 
-                    float array[] = {z1,y2,calculate_xAxis(radius,alfa1,beta2)};
-                    float n_vector[] = normalize_vector(array);
-                    float array1[] = {z2,y1,calculate_xAxis(radius,alfa2,beta1)};
-                    float[] n_vector1 = normalize_vector(array1);
-                    float array2[] = {calculate_zAxis(radius,alfa1,beta1), y1 , calculate_xAxis(radius,alfa1,beta1)};
-                    float[] n_vector2 = normalize_vector(array2);
-                    float array3[] = {z1,y2, calculate_xAxis(radius,alfa1,beta2)};
-                    float[] n_vector3 = normalize_vector(array3);
-                    float array4[] = {calculate_zAxis(radius, alfa2, beta2),y2, calculate_xAxis(radius,alfa2,beta2)};
-                    float[] n_vector4 = normalize_vector(array4);
-                    float array5[] = {z2,y1, calculate_xAxis(radius,alfa2,beta1)};
-                    float[] n_vector5 = normalize_vector(array5);
+                    float array[] = {z1,y2,calculate_xAxis(1,alfa1,beta2)};
 
-                    writer.write(Float.toString(n_vector[0]) + "\n");
-                    writer.write(Float.toString(n_vector[1]) + "\n");
-                    writer.write(Float.toString(n_vector[2]) + "\n");
-                    writer.write(Float.toString(n_vector1[0]) + "\n");
-                    writer.write(Float.toString(n_vector1[1]) + "\n");
-                    writer.write(Float.toString(n_vector1[2]) + "\n");
-                    writer.write(Float.toString(n_vector2[0]) + "\n");
-                    writer.write(Float.toString(n_vector2[1]) + "\n");
-                    writer.write(Float.toString(n_vector2[2]) + "\n");
-                    writer.write(Float.toString(n_vector3[0]) + "\n");
-                    writer.write(Float.toString(n_vector3[1]) + "\n");
-                    writer.write(Float.toString(n_vector3[2]) + "\n");
-                    writer.write(Float.toString(n_vector4[0]) + "\n");
-                    writer.write(Float.toString(n_vector4[1]) + "\n");
-                    writer.write(Float.toString(n_vector4[2]) + "\n");
-                    writer.write(Float.toString(n_vector5[0]) + "\n");
-                    writer.write(Float.toString(n_vector5[1]) + "\n");
-                    writer.write(Float.toString(n_vector5[2]) + "\n");
+                    float array1[] = {z2,y1,calculate_xAxis(1,alfa2,beta1)};
+
+                    float array2[] = {calculate_zAxis(1,alfa1,beta1), y1 , calculate_xAxis(1,alfa1,beta1)};
+
+                    float array3[] = {z1,y2, calculate_xAxis(1,alfa1,beta2)};
+
+                    float array4[] = {calculate_zAxis(1, alfa2, beta2),y2, calculate_xAxis(1,alfa2,beta2)};
+
+                    float array5[] = {z2,y1, calculate_xAxis(1,alfa2,beta1)};
+
+                    writer.write(Float.toString(array[0]) + "\n");
+                    writer.write(Float.toString(array[1]) + "\n");
+                    writer.write(Float.toString(array[2]) + "\n");
+
+                    writer.write(Float.toString(array1[0]) + "\n");
+                    writer.write(Float.toString(array1[1]) + "\n");
+                    writer.write(Float.toString(array1[2]) + "\n");
+
+                    writer.write(Float.toString(array2[0]) + "\n");
+                    writer.write(Float.toString(array2[1]) + "\n");
+                    writer.write(Float.toString(array2[2]) + "\n");
+
+                    writer.write(Float.toString(array3[0]) + "\n");
+                    writer.write(Float.toString(array3[1]) + "\n");
+                    writer.write(Float.toString(array3[2]) + "\n");
+
+                    writer.write(Float.toString(array4[0]) + "\n");
+                    writer.write(Float.toString(array4[1]) + "\n");
+                    writer.write(Float.toString(array4[2]) + "\n");
+
+                    writer.write(Float.toString(array5[0]) + "\n");
+                    writer.write(Float.toString(array5[1]) + "\n");
+                    writer.write(Float.toString(array5[2]) + "\n");
 
 
                 }
