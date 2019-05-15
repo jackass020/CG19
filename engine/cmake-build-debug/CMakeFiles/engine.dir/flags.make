@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -std=gnu++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/nelson/Desktop/CG/engine/§{IL_INCLUDE_DIR} 
+CXX_INCLUDES = -I/home/marcoriano/Documents/Cadeiras/18-19/CG/TP/CG19/engine/§{IL_INCLUDE_DIR} 
 

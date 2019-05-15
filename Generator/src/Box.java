@@ -78,10 +78,10 @@ public class Box {
     public void generatePoints() {
         Path p = Paths.get("../Files/" + this.file_dest);
         try (BufferedWriter writer = Files.newBufferedWriter(p)) {
-            faceBaixo(writer);
             faceEsq(writer);
             faceDir(writer);
             faceCima(writer);
+            faceBaixo(writer);
             faceFrente(writer);
             faceAtras(writer);
         } catch (IOException e) {
@@ -93,10 +93,10 @@ public class Box {
     public void generateNormals() {
         Path p = Paths.get("../Files/" + this.file_dest + ".n");
         try (BufferedWriter writer = Files.newBufferedWriter(p)){
-            normalBaixo(writer);
             normalEsquerda(writer);
             normalDireita(writer);
             normalCima(writer);
+            normalBaixo(writer);
             normalFrente(writer);
             normalTras(writer);
         } catch (Exception e) {
@@ -107,10 +107,10 @@ public class Box {
     public void generateTextures() {
         Path p = Paths.get("../Files/" + this.file_dest + ".t");
         try (BufferedWriter writer = Files.newBufferedWriter(p)) {
-            texturaBaixo(writer);
             texturaEsquerda(writer);
             texturaDireita(writer);
             texturaCima(writer);
+            texturaBaixo(writer);
             texturaFrente(writer);
             texturaTras(writer);
         } catch (Exception e) {
@@ -408,16 +408,17 @@ public class Box {
             }
         } catch(Exception e) {}
     }
-
-    public void texturaDireita(BufferedWriter writer) {
+    private void texturaDireita(BufferedWriter writer){
         try{
-            float l,c;
-            for (l=0;l<this.div;l++){
-                float y1 = (l / (div*2));
-                float y2 = ((l+1) / (div*2));
-                for (c=0;c<this.div;c++) {
-                    float x1 = Math.abs(c/(div*3));
-                    float x2 = Math.abs((c+1) / (div*3));
+            float c,l;
+            for (l = 0; l < this.div; l++) {
+
+                float y1 = l/(div*2);
+                float y2 = (l+1) / (div*2);
+
+                for (c = 0; c < this.div; c++) {
+                    float x1= Math.abs((c)/(div*3));
+                    float x2= Math.abs((c+1)/(div*3));
                     writer.write(Float.toString(x2)+"\n");
                     writer.write(Float.toString(y1)+"\n");
                     writer.write(Float.toString(x1)+"\n");
@@ -431,23 +432,22 @@ public class Box {
                     writer.write(Float.toString(y2)+"\n");
                     writer.write(Float.toString(x1)+"\n");
                     writer.write(Float.toString(y2)+"\n");
-
                 }
             }
-        } catch (Exception e) {
-
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
         }
     }
-
-    public void texturaEsquerda (BufferedWriter writer) {
+    private void texturaEsquerda(BufferedWriter writer){
         try{
-            float l,c;
-            for(l=0;l<this.div;l++) {
-                float y1 = 0.5f + (l / (div*2));
-                float y2 = 0.5f + ((l+1) / (div*2));
-                for (c=0;c<this.div;c++) {
-                    float x1 = Math.abs(c/(div*3));
-                    float x2 = Math.abs((c+1) / (div*3));
+            float c,l;
+            for (l = 0; l < this.div; l++) {
+                float y1 = 0.5f + l /(div*2);
+                float y2 = 0.5f + (l+1) /(div*2);
+                for (c = 0; c < this.div; c++) {
+                    float x1= c/(div*3);
+                    float x2= (c+1)/(div*3);
                     writer.write(Float.toString(x1)+"\n");
                     writer.write(Float.toString(y2)+"\n");
                     writer.write(Float.toString(x2)+"\n");
@@ -461,25 +461,22 @@ public class Box {
                     writer.write(Float.toString(y1)+"\n");
                     writer.write(Float.toString(x1)+"\n");
                     writer.write(Float.toString(y2)+"\n");
-
                 }
             }
-
-        } catch (Exception e) {
-
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
         }
     }
-
-    public void texturaCima (BufferedWriter writer) {
+    private void texturaCima(BufferedWriter writer){
         try{
             float l,c;
-            for (l=0;l<this.div;l++) {
-                for (c=0;c<this.div;c++) {
-                    float y1 = (c / (div*2));
-                    float y2 = ((c+1) / (div*2));
-                    float x1 = ((1f/3f) + (l)) / (div*3);
-                    float x2 = ((1f/3f) + (l+1)) / (div*3);
-
+            for (l = 0; l < this.div; l++) {
+                for (c = 0; c < this.div; c++) {
+                    float y1=(c)/(div*2);
+                    float y2=(c+1)/(div*2);
+                    float x1=(1f/3f) + (l)/(div*3);
+                    float x2=(1f/3f) + (l+1)/(div*3);
                     writer.write(Float.toString(x2)+"\n");
                     writer.write(Float.toString(y1)+"\n");
                     writer.write(Float.toString(x1)+"\n");
@@ -493,115 +490,99 @@ public class Box {
                     writer.write(Float.toString(y2)+"\n");
                     writer.write(Float.toString(x1)+"\n");
                     writer.write(Float.toString(y2)+"\n");
-
                 }
             }
-         } catch(Exception e) {
-
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
         }
     }
-
-    public void texturaBaixo(BufferedWriter writer) {
+    private void texturaBaixo(BufferedWriter writer){
         try{
-            float l,c;
-            for (l=0;l<this.div;l++) {
-                for (c=0;c<this.div;c++) {
-                    float y1 = ( 0.5f + (c/2) ) / div;
-                    float y2 = ( 0.5f + (c+1)/2 ) / div;
-                    float x1 = ( (1f/3f) + (l/3) )/ div;
-                    float x2 = ( (1f/3f) + ((l+1)/3) ) / div;
-
+            float l, c;
+            for (l = 0; l < this.div; l++) {
+                for (c = 0; c < this.div; c++) {
+                    float y1 = 0.5f + (c/2) / div;
+                    float y2 = 0.5f + ((c+1)/2) / div;
+                    float x1 = (1f/3f) + (l/3) / div;
+                    float x2 = (1f/3f) + ((l+1)/3) / div;
                     writer.write(Float.toString(x1)+"\n");
                     writer.write(Float.toString(y2)+"\n");
-
                     writer.write(Float.toString(x2)+"\n");
                     writer.write(Float.toString(y1)+"\n");
-
                     writer.write(Float.toString(x1)+"\n");
                     writer.write(Float.toString(y1)+"\n");
 
                     writer.write(Float.toString(x2)+"\n");
                     writer.write(Float.toString(y2)+"\n");
-
                     writer.write(Float.toString(x2)+"\n");
                     writer.write(Float.toString(y1)+"\n");
-
                     writer.write(Float.toString(x1)+"\n");
                     writer.write(Float.toString(y2)+"\n");
                 }
             }
-        } catch(Exception e) {
-
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
         }
     }
-
-    public void texturaFrente(BufferedWriter writer) {
+    private void texturaFrente(BufferedWriter writer){
         try{
-            float l,c;
-            for (l=0;l<this.div;l++) {
-                for (c=0;c<this.div;c++) {
-                    float y1 = c / div;
-                    float y2 = (c+1) / div;
-                    float x1 = ( (2f/3f) + (l/3) ) / div;
-                    float x2 = ( (2f/3f) + ((l+1)/3) ) / div;
-
+            float l, c;
+            for (l = 0; l < this.div; l++) {
+                for (c = 0; c < this.div; c++) {
+                    float y1 = (c/2) / div;
+                    float y2 = ((c+1)/2) / div;
+                    float x1 = (2f/3f) + (l/3) / div;
+                    float x2 = (2f/3f) + ((l+1)/3) / div;
                     writer.write(Float.toString(x2)+"\n");
                     writer.write(Float.toString(y1)+"\n");
-
                     writer.write(Float.toString(x1)+"\n");
                     writer.write(Float.toString(y2)+"\n");
-
                     writer.write(Float.toString(x1)+"\n");
                     writer.write(Float.toString(y1)+"\n");
 
                     writer.write(Float.toString(x2)+"\n");
                     writer.write(Float.toString(y1)+"\n");
-
                     writer.write(Float.toString(x2)+"\n");
                     writer.write(Float.toString(y2)+"\n");
-
                     writer.write(Float.toString(x1)+"\n");
                     writer.write(Float.toString(y2)+"\n");
                 }
             }
-        } catch(Exception e) {
-
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
         }
     }
-
-    public void texturaTras(BufferedWriter writer) {
+    private void texturaTras(BufferedWriter writer){
         try{
-            float l,c;
-            for (l=0;l<this.div;l++) {
-                for (c=0;c<this.div;c++) {
-                    float y1 = ( 0.5f + c ) / div*2;
-                    float y2 = ( 0.5f + (c+1) ) / div*2;;
-                    float x1 = ( 1f - l ) / (div*3);
-                    float x2 = ( 1f - (l+1) ) / (div*3);
+            float l, c;
+            for (l = 0; l < this.div; l++) {
+                for (c = 0; c < this.div; c++) {
+                    float y1 = 0.5f +  c  / (div*2);
+                    float y2 = 0.5f + (c+1) /(div*2);
+                    float x1 = 1f - l /(div*3);
+                    float x2 = 1f - (l+1)/(div*3);
 
                     writer.write(Float.toString(x1)+"\n");
                     writer.write(Float.toString(y2)+"\n");
-
                     writer.write(Float.toString(x2)+"\n");
                     writer.write(Float.toString(y1)+"\n");
-
                     writer.write(Float.toString(x1)+"\n");
                     writer.write(Float.toString(y1)+"\n");
 
                     writer.write(Float.toString(x2)+"\n");
                     writer.write(Float.toString(y2)+"\n");
-
                     writer.write(Float.toString(x2)+"\n");
                     writer.write(Float.toString(y1)+"\n");
-
                     writer.write(Float.toString(x1)+"\n");
                     writer.write(Float.toString(y2)+"\n");
-
-
                 }
             }
-        } catch(Exception e) {
-
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
         }
     }
 

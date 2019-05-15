@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/nelson/Desktop/CG/engine/CatmullRom.cpp" "/home/nelson/Desktop/CG/engine/cmake-build-debug/CMakeFiles/engine.dir/CatmullRom.cpp.o"
-  "/home/nelson/Desktop/CG/engine/main.cpp" "/home/nelson/Desktop/CG/engine/cmake-build-debug/CMakeFiles/engine.dir/main.cpp.o"
-  "/home/nelson/Desktop/CG/engine/tinyxml2.cpp" "/home/nelson/Desktop/CG/engine/cmake-build-debug/CMakeFiles/engine.dir/tinyxml2.cpp.o"
+  "/home/marcoriano/Documents/Cadeiras/18-19/CG/TP/CG19/engine/CatmullRom.cpp" "/home/marcoriano/Documents/Cadeiras/18-19/CG/TP/CG19/engine/cmake-build-debug/CMakeFiles/engine.dir/CatmullRom.cpp.o"
+  "/home/marcoriano/Documents/Cadeiras/18-19/CG/TP/CG19/engine/main.cpp" "/home/marcoriano/Documents/Cadeiras/18-19/CG/TP/CG19/engine/cmake-build-debug/CMakeFiles/engine.dir/main.cpp.o"
+  "/home/marcoriano/Documents/Cadeiras/18-19/CG/TP/CG19/engine/tinyxml2.cpp" "/home/marcoriano/Documents/Cadeiras/18-19/CG/TP/CG19/engine/cmake-build-debug/CMakeFiles/engine.dir/tinyxml2.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

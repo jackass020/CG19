@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/nelson/Desktop/CG/engine/CatmullRom.h
+/home/marcoriano/Documents/Cadeiras/18-19/CG/TP/CG19/engine/CatmullRom.h
 
-/home/nelson/Desktop/CG/engine/main.cpp
+/home/marcoriano/Documents/Cadeiras/18-19/CG/TP/CG19/engine/main.cpp
 stdlib.h
 -
 GLUT/glut.h
@@ -32,11 +32,11 @@ set
 iostream
 -
 tinyxml2.h
-/home/nelson/Desktop/CG/engine/tinyxml2.h
+/home/marcoriano/Documents/Cadeiras/18-19/CG/TP/CG19/engine/tinyxml2.h
 CatmullRom.h
-/home/nelson/Desktop/CG/engine/CatmullRom.h
+/home/marcoriano/Documents/Cadeiras/18-19/CG/TP/CG19/engine/CatmullRom.h
 
-/home/nelson/Desktop/CG/engine/tinyxml2.h
+/home/marcoriano/Documents/Cadeiras/18-19/CG/TP/CG19/engine/tinyxml2.h
 ctype.h
 -
 limits.h
